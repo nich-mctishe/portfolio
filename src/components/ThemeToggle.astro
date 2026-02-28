@@ -1,0 +1,86 @@
+---
+// ThemeToggle Component
+// Interactive island to toggle between light and dark mode.
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+  <span class="icon-sun">☀️</span>
+  <span class="icon-moon">🌙</span>
+</button>
+
+<style lang="scss">
+  .theme-toggle {
+    background: var(--color-surface);
+    /* stylelint-disable-next-line unit-disallowed-list */
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    .icon-sun {
+      display: none;
+    }
+
+    .icon-moon {
+      display: block;
+    }
+  }
+
+  /* When the dark theme is active globally, swap the icons */
+  :global([data-theme="dark"]) .theme-toggle {
+    .icon-sun {
+      display: block;
+    }
+
+    .icon-moon {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  class ThemeToggle {
+    btn: HTMLElement | null;
+
+    constructor() {
+      this.btn = document.getElementById("theme-toggle");
+      if (this.btn) {
+        this.btn.addEventListener("click", () => this.toggleTheme());
+      }
+    }
+
+    toggleTheme() {
+      const element = document.documentElement;
+      const isDark = element.getAttribute("data-theme") === "dark";
+      const newTheme = isDark ? "light" : "dark";
+
+      element.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+    }
+  }
+
+  // Initialize the event listener
+  new ThemeToggle();
+
+  // Re-initialize if View Transitions are used in the future
+  document.addEventListener("astro:after-swap", () => {
+    new ThemeToggle();
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  });
+</script>

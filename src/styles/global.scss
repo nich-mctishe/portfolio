@@ -1,0 +1,107 @@
+// ==========================================================================
+// Global Styles
+// ==========================================================================
+// Imported once in the base layout. Sets up CSS custom properties for
+// theming, resets, and base element styles.
+
+@use 'tokens/colours' as *;
+
+// --------------------------------------------------------------------------
+// CSS Custom Properties (theming)
+// --------------------------------------------------------------------------
+:root {
+  // Light mode (default)
+  --color-primary: #{colour('primary', $light)};
+  --color-accent: #{colour('accent', $light)};
+  --color-bg: #{colour('bg', $light)};
+  --color-surface: #{colour('surface', $light)};
+  --color-text: #{colour('text', $light)};
+  --color-text-muted: #{colour('text-muted', $light)};
+  --color-border: #{colour('border', $light)};
+}
+
+[data-theme='dark'] {
+  --color-primary: #{colour('primary', $dark)};
+  --color-accent: #{colour('accent', $dark)};
+  --color-bg: #{colour('bg', $dark)};
+  --color-surface: #{colour('surface', $dark)};
+  --color-text: #{colour('text', $dark)};
+  --color-text-muted: #{colour('text-muted', $dark)};
+  --color-border: #{colour('border', $dark)};
+}
+
+// Respect OS preference when no manual toggle has been set
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-primary: #{colour('primary', $dark)};
+    --color-accent: #{colour('accent', $dark)};
+    --color-bg: #{colour('bg', $dark)};
+    --color-surface: #{colour('surface', $dark)};
+    --color-text: #{colour('text', $dark)};
+    --color-text-muted: #{colour('text-muted', $dark)};
+    --color-border: #{colour('border', $dark)};
+  }
+}
+
+// --------------------------------------------------------------------------
+// Reset
+// --------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading, 'Georgia', serif);
+  line-height: 1.2;
+}

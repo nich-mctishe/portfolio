@@ -1,0 +1,35 @@
+// ==========================================================================
+// Responsive Breakpoint Mixins
+// ==========================================================================
+// Three breakpoints from Figma:
+//   Mobile:  up to 767px  (default / mobile-first)
+//   Tablet:  768px+
+//   Desktop: 1200px+
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1200px;
+
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+// Utility: apply styles only below a breakpoint
+@mixin mobile-only {
+  @media (max-width: ($breakpoint-tablet - 1px)) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: $breakpoint-tablet) and (max-width: ($breakpoint-desktop - 1px)) {
+    @content;
+  }
+}

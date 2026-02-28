@@ -1,0 +1,22 @@
+// ==========================================================================
+// Typography Tokens
+// ==========================================================================
+// Serif for headings (from Figma), Inter for body
+
+$font-heading: 'Georgia', 'Times New Roman', serif;
+$font-body: 'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+
+// Responsive type scale (clamp-based)
+$font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+$font-size-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+$font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+$font-size-lg: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+$font-size-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+$font-size-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+$font-size-3xl: clamp(2.5rem, 2rem + 3vw, 4rem);
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-loose: 1.8;

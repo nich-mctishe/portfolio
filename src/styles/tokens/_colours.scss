@@ -1,0 +1,54 @@
+@use 'sass:map';
+
+// ==========================================================================
+// Colour Tokens
+// ==========================================================================
+// Light mode palette (from Figma)
+// Dark mode palette designed from scratch
+
+// --------------------------------------------------------------------------
+// Light mode
+// --------------------------------------------------------------------------
+$light: (
+  'primary': #990000,
+  // deep red — hero, headings
+  'accent': #2d8a4e,
+  // green — nav circles, CTAs
+  'bg': #f0f0f0,
+  // light grey background
+  'surface': #ffffff,
+  // card/section surfaces
+  'text': #1a1a1a,
+  // near-black body text
+  'text-muted': #555555,
+  // secondary text
+  'border': #000000,
+  // strokes (from Figma)
+);
+
+// --------------------------------------------------------------------------
+// Dark mode (designed from scratch — not inverted)
+// --------------------------------------------------------------------------
+$dark: (
+  'primary': #ff4d4d,
+  // brighter red for dark bg contrast
+  'accent': #4ade80,
+  // lighter green for dark bg
+  'bg': #0f0f0f,
+  // near-black background
+  'surface': #1a1a1a,
+  // elevated surfaces
+  'text': #f0f0f0,
+  // light text
+  'text-muted': #a0a0a0,
+  // secondary text
+  'border': #333333,
+  // subtle borders
+);
+
+// --------------------------------------------------------------------------
+// Helper: get a colour from a palette map
+// --------------------------------------------------------------------------
+@function colour($key, $palette: $light) {
+  @return map.get($palette, $key);
+}
