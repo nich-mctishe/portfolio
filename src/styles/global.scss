@@ -18,6 +18,7 @@
   --color-text: #{colour('text', $light)};
   --color-text-muted: #{colour('text-muted', $light)};
   --color-border: #{colour('border', $light)};
+  --color-shadow: #{colour('shadow', $light)};
 }
 
 [data-theme='dark'] {
@@ -28,6 +29,7 @@
   --color-text: #{colour('text', $dark)};
   --color-text-muted: #{colour('text-muted', $dark)};
   --color-border: #{colour('border', $dark)};
+  --color-shadow: #{colour('shadow', $dark)};
 }
 
 // Respect OS preference when no manual toggle has been set
@@ -40,6 +42,7 @@
     --color-text: #{colour('text', $dark)};
     --color-text-muted: #{colour('text-muted', $dark)};
     --color-border: #{colour('border', $dark)};
+    --color-shadow: #{colour('shadow', $dark)};
   }
 }
 

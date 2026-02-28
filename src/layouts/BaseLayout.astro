@@ -1,5 +1,7 @@
 ---
 import "../styles/global.scss"
+import SiteHeader from "../components/SiteHeader.astro"
+import SiteFooter from "../components/SiteFooter.astro"
 
 interface Props {
   title: string;
@@ -48,6 +50,8 @@ window.localStorage.setItem("theme", theme)
     </script>
   </head>
   <body>
+    <SiteHeader />
     <slot />
+    <SiteFooter />
   </body>
 </html>

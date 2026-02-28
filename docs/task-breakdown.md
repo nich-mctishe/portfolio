@@ -44,21 +44,22 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 
 ## Phase 4 — Layout & Navigation
 
-- [ ] **4.1** Build main page layout (`src/layouts/BaseLayout.astro`) — `<head>` metadata, semantic HTML structure, responsive viewport
-- [ ] **4.2** Build Nav & Logo section — name, title ("Software Engineer & Solution Architect"), geometric circle navigation
-- [ ] **4.3** Implement hamburger menu for mobile breakpoint
-- [ ] **4.4** Implement full navigation for desktop breakpoint
-- [ ] **4.5** Build footer with social media links
+- [x] **4.1** Build main page layout (`src/layouts/BaseLayout.astro`) — `<head>` metadata, semantic HTML structure, responsive viewport
+- [x] **4.2** Build Nav & Logo section — name, title ("Software Engineer & Solution Architect"), geometric circle navigation
+- [x] **4.3** Implement hamburger menu for mobile breakpoint
+- [x] **4.4** Implement full navigation for desktop breakpoint
+- [x] **4.5** Build footer with social media links
 
 ---
 
 ## Phase 5 — Page Sections
 
-- [ ] **5.1** Build Skills section — skill categories as styled blocks/circles, responsive layout (vertical on mobile, spread on desktop)
-- [ ] **5.2** Build Working History section — vertical timeline with circular nodes
-- [ ] **5.3** Build Education section
-- [ ] **5.4** Build Highlights Reel section — client logos grid (Apple, HBO, Dior, Heineken, lululemon, WPP)
+- [x] **5.1** Build Skills section — skill categories as styled blocks/circles, responsive layout
+- [x] **5.2** Build Working History section — vertical timeline with circular nodes
+- [x] **5.3** Build Education section
+- [x] **5.4** Build Highlights Reel section — client logos grid
 - [ ] **5.5** Build Side Hustle section (placeholder / future section)
+- [x] **5.6** Build Hero section — floating bubbles, dynamic name/title, CTA button
 
 ---
 

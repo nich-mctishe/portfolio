@@ -3,10 +3,11 @@ export default {
     'stylelint-config-standard-scss',
     'stylelint-config-html/astro'
   ],
+  ignoreFiles: ['dist/**'],
   rules: {
     'color-hex-length': 'long',
-    'selector-class-pattern': null, // Disable strict class name patterns if you want freedom with custom CSS
-    'scss/dollar-variable-pattern': null, // Disable strict variable patterns
+    'selector-class-pattern': null,
+    'scss/dollar-variable-pattern': null,
     'selector-pseudo-class-no-unknown': [
       true,
       {
@@ -23,12 +24,7 @@ export default {
         'src/styles/global.scss'
       ],
       rules: {
-        // Enforce rems over px (except for very specific borders if needed)
-        // Use /* stylelint-disable-next-line unit-disallowed-list */ 
-        // for exceptions
         'unit-disallowed-list': ['px'],
-
-        // Disallow direct colors so components MUST use var(--color-...)
         'color-no-hex': true,
         'color-named': 'never',
         'function-disallowed-list': ['rgb', 'rgba', 'hsl', 'hsla'],

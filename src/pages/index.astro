@@ -1,14 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
-import ThemeToggle from "../components/ThemeToggle.astro";
+import Hero from "../components/Hero.astro"
+import Skills from "../components/Skills.astro"
+import Experience from "../components/Experience.astro"
+import Education from "../components/Education.astro"
+import Highlights from "../components/Highlights.astro";
 ---
 
-<BaseLayout title="Portfolio">
-  <header style="padding: 1rem; display: flex; justify-content: flex-end;">
-    <ThemeToggle />
-  </header>
-  <main style="padding: 2rem;">
-    <h1>Portfolio</h1>
-    <p>Scaffolding complete — Astro + SCSS + dark/light theming.</p>
+<BaseLayout title="Portfolio | Software Engineer & Solution Architect">
+  <main>
+    <Hero />
+    <Skills />
+    <Experience />
+    <Education />
+    <Highlights />
   </main>
 </BaseLayout>
+
+<style lang="scss">
+	main {
+		// Standardizing page structure
+		display: flex;
+		flex-direction: column;
+	}
+</style>

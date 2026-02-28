@@ -1,0 +1,96 @@
+---
+import { getEntry } from "astro:content"
+import Section from "./Section.astro"
+
+const highlightsEntry = await getEntry("highlights", "data")
+const clients = highlightsEntry?.data?.clients || [];
+---
+
+<Section id="highlights" class="highlights-section">
+  <div class="section-header">
+    <h2 class="section-title">Global Client Highlights</h2>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="clients-grid">
+    {
+      clients.map((client) => (
+        <div class="client-card">
+          <div class="client-logo-placeholder">
+            <span class="client-name">{client.name}</span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+<style lang="scss">
+  @use "../styles/mixins" as *;
+
+  .highlights-section {
+    background-color: var(--color-surface);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .title-underline {
+    width: 4rem;
+    height: 0.25rem;
+    background-color: var(--color-primary);
+    margin: 0 auto;
+    border-radius: 0.125rem;
+  }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-xl);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .client-card {
+    aspect-ratio: 3 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg);
+    /* stylelint-disable-next-line unit-disallowed-list */
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: var(--spacing-md);
+    transition: all 0.3s ease;
+    filter: grayscale(1);
+    opacity: 0.7;
+
+    &:hover {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: scale(1.05);
+      border-color: var(--color-primary);
+    }
+  }
+
+  .client-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    color: var(--color-text);
+  }
+</style>

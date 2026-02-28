@@ -1,0 +1,148 @@
+---
+import { getEntry } from "astro:content"
+import Section from "./Section.astro"
+
+const experienceEntry = await getEntry("experience", "data")
+const jobs = experienceEntry?.data?.jobs || [];
+---
+
+<Section id="experience" class="experience-section">
+  <div class="section-header">
+    <h2 class="section-title">Work Experience</h2>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="timeline">
+    {
+      jobs.map((job) => (
+        <div class="timeline-item">
+          <div class="timeline-dot" />
+          <div class="job-card">
+            <div class="job-header">
+              <h3 class="job-role">{job.role}</h3>
+              <span class="job-company">{job.company}</span>
+            </div>
+            <div class="job-meta">
+              <span class="job-dates">
+                {job.startDate} — {job.endDate || "Present"}
+              </span>
+            </div>
+            {job.description && (
+              <p class="job-description">{job.description}</p>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+<style lang="scss">
+  @use "../styles/mixins" as *;
+
+  .experience-section {
+    background-color: var(--color-bg);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .title-underline {
+    width: 4rem;
+    height: 0.25rem;
+    background-color: var(--color-primary);
+    margin: 0 auto;
+    border-radius: 0.125rem;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding-left: var(--spacing-xl);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0.4375rem; // 7px
+      top: 0;
+      bottom: 0;
+      /* stylelint-disable-next-line unit-disallowed-list */
+      width: 2px;
+      background-color: var(--color-border);
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-3xl);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -1.3125rem; // Adjusted for line width
+    top: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    /* stylelint-disable-next-line unit-disallowed-list */
+    border: 2px solid var(--color-border);
+    z-index: 1;
+  }
+
+  .job-card {
+    background-color: var(--color-surface);
+    /* stylelint-disable-next-line unit-disallowed-list */
+    border: 2px solid var(--color-border);
+    border-radius: 1rem;
+    padding: var(--spacing-xl);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateX(0.5rem);
+    }
+  }
+
+  .job-role {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .job-company {
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+    display: block;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .job-meta {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .job-dates {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+  }
+
+  .job-description {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+  }
+</style>
