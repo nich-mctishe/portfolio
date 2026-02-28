@@ -1,0 +1,9 @@
+name: "John Doe"
+title: "Software Engineer & Solution Architect"
+email: "hello@example.com"
+location: "Remote / Global"
+socials:
+  - platform: GitHub
+    url: "https://github.com"
+  - platform: LinkedIn
+    url: "https://linkedin.com"

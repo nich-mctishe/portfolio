@@ -33,12 +33,12 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 
 ## Phase 3 — Content Layer
 
-- [ ] **3.1** Define Astro Content Collection schemas in `src/content/config.ts` (Zod)
-- [ ] **3.2** Create `src/content/skills.yaml` — skill categories (Front End, Back End, DevOps, Design, Process, Procedure) with entries
-- [ ] **3.3** Create `src/content/experience.yaml` — work history entries (company, role, dates, description)
-- [ ] **3.4** Create `src/content/education.yaml` — qualifications
-- [ ] **3.5** Create `src/content/highlights.yaml` — client logos and metadata
-- [ ] **3.6** Create `src/content/personal.yaml` — name, title, contact info, social links
+- [x] **3.1** Define Astro Content Collection schemas in `src/content/config.ts` (Zod)
+- [x] **3.2** Create `src/content/skills.yaml` — skill categories (Front End, Back End, DevOps, Design, Process, Procedure) with entries
+- [x] **3.3** Create `src/content/experience.yaml` — work history entries (company, role, dates, description)
+- [x] **3.4** Create `src/content/education.yaml` — qualifications
+- [x] **3.5** Create `src/content/highlights.yaml` — client logos and metadata
+- [x] **3.6** Create `src/content/personal.yaml` — name, title, contact info, social links
 
 ---
 

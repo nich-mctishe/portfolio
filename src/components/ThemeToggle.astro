@@ -51,36 +51,36 @@
 </style>
 
 <script>
-  class ThemeToggle {
-    btn: HTMLElement | null;
+class ThemeToggle {
+  btn: HTMLElement | null
 
-    constructor() {
-      this.btn = document.getElementById("theme-toggle");
-      if (this.btn) {
-        this.btn.addEventListener("click", () => this.toggleTheme());
-      }
-    }
-
-    toggleTheme() {
-      const element = document.documentElement;
-      const isDark = element.getAttribute("data-theme") === "dark";
-      const newTheme = isDark ? "light" : "dark";
-
-      element.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
+  constructor() {
+    this.btn = document.getElementById("theme-toggle")
+    if (this.btn) {
+      this.btn.addEventListener("click", () => this.toggleTheme())
     }
   }
 
-  // Initialize the event listener
-  new ThemeToggle();
+  toggleTheme() {
+    const element = document.documentElement
+    const isDark = element.getAttribute("data-theme") === "dark"
+    const newTheme = isDark ? "light" : "dark"
 
-  // Re-initialize if View Transitions are used in the future
-  document.addEventListener("astro:after-swap", () => {
-    new ThemeToggle();
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-  });
+    element.setAttribute("data-theme", newTheme)
+    localStorage.setItem("theme", newTheme)
+  }
+}
+
+// Initialize the event listener
+new ThemeToggle()
+
+// Re-initialize if View Transitions are used in the future
+document.addEventListener("astro:after-swap", () => {
+  new ThemeToggle()
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark")
+  } else {
+    document.documentElement.setAttribute("data-theme", "light")
+  }
+})
 </script>

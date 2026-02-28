@@ -1,0 +1,32 @@
+categories:
+  - name: Front End
+    items:
+      - HTML/CSS
+      - JavaScript
+      - TypeScript
+      - React
+      - Astro
+      - SCSS
+  - name: Back End
+    items:
+      - Node.js
+      - Python
+      - SQL
+  - name: DevOps
+    items:
+      - GitHub Actions
+      - AWS
+      - Docker
+  - name: Design
+    items:
+      - Figma
+      - UI/UX
+  - name: Process
+    items:
+      - Agile
+      - Scrum
+  - name: Procedure
+    items:
+      - TDD
+      - BDD
+      - CI/CD

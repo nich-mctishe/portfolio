@@ -1,0 +1,11 @@
+jobs:
+  - company: Tech Corp
+    role: Senior Software Engineer
+    startDate: "2022-01"
+    endDate: "Present"
+    description: Led development on the core platform.
+  - company: Web Agency
+    role: Front End Developer
+    startDate: "2019-03"
+    endDate: "2021-12"
+    description: Delivered highly interactive UI components.
