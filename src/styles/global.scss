@@ -5,6 +5,8 @@
 // theming, resets, and base element styles.
 
 @use 'tokens/colours' as *;
+@use 'tokens/typography' as *;
+@use 'tokens/spacing' as *;
 
 // --------------------------------------------------------------------------
 // CSS Custom Properties (theming)
@@ -12,6 +14,9 @@
 :root {
   // Light mode (default)
   --color-primary: #{colour('primary', $light)};
+  --color-secondary: #{colour('secondary', $light)};
+  --color-tertiary: #{colour('tertiary', $light)};
+  --color-quaternary: #{colour('quaternary', $light)};
   --color-accent: #{colour('accent', $light)};
   --color-bg: #{colour('bg', $light)};
   --color-surface: #{colour('surface', $light)};
@@ -19,10 +24,41 @@
   --color-text-muted: #{colour('text-muted', $light)};
   --color-border: #{colour('border', $light)};
   --color-shadow: #{colour('shadow', $light)};
+
+  // Typography
+  --font-body: #{$font-body};
+  --font-heading: #{$font-heading};
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-weight-normal: #{$font-weight-normal};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-bold: #{$font-weight-bold};
+  --line-height-tight: #{$line-height-tight};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-loose: #{$line-height-loose};
+  --letter-spacing-tight: #{$letter-spacing-tight};
+
+  // Spacing
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  --spacing-lg: #{$spacing-lg};
+  --spacing-xl: #{$spacing-xl};
+  --spacing-2xl: #{$spacing-2xl};
+  --spacing-3xl: #{$spacing-3xl};
+  --spacing-4xl: #{$spacing-4xl};
 }
 
 [data-theme='dark'] {
   --color-primary: #{colour('primary', $dark)};
+  --color-secondary: #{colour('secondary', $dark)};
+  --color-tertiary: #{colour('tertiary', $dark)};
+  --color-quaternary: #{colour('quaternary', $dark)};
   --color-accent: #{colour('accent', $dark)};
   --color-bg: #{colour('bg', $dark)};
   --color-surface: #{colour('surface', $dark)};
@@ -36,6 +72,9 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --color-primary: #{colour('primary', $dark)};
+    --color-secondary: #{colour('secondary', $dark)};
+    --color-tertiary: #{colour('tertiary', $dark)};
+    --color-quaternary: #{colour('quaternary', $dark)};
     --color-accent: #{colour('accent', $dark)};
     --color-bg: #{colour('bg', $dark)};
     --color-surface: #{colour('surface', $dark)};
@@ -64,8 +103,8 @@ html {
 }
 
 body {
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 1rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -123,9 +162,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading, "Outfit", "Georgia", serif);
+  font-family: var(--font-heading);
   line-height: var(--line-height-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 // --------------------------------------------------------------------------

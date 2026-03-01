@@ -51,6 +51,7 @@ const personal = defineCollection({
     title: z.string(),
     email: z.string().email(),
     location: z.string(),
+    description: z.string(),
     socials: z.array(z.object({
       platform: z.string(),
       url: z.string().url()
