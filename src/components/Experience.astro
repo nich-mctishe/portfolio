@@ -1,8 +1,8 @@
 ---
-import { getEntry } from "astro:content"
-import Section from "./Section.astro"
+import { getEntry } from 'astro:content'
+import Section from './Section.astro'
 
-const experienceEntry = await getEntry("experience", "data")
+const experienceEntry = await getEntry('experience', 'data')
 const jobs = experienceEntry?.data?.jobs || [];
 ---
 
@@ -15,7 +15,7 @@ const jobs = experienceEntry?.data?.jobs || [];
   <div class="timeline">
     {
       jobs.map((job) => (
-        <div class="timeline-item">
+        <div class="timeline-item reveal reveal-stagger">
           <div class="timeline-dot" />
           <div class="job-card">
             <div class="job-header">
@@ -24,7 +24,7 @@ const jobs = experienceEntry?.data?.jobs || [];
             </div>
             <div class="job-meta">
               <span class="job-dates">
-                {job.startDate} — {job.endDate || "Present"}
+                {job.startDate} — {job.endDate || 'Present'}
               </span>
             </div>
             {job.description && (
@@ -74,8 +74,7 @@ const jobs = experienceEntry?.data?.jobs || [];
       left: 0.4375rem; // 7px
       top: 0;
       bottom: 0;
-      /* stylelint-disable-next-line unit-disallowed-list */
-      width: 2px;
+      width: 0.0625rem;
       background-color: var(--color-border);
     }
   }
@@ -91,33 +90,37 @@ const jobs = experienceEntry?.data?.jobs || [];
 
   .timeline-dot {
     position: absolute;
-    left: -1.3125rem; // Adjusted for line width
-    top: 0.5rem;
-    width: 1.25rem;
-    height: 1.25rem;
+    left: -1.25rem;
+    top: 0.625rem;
+    width: 0.875rem;
+    height: 0.875rem;
     border-radius: 50%;
     background-color: var(--color-primary);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border: 2px solid var(--color-border);
+    border: 0.125rem solid var(--color-bg);
+    box-shadow: 0 0 0 0.125rem var(--color-primary);
     z-index: 1;
   }
 
   .job-card {
     background-color: var(--color-surface);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border: 2px solid var(--color-border);
-    border-radius: 1rem;
+    backdrop-filter: blur(0.625rem);
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 1.5rem;
     padding: var(--spacing-xl);
-    transition: transform 0.3s ease;
+    box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
     &:hover {
       transform: translateX(0.5rem);
+      box-shadow: 0 0.5rem 1.875rem var(--color-shadow);
     }
   }
 
   .job-role {
     font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
+    font-weight: 700;
     color: var(--color-text);
     margin-bottom: var(--spacing-xs);
   }
@@ -125,7 +128,7 @@ const jobs = experienceEntry?.data?.jobs || [];
   .job-company {
     font-size: var(--font-size-base);
     color: var(--color-primary);
-    font-weight: var(--font-weight-medium);
+    font-weight: 500;
     display: block;
     margin-bottom: var(--spacing-md);
   }
@@ -135,14 +138,18 @@ const jobs = experienceEntry?.data?.jobs || [];
   }
 
   .job-dates {
-    font-size: var(--font-size-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--color-text-muted);
     font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .job-description {
     font-size: var(--font-size-base);
-    line-height: var(--line-height-normal);
+    line-height: var(--line-height-loose);
     color: var(--color-text);
+    opacity: 0.9;
   }
 </style>

@@ -1,15 +1,15 @@
 ---
-import { getEntry } from "astro:content"
-import ThemeToggle from "./ThemeToggle.astro"
+import { getEntry } from 'astro:content'
+import ThemeToggle from './ThemeToggle.astro'
 
-const personalEntry = await getEntry("personal", "data")
-const personal = personalEntry?.data || { name: "Name", title: "Title" }
+const personalEntry = await getEntry('personal', 'data')
+const personal = personalEntry?.data || { name: 'Name', title: 'Title' }
 
 const navItems = [
-  { label: "Skills", href: "#skills" },
-  { label: "Work", href: "#experience" },
-  { label: "Edu", href: "#education" },
-  { label: "Clients", href: "#highlights" },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Work', href: '#experience' },
+  { label: 'Edu', href: '#education' },
+  { label: 'Clients', href: '#highlights' },
 ];
 ---
 
@@ -55,16 +55,16 @@ const navItems = [
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: var(--color-bg);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border-bottom: 2px solid var(--color-border);
+    background-color: var(--color-surface);
+    backdrop-filter: blur(0.75rem);
+    border-bottom: 0.0625rem solid var(--color-border);
   }
 
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 87.5rem;
+    max-width: 90rem;
     margin: 0 auto;
   }
 
@@ -74,15 +74,20 @@ const navItems = [
     gap: var(--spacing-md);
     text-decoration: none;
     color: inherit;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .brand-circle {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     background-color: var(--color-primary);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border: 2px solid var(--color-border);
+    border: 0.0625rem solid #ffffff33;
+    box-shadow: 0 0.25rem 0.625rem var(--color-shadow);
   }
 
   .brand-text {
@@ -91,22 +96,25 @@ const navItems = [
   }
 
   .name {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
     margin: 0;
+    line-height: 1;
   }
 
   .title {
-    font-size: var(--font-size-sm);
+    font-size: 0.75rem;
     color: var(--color-text-muted);
     margin: 0;
     font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .controls {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
   }
 
   .bubble-nav {
@@ -145,11 +153,11 @@ const navItems = [
     right: 0;
     background-color: var(--color-surface);
     padding: var(--spacing-lg);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border: 2px solid var(--color-border);
+    border: 0.0625rem solid var(--color-border);
     border-right: none;
     border-top: none;
     gap: var(--spacing-md);
+    backdrop-filter: blur(1.25rem);
 
     /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
     :global(nav.is-open) & {
@@ -163,6 +171,15 @@ const navItems = [
       background: transparent;
       border: none;
       padding: 0;
+      backdrop-filter: none;
+    }
+
+    li {
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) .nav-bubble {
+          animation-delay: #{$i * 0.1}s;
+        }
+      }
     }
   }
 
@@ -176,17 +193,31 @@ const navItems = [
     background-color: var(--color-accent);
     color: var(--color-bg);
     text-decoration: none;
-    font-weight: var(--font-weight-bold);
+    font-weight: 700;
     font-size: var(--font-size-xs);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border: 2px solid var(--color-border);
+    border: 0.0625rem solid #ffffff33;
+    box-shadow: 0 0.25rem 0.9375rem var(--color-shadow);
+    animation: nav-float 6s ease-in-out infinite;
     transition:
-      transform 0.3s ease,
-      background-color 0.3s ease;
+      transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-0.25rem) scale(1.05);
-      background-color: var(--color-primary);
+      transform: translateY(-0.5rem) scale(1.1);
+      box-shadow: 0 0.625rem 1.5625rem var(--color-shadow);
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes nav-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0);
+    }
+
+    50% {
+      transform: translateY(-0.5rem) rotate(3deg);
     }
   }
 </style>
@@ -194,14 +225,14 @@ const navItems = [
 <script>
 class MobileNav {
   constructor() {
-    const nav = document.querySelector(".bubble-nav")
-    const btn = document.querySelector(".hamburger")
+    const nav = document.querySelector('.bubble-nav')
+    const btn = document.querySelector('.hamburger')
 
     if (btn && nav) {
-      btn.addEventListener("click", () => {
-        const isExpanded = btn.getAttribute("aria-expanded") === "true"
-        btn.setAttribute("aria-expanded", (!isExpanded).toString())
-        nav.classList.toggle("is-open")
+      btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true'
+        btn.setAttribute('aria-expanded', (!isExpanded).toString())
+        nav.classList.toggle('is-open')
       })
     }
   }
@@ -209,7 +240,7 @@ class MobileNav {
 
 new MobileNav()
 
-document.addEventListener("astro:after-swap", () => {
+document.addEventListener('astro:after-swap', () => {
   new MobileNav()
 })
 </script>

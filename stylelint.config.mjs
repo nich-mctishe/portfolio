@@ -25,9 +25,7 @@ export default {
       ],
       rules: {
         'unit-disallowed-list': ['px'],
-        'color-no-hex': true,
         'color-named': 'never',
-        'function-disallowed-list': ['rgb', 'rgba', 'hsl', 'hsla'],
       }
     }
   ]

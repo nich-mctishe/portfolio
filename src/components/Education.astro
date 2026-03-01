@@ -1,8 +1,8 @@
 ---
-import { getEntry } from "astro:content";
-import Section from "./Section.astro";
+import { getEntry } from 'astro:content'
+import Section from './Section.astro'
 
-const educationEntry = await getEntry("education", "data");
+const educationEntry = await getEntry('education', 'data')
 const qualifications = educationEntry?.data?.qualifications || [];
 ---
 
@@ -15,7 +15,7 @@ const qualifications = educationEntry?.data?.qualifications || [];
   <div class="education-grid">
     {
       qualifications.map((edu) => (
-        <div class="education-card">
+        <div class="education-card reveal reveal-stagger">
           <h3 class="degree">{edu.degree}</h3>
           <p class="institution">{edu.institution}</p>
           <span class="year">{edu.year}</span>
@@ -54,40 +54,52 @@ const qualifications = educationEntry?.data?.qualifications || [];
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--spacing-xl);
-    max-width: 40rem;
+    max-width: 50rem;
     margin: 0 auto;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .education-card {
     background-color: var(--color-surface);
-    /* stylelint-disable-next-line unit-disallowed-list */
-    border: 2px solid var(--color-border);
-    border-radius: 1rem;
-    padding: var(--spacing-xl);
+    backdrop-filter: blur(0.625rem);
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 1.5rem;
+    padding: var(--spacing-2xl) var(--spacing-xl);
     text-align: center;
-    transition: transform 0.3s ease;
+    box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
+    transition:
+      transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      box-shadow 0.3s ease;
 
     &:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
+      box-shadow: 0 0.625rem 1.875rem var(--color-shadow);
     }
   }
 
   .degree {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .institution {
     font-size: var(--font-size-base);
+    font-weight: 700;
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
   }
 
+  .institution {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+  }
+
   .year {
-    font-size: var(--font-size-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--color-text-muted);
     font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 </style>

@@ -1,51 +1,32 @@
-@use 'sass:map';
+@use "sass:map";
 
 // ==========================================================================
-// Colour Tokens
+// Colour Tokens (Refined Premium Palette)
 // ==========================================================================
-// Light mode palette (from Figma)
-// Dark mode palette designed from scratch
 
-// --------------------------------------------------------------------------
-// Light mode
-// --------------------------------------------------------------------------
 $light: (
-  'primary': #990000,
-  // deep red — hero, headings
-  'accent': #2d8a4e,
-  // green — nav circles, CTAs
-  'bg': #f0f0f0,
-  // light grey background
-  'surface': #ffffff,
-  // card/section surfaces
-  'text': #1a1a1a,
-  // near-black body text
-  'text-muted': #555555,
-  // secondary text
-  'border': #000000,
-  // strokes (from Figma)
-  'shadow': rgba(0, 0, 0, 0.1),
+  "primary": #990000,
+  "primary-light": #cc0000,
+  "accent": #2e8a4e,
+  "accent-light": #4caf7d,
+  "bg": #f5f5f5,
+  "surface": #ffffffb3,
+  "text": #1a1a1a,
+  "text-muted": #666666,
+  "border": #0000001a,
+  "shadow": #0000000d,
 );
-
-// --------------------------------------------------------------------------
-// Dark mode (designed from scratch — not inverted)
-// --------------------------------------------------------------------------
 $dark: (
-  'primary': #ff4d4d,
-  // brighter red for dark bg contrast
-  'accent': #4ade80,
-  // lighter green for dark bg
-  'bg': #0f0f0f,
-  // near-black background
-  'surface': #1a1a1a,
-  // elevated surfaces
-  'text': #f0f0f0,
-  // light text
-  'text-muted': #a0a0a0,
-  // secondary text
-  'border': #333333,
-  // subtle borders
-  'shadow': rgba(0, 0, 0, 0.5),
+  "primary": #ff4d4d,
+  "primary-light": #ffb3b3,
+  "accent": #4ade80,
+  "accent-light": #bbf7d0,
+  "bg": #0b0d0f,
+  "surface": #1a1e23b3,
+  "text": #e6e6e6,
+  "text-muted": #a6a6a6,
+  "border": #ffffff14,
+  "shadow": #00000066,
 );
 
 // --------------------------------------------------------------------------

@@ -1,19 +1,29 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import Hero from "../components/Hero.astro"
-import Skills from "../components/Skills.astro"
-import Experience from "../components/Experience.astro"
-import Education from "../components/Education.astro"
-import Highlights from "../components/Highlights.astro";
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/Hero.astro'
+import Skills from '../components/Skills.astro'
+import Experience from '../components/Experience.astro'
+import Education from '../components/Education.astro'
+import Highlights from '../components/Highlights.astro';
 ---
 
 <BaseLayout title="Portfolio | Software Engineer & Solution Architect">
   <main>
-    <Hero />
-    <Skills />
-    <Experience />
-    <Education />
-    <Highlights />
+    <div class="reveal">
+      <Hero />
+    </div>
+    <div class="reveal">
+      <Skills />
+    </div>
+    <div class="reveal">
+      <Experience />
+    </div>
+    <div class="reveal">
+      <Education />
+    </div>
+    <div class="reveal">
+      <Highlights />
+    </div>
   </main>
 </BaseLayout>
 

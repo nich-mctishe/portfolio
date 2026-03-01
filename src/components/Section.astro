@@ -10,7 +10,7 @@ const { id, class: className, isFullWidth = false } = Astro.props;
 
 <section
   id={id}
-  class:list={["section", className, { "full-width": isFullWidth }]}
+  class:list={['section', className, { 'full-width': isFullWidth }]}
 >
   <div class="container">
     <slot />

@@ -65,11 +65,11 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 
 ## Phase 6 — Animations
 
-- [ ] **6.1** Implement bubble-in-water CSS animations for nav circles — `@keyframes` float, sway, and subtle scale
-- [ ] **6.2** Add staggered `animation-delay` for organic multi-bubble movement
-- [ ] **6.3** Implement scroll-triggered entrance animations — `IntersectionObserver` vanilla JS island
-- [ ] **6.4** Add hover transitions for interactive elements (nav links, logo circles, social links)
-- [ ] **6.5** Implement responsive layout transitions — smooth circle repositioning across breakpoints
+- [x] **6.1** Implement bubble-in-water CSS animations for nav circles — `@keyframes` float, sway, and subtle scale
+- [x] **6.2** Add staggered `animation-delay` for organic multi-bubble movement
+- [x] **6.3** Implement scroll-triggered entrance animations — `IntersectionObserver` vanilla JS island
+- [x] **6.4** Add hover transitions for interactive elements (nav links, logo circles, social links)
+- [x] **6.5** Implement responsive layout transitions — smooth circle repositioning across breakpoints
 
 ---
 

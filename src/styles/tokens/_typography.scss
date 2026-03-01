@@ -1,10 +1,6 @@
-// ==========================================================================
-// Typography Tokens
-// ==========================================================================
-// Serif for headings (from Figma), Inter for body
-
-$font-heading: 'Georgia', 'Times New Roman', serif;
-$font-body: 'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+// Web-safe Google Fonts fallbacks (Inter and Outfit are often used interchangeably)
+$font-heading: "Outfit", "system-ui", -apple-system, sans-serif;
+$font-body: "Inter", "system-ui", -apple-system, sans-serif;
 
 // Responsive type scale (clamp-based)
 $font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
