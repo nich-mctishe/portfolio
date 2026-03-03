@@ -175,6 +175,15 @@ const navItems = [
     }
 
     li {
+      &:nth-child(2) .nav-bubble {
+        background-color: var(--color-tertiary);
+      }
+
+      &:nth-child(3) .nav-bubble {
+        background-color: var(--color-quaternary);
+      }
+
+
       @for $i from 1 through 5 {
         &:nth-child(#{$i}) .nav-bubble {
           animation-delay: #{$i * 0.1}s;
@@ -190,7 +199,7 @@ const navItems = [
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    background-color: var(--color-accent);
+    background-color: var(--color-secondary);
     color: var(--color-bg);
     text-decoration: none;
     font-weight: 700;

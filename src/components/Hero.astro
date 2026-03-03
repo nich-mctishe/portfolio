@@ -60,15 +60,6 @@ const personal = personalEntry?.data || {
     }
   }
 
-  .greeting {
-    font-size: var(--font-size-lg);
-    color: var(--color-primary);
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--spacing-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
   .name {
     font-size: clamp(3rem, 8vw, 5rem);
     line-height: 0.9;
@@ -82,6 +73,31 @@ const personal = personalEntry?.data || {
     font-family: var(--font-body);
     margin-bottom: var(--spacing-2xl);
     max-width: 35rem;
+  }
+
+  .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+
+    p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-family: var(--font-body);
+      margin-bottom: var(--spacing-xl);
+      margin-right: var(--spacing-xl);
+      max-width: 35rem;
+    }
+
+    @include tablet {
+      align-items: flex-start;
+    }
+
+    @include mobile-only {
+      text-align: center;
+    }
+    
   }
 
   .cta-button {
@@ -99,7 +115,7 @@ const personal = personalEntry?.data || {
 
     &:hover {
       transform: translateY(-0.5rem) scale(1.02);
-      background-color: var(--color-accent);
+      background-color: var(--color-primary);
     }
   }
 
@@ -153,33 +169,12 @@ const personal = personalEntry?.data || {
     position: absolute;
     border-radius: 50%;
     backdrop-filter: blur(0.25rem);
-  }
-
-  .bubble-1 {
-    width: 6rem;
-    height: 6rem;
-    top: -5%;
-    left: 10%;
-    background-color: var(--color-secondary);
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .bubble-2 {
-    width: 8rem;
-    height: 8rem;
-    bottom: 5%;
-    right: 5%;
-    background-color: var(--color-tertiary);
-    animation: float 14s ease-in-out infinite reverse;
-  }
-
-  .bubble-3 {
-    width: 4rem;
-    height: 4rem;
-    top: 40%;
-    right: -10%;
-    background-color: var(--color-quaternary);
-    animation: float 10s ease-in-out infinite 2s;
+    width: var(--size, 5rem);
+    height: var(--size, 5rem);
+    background-color: var(--color, var(--color-secondary));
+    animation: float var(--speed, 10s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    z-index: -1;
   }
 
   @keyframes float {
@@ -197,3 +192,51 @@ const personal = personalEntry?.data || {
     }
   }
 </style>
+
+<script>
+  const randomizeBubbles = () => {
+    const bubbles = document.querySelectorAll('.bubble')
+    const colors = [
+      'var(--color-secondary)',
+      'var(--color-tertiary)',
+      'var(--color-quaternary)',
+    ]
+
+    bubbles.forEach((bubble) => {
+      // Random aesthetic properties
+      const size = Math.floor(Math.random() * 8 + 4) + 'rem'
+      const speed = Math.floor(Math.random() * 12 + 8) + 's'
+      const delay = Math.floor(Math.random() * 6) * -1 + 's'
+      const color = colors[Math.floor(Math.random() * colors.length)]
+
+      // Randomly decide which anchor points to use (mixture of all 4 corners)
+      const vertical = Math.random() > 0.5 ? 'top' : 'bottom'
+      const horizontal = Math.random() > 0.5 ? 'left' : 'right'
+
+      // Random values for peripheral but safe interior (from 2% to 18%)
+      // This keeps them away from both the center bubble and the hard edges
+      const vVal = Math.floor(Math.random() * 8 + 2) + '%'
+      const hVal = Math.floor(Math.random() * 8 + 2) + '%'
+
+      // Apply to bubble
+      const b = bubble as HTMLElement
+      b.style.setProperty('--size', size)
+      b.style.setProperty('--speed', speed)
+      b.style.setProperty('--delay', delay)
+      b.style.setProperty('--color', color)
+
+      // Reset all positioning styles first
+      b.style.top = 'auto'
+      b.style.bottom = 'auto'
+      b.style.left = 'auto'
+      b.style.right = 'auto'
+
+      // Apply new safe position
+      b.style[vertical] = vVal
+      b.style[horizontal] = hVal
+    })
+  }
+
+  // Initialize on load
+  randomizeBubbles()
+</script>

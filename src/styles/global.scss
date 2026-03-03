@@ -17,7 +17,6 @@
   --color-secondary: #{colour('secondary', $light)};
   --color-tertiary: #{colour('tertiary', $light)};
   --color-quaternary: #{colour('quaternary', $light)};
-  --color-accent: #{colour('accent', $light)};
   --color-bg: #{colour('bg', $light)};
   --color-surface: #{colour('surface', $light)};
   --color-text: #{colour('text', $light)};
@@ -59,7 +58,6 @@
   --color-secondary: #{colour('secondary', $dark)};
   --color-tertiary: #{colour('tertiary', $dark)};
   --color-quaternary: #{colour('quaternary', $dark)};
-  --color-accent: #{colour('accent', $dark)};
   --color-bg: #{colour('bg', $dark)};
   --color-surface: #{colour('surface', $dark)};
   --color-text: #{colour('text', $dark)};
@@ -75,7 +73,6 @@
     --color-secondary: #{colour('secondary', $dark)};
     --color-tertiary: #{colour('tertiary', $dark)};
     --color-quaternary: #{colour('quaternary', $dark)};
-    --color-accent: #{colour('accent', $dark)};
     --color-bg: #{colour('bg', $dark)};
     --color-surface: #{colour('surface', $dark)};
     --color-text: #{colour('text', $dark)};
