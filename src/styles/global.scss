@@ -23,6 +23,7 @@
   --color-text-muted: #{colour('text-muted', $light)};
   --color-border: #{colour('border', $light)};
   --color-shadow: #{colour('shadow', $light)};
+  --icon-filter: brightness(0) invert(1);
 
   // Typography
   --font-body: #{$font-body};
@@ -64,6 +65,7 @@
   --color-text-muted: #{colour('text-muted', $dark)};
   --color-border: #{colour('border', $dark)};
   --color-shadow: #{colour('shadow', $dark)};
+  --icon-filter: brightness(1) invert(0);
 }
 
 // Respect OS preference when no manual toggle has been set
@@ -79,6 +81,7 @@
     --color-text-muted: #{colour('text-muted', $dark)};
     --color-border: #{colour('border', $dark)};
     --color-shadow: #{colour('shadow', $dark)};
+    --icon-filter: brightness(1) invert(0);
   }
 }
 

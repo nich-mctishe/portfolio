@@ -7,6 +7,9 @@ const personal = personalEntry?.data || {
   name: 'Name',
   title: 'Title',
   description: 'Description',
+  email: 'Email',
+  location: 'Location',
+  socials: [],
 };
 ---
 
@@ -15,7 +18,16 @@ const personal = personalEntry?.data || {
     <div class="text-wrapper">
       <p>{personal.description}</p>
       <div class="cta-wrapper">
-        <a href="#experience" class="cta-button">View My Work</a>
+        {personal.socials.map((social) => (
+          <a
+            href={social.url}
+            class="cta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={social.icon} alt={social.platform} class="social-icon" />
+          </a>
+        ))}
       </div>
     </div>
 
@@ -61,18 +73,19 @@ const personal = personalEntry?.data || {
   }
 
   .name {
-    font-size: clamp(3rem, 8vw, 5rem);
-    line-height: 0.9;
+    @include name;
+
     margin-bottom: var(--spacing-md);
-    font-weight: 700;
   }
 
   .role {
-    font-size: var(--font-size-xl);
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
+    @include role(var(--font-size-xl));
+
     margin-bottom: var(--spacing-2xl);
     max-width: 35rem;
+
+    // Override uppercase from mixin for Hero section if needed
+    text-transform: none;
   }
 
   .text-wrapper {
@@ -88,6 +101,7 @@ const personal = personalEntry?.data || {
       margin-bottom: var(--spacing-xl);
       margin-right: var(--spacing-xl);
       max-width: 35rem;
+      white-space: break-spaces;
     }
 
     @include tablet {
@@ -96,13 +110,27 @@ const personal = personalEntry?.data || {
 
     @include mobile-only {
       text-align: center;
+      
+      p {
+        margin-right: 0;
+      }
     }
-    
+  }
+
+  .cta-wrapper {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include tablet {
+      justify-content: flex-start;
+    }
   }
 
   .cta-button {
     display: inline-block;
-    padding: var(--spacing-md) var(--spacing-3xl);
+    padding: var(--spacing-md) var(--spacing-md);
     background-color: var(--color-primary);
     color: var(--color-bg);
     text-decoration: none;
@@ -116,6 +144,13 @@ const personal = personalEntry?.data || {
     &:hover {
       transform: translateY(-0.5rem) scale(1.02);
       background-color: var(--color-primary);
+    }
+
+    .social-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: contain;
+      filter: var(--icon-filter);
     }
   }
 
@@ -163,6 +198,12 @@ const personal = personalEntry?.data || {
       width: 25rem;
       height: 25rem;
     }
+
+    @include mobile-only {
+      h1, p {
+        width: 100%;
+      }
+    }
   }
 
   .bubble {
@@ -195,26 +236,33 @@ const personal = personalEntry?.data || {
 
 <script>
   const randomizeBubbles = () => {
-    const bubbles = document.querySelectorAll('.bubble')
+    const bubbles = Array.from(document.querySelectorAll('.bubble'))
     const colors = [
       'var(--color-secondary)',
       'var(--color-tertiary)',
       'var(--color-quaternary)',
     ]
 
-    bubbles.forEach((bubble) => {
+    // Create a shuffled list of corners to ensure each 
+    // bubble gets a unique quadrant and avoids overlap
+    const corners = [
+      { vertical: 'top', horizontal: 'left' },
+      { vertical: 'top', horizontal: 'right' },
+      { vertical: 'bottom', horizontal: 'left' },
+      { vertical: 'bottom', horizontal: 'right' },
+    ].sort(() => Math.random() - 0.5)
+
+    bubbles.forEach((bubble, index) => {
       // Random aesthetic properties
       const size = Math.floor(Math.random() * 8 + 4) + 'rem'
       const speed = Math.floor(Math.random() * 12 + 8) + 's'
       const delay = Math.floor(Math.random() * 6) * -1 + 's'
       const color = colors[Math.floor(Math.random() * colors.length)]
 
-      // Randomly decide which anchor points to use (mixture of all 4 corners)
-      const vertical = Math.random() > 0.5 ? 'top' : 'bottom'
-      const horizontal = Math.random() > 0.5 ? 'left' : 'right'
+      // Assign a unique quadrant based on index
+      const corner = corners[index % corners.length]
 
-      // Random values for peripheral but safe interior (from 2% to 18%)
-      // This keeps them away from both the center bubble and the hard edges
+      // Random values for peripheral but safe interior (from 2% to 10%)
       const vVal = Math.floor(Math.random() * 8 + 2) + '%'
       const hVal = Math.floor(Math.random() * 8 + 2) + '%'
 
@@ -231,9 +279,9 @@ const personal = personalEntry?.data || {
       b.style.left = 'auto'
       b.style.right = 'auto'
 
-      // Apply new safe position
-      b.style[vertical] = vVal
-      b.style[horizontal] = hVal
+      // Apply new safe position in its unique quadrant
+      b.style.setProperty(corner.vertical, vVal)
+      b.style.setProperty(corner.horizontal, hVal)
     })
   }
 

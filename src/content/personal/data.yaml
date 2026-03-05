@@ -2,9 +2,18 @@ name: "Nicholas Headlong"
 title: "Software Engineer & Solution Architect"
 email: "nichheadlong@gmail.com"
 location: "Remote / Global / Vancouver, BC"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+description: |
+  A senior engineer with over 13 years professional experience working in both Vancouver, BC and London, UK for a variety of different brands, including Lululemon, HBO, Santander, Heineken, Ferrero and Dior.
+  
+  I am a principled engineer who is solutions driven and has a keen sense for problem solving. I understand the needs of an evolving business, and will gladly pivot with them. I admire well written code, I enjoy working with other engineers, and passing on my knowledge to them.
+  
+  Outside of work, I also like to push myself, and pursue a number of passions including Road/Gravel Cycling, Mountain Biking, Skiing, camping and Off-Roading. I like to travel the world. I love cooking and can often be found stoking a fire.
+
+  At home, I like to build things, cook, and code.
 socials:
   - platform: GitHub
+    icon: https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg
     url: "https://github.com/nich-mctishe"
   - platform: LinkedIn
-    url: "https://linkedin.com"
+    icon: https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg
+    url: "https://linkedin.com/in/nicholas-headlong"

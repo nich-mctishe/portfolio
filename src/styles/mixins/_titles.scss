@@ -1,0 +1,15 @@
+@mixin name($font-size: clamp(3rem, 8vw, 5rem), $line-height: 0.9) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: 200;
+}
+
+@mixin role($font-size: 0.65rem, $line-height: 1.2) {
+  font-size: $font-size;
+  line-height: $line-height;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+  

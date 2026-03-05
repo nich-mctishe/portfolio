@@ -5,6 +5,9 @@ import ThemeToggle from './ThemeToggle.astro'
 const personalEntry = await getEntry('personal', 'data')
 const personal = personalEntry?.data || { name: 'Name', title: 'Title' }
 
+const nameParts = personal.name.split(' ')
+const titleParts = personal.title.split(' & ')
+
 const navItems = [
   { label: 'Skills', href: '#skills' },
   { label: 'Work', href: '#experience' },
@@ -16,10 +19,17 @@ const navItems = [
 <header class="site-header">
   <div class="header-content">
     <div class="brand">
-      <div class="brand-circle"></div>
       <div class="brand-text">
-        <h1 class="name">{personal.name}</h1>
-        <p class="title">{personal.title}</p>
+        <div class="brand-circle"></div>
+        <div class="branding">
+          <h1 class="name">
+            {nameParts.map((part) => <span>{part}</span>)}
+          </h1>
+          <p class="title">
+            <span>{titleParts[0]} &</span>
+            <span>{titleParts[1]}</span>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -69,9 +79,6 @@ const navItems = [
   }
 
   .brand {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
     text-decoration: none;
     color: inherit;
     transition: opacity 0.2s ease;
@@ -82,7 +89,7 @@ const navItems = [
   }
 
   .brand-circle {
-    width: 2.5rem;
+    min-width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
     background-color: var(--color-primary);
@@ -92,23 +99,40 @@ const navItems = [
 
   .brand-text {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .branding {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-md);
   }
 
   .name {
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    margin: 0;
-    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    @include name(var(--font-size-lg), 0.85);
+
+    
   }
 
   .title {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
     margin: 0;
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    padding-left: var(--spacing-md);
+    border-left: 0.0625rem solid var(--color-border);
+
+    @include role(0.85rem, 1.2);
+    color: var(--color-primary);
+
+    @include mobile-only {
+      display: none;
+    }
   }
 
   .controls {

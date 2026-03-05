@@ -16,6 +16,7 @@ const socials = personalEntry?.data?.socials || [];
             rel="noopener noreferrer"
             class="social-bubble"
           >
+            <img src={social.icon} alt={social.platform} class="social-icon" />
             <span class="platform-name">{social.platform}</span>
           </a>
         ))
@@ -71,6 +72,7 @@ const socials = personalEntry?.data?.socials || [];
     font-size: var(--font-size-xs);
     border: 0.0625rem solid #ffffff33;
     box-shadow: 0 0.25rem 0.625rem var(--color-shadow);
+    gap: var(--spacing-sm);
     transition:
       transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
       box-shadow 0.3s ease;
@@ -78,6 +80,13 @@ const socials = personalEntry?.data?.socials || [];
     &:hover {
       transform: translateY(-0.5rem) scale(1.05);
       box-shadow: 0 0.5rem 1.25rem var(--color-shadow);
+    }
+
+    .social-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      object-fit: contain;
+      filter: var(--icon-filter);
     }
   }
 
