@@ -5,7 +5,11 @@ const skills = defineCollection({
   schema: z.object({
     categories: z.array(z.object({
       name: z.string(),
-      items: z.array(z.string())
+      items: z.array(z.object({
+        name: z.string(),
+        since: z.number(),
+        end: z.number().optional()
+      }))
     }))
   })
 })
@@ -34,7 +38,7 @@ const education = defineCollection({
   })
 })
 
-const highlights = defineCollection({
+const clients = defineCollection({
   type: 'data',
   schema: z.object({
     clients: z.array(z.object({
@@ -64,6 +68,6 @@ export const collections = {
   skills,
   experience,
   education,
-  highlights,
+  clients,
   personal,
 }

@@ -1,37 +1,107 @@
 ---
 import { getEntry } from 'astro:content'
 import Section from './Section.astro'
+import getSkillDuration from '../helpers/get-skill-duration'
+import determineFullExperiencePoints from '../helpers/determine-full-experience-points'
 
 const skillsEntry = await getEntry('skills', 'data')
-const categories = skillsEntry?.data?.categories || [];
+const categories = skillsEntry?.data?.categories || []
+
+const getDuration = (since: number, end?: number): string => {
+  const skillDuration = getSkillDuration(since, end)
+  const suffix = skillDuration === 1 ? 'yr' : 'yrs'
+
+  return skillDuration + suffix
+}
+
+const getNumberOfExperiencePoints = (
+  duration: number, 
+  fullExperiencePoints: number
+): number => duration
+
+const getRemainingExperiencePoints = (
+  duration: number, 
+  fullExperiencePoints: number
+): number => Math.floor(fullExperiencePoints - duration)
+
+const fullExperiencePoints = determineFullExperiencePoints(
+  categories.flatMap((category) => category.items)
+)
 ---
 
 <Section id="skills" class="skills-section">
   <div class="section-header">
-    <h2 class="section-title">Skills & Expertise</h2>
+    <h2 class="section-title">Skills</h2>
     <div class="title-underline"></div>
   </div>
 
   <div class="skills-grid">
     {
       categories.map((category) => (
-        <div class="skill-category reveal reveal-stagger">
-          <h3 class="category-name">{category.name}</h3>
-          <ul class="skill-list">
-            {category.items.map((item) => (
-              <li class="skill-item">
-                <span class="skill-pill">{item}</span>
-              </li>
-            ))}
-          </ul>
+        <div class="skill-category reveal reveal-stagger" data-state="closed">
+          <div class="category-header">
+            <h3 class="category-name">{category.name}</h3>
+            <div class="category-chevron"></div>
+          </div>
+          <div class="category-body">
+            <div class="body-wrapper">
+              <ul class="skill-list">
+                {category.items.map((item) => {
+                  const TOTAL_POINTS = 10
+                  const duration = getSkillDuration(item.since, item.end)
+                  const filled = Math.max(1, Math.round((duration / fullExperiencePoints) * TOTAL_POINTS))
+                  
+                  return (
+                    <li class="skill-item">
+                      <p class="skill-name">{item.name}</p>
+                      <div class="skill-bar">
+                        {Array.from({ length: TOTAL_POINTS }).map((_, i) => (
+                          <span class={i < filled ? "point filled" : "point"}>=</span>
+                        ))}
+                      </div>
+                      <small class="skill-duration">
+                        {getDuration(item.since, item.end)}
+                      </small>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </div>
         </div>
       ))
     }
   </div>
 </Section>
 
+<script>
+  const initSkills = () => {
+    const grid = document.querySelector('.skills-grid');
+    
+    // Event Delegation: One listener for the whole section
+    grid?.addEventListener('click', (e) => {
+      const category = (e.target as HTMLElement).closest('.skill-category');
+      if (!category) return;
+
+      const isCurrentlyOpen = category.getAttribute('data-state') === 'open';
+      category.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open');
+    });
+  };
+
+  initSkills();
+  document.addEventListener('astro:after-swap', initSkills);
+</script>
+
+
 <style lang="scss">
+  @use "sass:list";
   @use "../styles/mixins" as *;
+
+  $category-colours: (
+    var(--color-secondary),
+    var(--color-tertiary),
+    var(--color-quaternary)
+  );
 
   .skills-section {
     background-color: var(--color-surface);
@@ -56,21 +126,23 @@ const categories = skillsEntry?.data?.categories || [];
   }
 
   .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-2xl);
 
     @include tablet {
-      grid-template-columns: repeat(2, 1fr);
+      display: block;
+      column-count: 2;
+      column-gap: var(--spacing-2xl);
     }
 
     @include desktop {
-      grid-template-columns: repeat(3, 1fr);
+      column-count: 3;
     }
   }
 
   .skill-category {
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     background-color: var(--color-surface);
     backdrop-filter: blur(0.625rem);
     border: 0.0625rem solid var(--color-border);
@@ -80,42 +152,140 @@ const categories = skillsEntry?.data?.categories || [];
       transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
       box-shadow 0.3s ease;
 
+    @include tablet {
+      display: inline-block;
+      width: 100%;
+      break-inside: avoid;
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    @for $i from 1 through 3 {
+      &:nth-child(3n + #{$i}) {
+        background-color: #{list.nth($category-colours, $i)};
+      }
+    }
+
     &:hover {
       transform: translateY(-0.75rem);
       box-shadow: 0 0.9375rem 2.8125rem var(--color-shadow);
     }
+
+    &[data-state="open"] {
+      .category-body {
+        grid-template-rows: 1fr;
+      }
+
+      .category-chevron {
+        transform: rotate(180deg);
+        border-color: var(--color-primary);
+
+        &::after {
+          border-color: var(--color-bg);
+        }
+      }
+    }
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    margin-bottom: var(--spacing-sm);
   }
 
   .category-name {
     font-size: var(--font-size-base);
     font-weight: 700;
-    margin-bottom: var(--spacing-xl);
-    color: var(--color-primary);
+    color: var(--color-bg);
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
 
-  .skill-list {
+  .category-chevron {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+      content: "";
+      width: 1rem;
+      height: 1rem;
+      border-right: 0.125rem solid var(--color-bg);
+      border-bottom: 0.125rem solid var(--color-bg);
+      transform: translateY(-0.1rem) rotate(45deg);
+      transition: border-color 0.3s ease;
+    }
   }
 
-  .skill-pill {
-    display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-lg);
-    background-color: var(--color-bg);
-    border: 0.0625rem solid var(--color-border);
-    border-radius: 5rem;
+  .category-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .body-wrapper {
+      min-height: 0;
+    }
+  }
+
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-top: var(--spacing-xl);
+  }
+
+  .skill-item {
+    display: grid;
+    grid-template-columns: 1fr 6.5rem 2rem;
+    width: 100%;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    color: var(--color-bg);
     font-size: 0.8125rem;
     font-weight: 500;
     transition: all 0.25s ease;
 
-    &:hover {
-      background-color: var(--color-primary);
-      color: var(--color-bg);
-      border-color: var(--color-primary);
-      transform: scale(1.05);
+    @include tablet {
+      grid-template-columns: 1fr 9rem 2.5rem;
+      gap: var(--spacing-md);
+      align-items: center;
     }
+
+    .skill-name {
+      line-height: 1.25;
+      word-wrap: break-word;
+      min-width: 0;
+    }
+  }
+
+  .skill-bar {
+    display: flex;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: -0.1em;
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1;
+
+    .point {
+      color: var(--color-bg);
+      opacity: 0.3;
+
+      &.filled {
+        color: var(--color-primary);
+        opacity: 1;
+      }
+    }
+  }
+
+  .skill-duration {
+    font-size: 0.7rem;
+    color: var(--color-bg);
+    font-weight: 400;
+    transition: color 0.25s ease;
+    text-align: right;
   }
 </style>

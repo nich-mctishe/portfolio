@@ -2,11 +2,11 @@
 import { getEntry } from 'astro:content'
 import Section from './Section.astro'
 
-const highlightsEntry = await getEntry('highlights', 'data')
-const clients = highlightsEntry?.data?.clients || [];
+const clientsEntry = await getEntry('clients', 'data')
+const clients = clientsEntry?.data?.clients || [];
 ---
 
-<Section id="highlights" class="highlights-section">
+<Section id="clients" class="clients-section">
   <div class="section-header">
     <h2 class="section-title">Global Client Highlights</h2>
     <div class="title-underline"></div>
@@ -28,7 +28,7 @@ const clients = highlightsEntry?.data?.clients || [];
 <style lang="scss">
   @use "../styles/mixins" as *;
 
-  .highlights-section {
+  .clients-section {
     background-color: var(--color-surface);
   }
 

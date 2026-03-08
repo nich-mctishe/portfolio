@@ -12,7 +12,7 @@ const navItems = [
   { label: 'Skills', href: '#skills' },
   { label: 'Work', href: '#experience' },
   { label: 'Edu', href: '#education' },
-  { label: 'Clients', href: '#highlights' },
+  { label: 'Clients', href: '#clients' },
 ];
 ---
 
@@ -115,9 +115,8 @@ const navItems = [
     display: flex;
     flex-direction: column;
     padding-left: 0;
-    @include name(var(--font-size-lg), 0.85);
 
-    
+    @include name(var(--font-size-lg), 0.85);
   }
 
   .title {
@@ -128,6 +127,7 @@ const navItems = [
     border-left: 0.0625rem solid var(--color-border);
 
     @include role(0.85rem, 1.2);
+
     color: var(--color-primary);
 
     @include mobile-only {

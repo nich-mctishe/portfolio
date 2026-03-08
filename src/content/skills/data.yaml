@@ -1,32 +1,174 @@
 categories:
   - name: Front End
     items:
-      - HTML/CSS
-      - JavaScript
-      - TypeScript
-      - React
-      - Astro
-      - SCSS
+      - name: JavaScript
+        since: 2011
+      - name: TypeScript
+        since: 2021
+      - name: Vue
+        since: 2019
+        end: 2024
+      - name: React
+        since: 2016
+      - name: Next.js
+        since: 2017
+      - name: Astro
+        since: 2026
+      - name: Webpack
+        since: 2017
+      - name: Stripe
+        since: 2017
+      - name: Contentful
+        since: 2022
+      - name: Sanity
+        since: 2018
+      - name: Jest
+        since: 2019
+      - name: Gherkin
+        since: 2019
+      - name: Gulp
+        since: 2013
+        end: 2016
+      - name: Rollup
+        since: 2020
+      - name: Vite
+        since: 2025
+      - name: LESS/SCSS/PCSS
+        since: 2013
+      - name: HTML/CSS
+        since: 2010
+      - name: Angular
+        since: 2014
+        end: 2016
+      
   - name: Back End
     items:
-      - Node.js
-      - Python
-      - SQL
+      - name: Node.js
+        since: 2016
+      - name: Python
+        since: 2024
+      - name: SQL (MySQL PostgreSQL SQLite)
+        since: 2012
+      - name: MongoDB
+        since: 2016
+        end: 2020
+      - name: AWS Lambda
+        since: 2019
+      - name: RESTFUL Architecture
+        since: 2017
+      - name: Serverless Architecture
+        since: 2019
+      - name: GraphQL
+        since: 2020
+      - name: PHP
+        since: 2010
+        end: 2016
+      - name: Laravel
+        since: 2014
+        end: 2018
+      - name: Express.js
+        since: 2016
+        end: 2024
+      - name: Koa.js
+        since: 2019
+      - name: Flask
+        since: 2024
+      - name: FastAPI
+        since: 2024
+      - name: Poetry
+        since: 2024
+      - name: Pip
+        since: 2024
+      - name: Pytest
+        since: 2024
+  
   - name: DevOps
     items:
-      - GitHub Actions
-      - AWS
-      - Docker
+      - name: Bash
+        since: 2013
+      - name: GitHub Actions
+        since: 2025
+      - name: AWS
+        since: 2016
+      - name: Docker
+        since: 2016
+      - name: Git
+        since: 2012
+      - name: Terraform
+        since: 2020
+      - name: AWS SAM
+        since: 2021
+      - name: AWS CloudFormation
+        since: 2019
+      - name: Serverless Framework
+        since: 2019
+      - name: Azure SSO
+        since: 2023
+      - name: Azure AI Foundary
+        since: 2025
+      - name: Azure OpenAI
+        since: 2025
+      - name: AWS EC2/EKS
+        since: 2017
+      - name: AWS Cognito
+        since: 2021
+      - name: AWS S3
+        since: 2016
+      - name: AWS CloudFront
+        since: 2016
+      - name: AWS Route53
+        since: 2016
+      - name: AWS IAM
+        since: 2021
+      - name: AWS CloudWatch
+        since: 2016
+      - name: AWS CloudTrail
+        since: 2016
+      - name: AWS StepFunctions
+        since: 2020
+      - name: AWS SNS
+        since: 2020
+      - name: AWS SQS
+        since: 2020
+      - name: Jenkins
+        since: 2019
+        end: 2024
+  
   - name: Design
     items:
-      - Figma
-      - UI/UX
-  - name: Process
-    items:
-      - Agile
-      - Scrum
+      - name: Figma
+        since: 2023
+      - name: UI/UX
+        since: 2016
+      - name: Adobe CC
+        since: 2010
+
   - name: Procedure
     items:
-      - TDD
-      - BDD
-      - CI/CD
+      - name: TDD
+        since: 2019
+      - name: BDD
+        since: 2021
+      - name: CI/CD
+        since: 2014
+      - name: Jira
+        since: 2019
+      - name: Confluence
+        since: 2019
+      - name: Agile
+        since: 2019
+      - name: Github/MS Copilot
+        since: 2025
+      - name: PagerDuty
+        since: 2024
+      - name: Splunk
+        since: 2024
+
+  - name: Just For Fun
+    items:
+      - name: Unity (C#)
+        since: 2016
+      - name: Arduino (Java)
+        since: 2010
+      - name: Raspberry Pi (Python)
+        since: 2018
