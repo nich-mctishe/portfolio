@@ -47,16 +47,23 @@ categories:
         since: 2016
       - name: Python
         since: 2024
-      - name: SQL (MySQL PostgreSQL SQLite)
+      - name: SQL
         since: 2012
+        children:
+          - name: MySQL
+            since: 2012
+          - name: PostgreSQL
+            since: 2019
+          - name: SQLite
+            since: 2014
       - name: MongoDB
         since: 2016
         end: 2020
       - name: AWS Lambda
         since: 2019
-      - name: RESTFUL Architecture
+      - name: RESTFUL Arch
         since: 2017
-      - name: Serverless Architecture
+      - name: Serverless Arch
         since: 2019
       - name: GraphQL
         since: 2020
@@ -96,10 +103,35 @@ categories:
         since: 2012
       - name: Terraform
         since: 2020
-      - name: AWS SAM
-        since: 2021
-      - name: AWS CloudFormation
-        since: 2019
+      - name: AWS
+        since: 2016
+        children: 
+          - name: EC2/EKS
+            since: 2017
+          - name: Cognito
+            since: 2021
+          - name: S3
+            since: 2016
+          - name: CloudFront
+            since: 2016
+          - name: Route53
+            since: 2016
+          - name: IAM
+            since: 2021
+          - name: CloudWatch
+            since: 2016
+          - name: CloudTrail
+            since: 2016
+          - name: StepFunctions
+            since: 2020
+          - name: SNS
+            since: 2020
+          - name: SQS
+            since: 2020
+          - name: SAM
+            since: 2021
+          - name: CloudFormation
+            since: 2019
       - name: Serverless Framework
         since: 2019
       - name: Azure SSO
@@ -108,28 +140,6 @@ categories:
         since: 2025
       - name: Azure OpenAI
         since: 2025
-      - name: AWS EC2/EKS
-        since: 2017
-      - name: AWS Cognito
-        since: 2021
-      - name: AWS S3
-        since: 2016
-      - name: AWS CloudFront
-        since: 2016
-      - name: AWS Route53
-        since: 2016
-      - name: AWS IAM
-        since: 2021
-      - name: AWS CloudWatch
-        since: 2016
-      - name: AWS CloudTrail
-        since: 2016
-      - name: AWS StepFunctions
-        since: 2020
-      - name: AWS SNS
-        since: 2020
-      - name: AWS SQS
-        since: 2020
       - name: Jenkins
         since: 2019
         end: 2024

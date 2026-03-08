@@ -1,18 +1,39 @@
 import { z, defineCollection } from 'astro:content'
 
+const baseItemSchema = z.object({
+  name: z.string(),
+  since: z.number(),
+  end: z.number().optional(),
+})
+
+// Infer types from Zod schemas
+export type BaseSkillItem = z.infer<typeof baseItemSchema>
+export type SkillItem = BaseSkillItem & {
+  children?: BaseSkillItem[]
+}
+
+const itemWithChildrenSchema = baseItemSchema.extend({
+  children: z.array(baseItemSchema).optional()
+})
+
 const skills = defineCollection({
   type: 'data',
   schema: z.object({
     categories: z.array(z.object({
       name: z.string(),
-      items: z.array(z.object({
-        name: z.string(),
-        since: z.number(),
-        end: z.number().optional()
-      }))
+      items: z.array(itemWithChildrenSchema)
     }))
   })
 })
+
+export type SkillCategory = {
+  name: string
+  items: SkillItem[]
+}
+
+export type Skills = {
+  categories: SkillCategory[]
+}
 
 const experience = defineCollection({
   type: 'data',

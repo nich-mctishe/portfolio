@@ -38,34 +38,65 @@ const fullExperiencePoints = determineFullExperiencePoints(
               <ul class="skill-list">
                 {category.items.map((item) => {
                   const duration = getSkillDuration(item.since, item.end)
-                  
-                  // Desktop Scale: Literal 1-point-per-year
                   const dTotal = fullExperiencePoints
                   const dFilled = duration
-                  
-                  // Mobile Scale: Normalized 10-point
                   const mTotal = 10
                   const mFilled = Math.max(1, Math.round((duration / fullExperiencePoints) * mTotal))
                   
                   return (
-                    <li class="skill-item">
-                      <p class="skill-name">{item.name}</p>
-                      <div class="skill-bar">
-                        {/* Desktop segments */}
-                        <div class="segments desktop-only" style={`--total: ${dTotal}; --filled: ${dFilled}`}>
-                          <div class="bar-track">{"=".repeat(dTotal)}</div>
-                          <div class="bar-fill">{"=".repeat(dFilled)}</div>
+                    <li class={`skill-item-group ${item.children ? 'has-children' : ''}`} data-state="closed">
+                      <div class="skill-item parent-item">
+                        <p class="skill-name">
+                          {item.name}
+                          {item.children && <span class="item-chevron"></span>}
+                        </p>
+                        <div class="skill-bar">
+                          <div class="segments desktop-only" style={`--total: ${dTotal}; --filled: ${dFilled}`}>
+                            <div class="bar-track">{"=".repeat(dTotal)}</div>
+                            <div class="bar-fill">{"=".repeat(dFilled)}</div>
+                          </div>
+                          <div class="segments mobile-only" style={`--total: ${mTotal}; --filled: ${mFilled}`}>
+                            <div class="bar-track">{"=".repeat(mTotal)}</div>
+                            <div class="bar-fill">{"=".repeat(mFilled)}</div>
+                          </div>
                         </div>
-                        
-                        {/* Mobile segments */}
-                        <div class="segments mobile-only" style={`--total: ${mTotal}; --filled: ${mFilled}`}>
-                          <div class="bar-track">{"=".repeat(mTotal)}</div>
-                          <div class="bar-fill">{"=".repeat(mFilled)}</div>
-                        </div>
+                        <small class="skill-duration">
+                          {getDuration(item.since, item.end)}
+                        </small>
                       </div>
-                      <small class="skill-duration">
-                        {getDuration(item.since, item.end)}
-                      </small>
+
+                      {item.children && (
+                        <div class="child-items-container">
+                          <ul class="child-list">
+                            {item.children.map((child) => {
+                              const cDuration = getSkillDuration(child.since, child.end)
+                              const cdTotal = fullExperiencePoints
+                              const cdFilled = cDuration
+                              const cmTotal = 10
+                              const cmFilled = Math.max(1, Math.round((cDuration / fullExperiencePoints) * mTotal))
+                              
+                              return (
+                                <li class="skill-item is-child">
+                                  <p class="skill-name">{child.name}</p>
+                                  <div class="skill-bar">
+                                    <div class="segments desktop-only" style={`--total: ${cdTotal}; --filled: ${cdFilled}`}>
+                                      <div class="bar-track">{"=".repeat(cdTotal)}</div>
+                                      <div class="bar-fill">{"=".repeat(cdFilled)}</div>
+                                    </div>
+                                    <div class="segments mobile-only" style={`--total: ${cmTotal}; --filled: ${cmFilled}`}>
+                                      <div class="bar-track">{"=".repeat(cmTotal)}</div>
+                                      <div class="bar-fill">{"=".repeat(cmFilled)}</div>
+                                    </div>
+                                  </div>
+                                  <small class="skill-duration">
+                                    {getDuration(child.since, child.end)}
+                                  </small>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      )}
                     </li>
                   )
                 })}
@@ -80,15 +111,27 @@ const fullExperiencePoints = determineFullExperiencePoints(
 
 <script>
   const initSkills = () => {
-    const grid = document.querySelector('.skills-grid');
-    
-    // Event Delegation: One listener for the whole section
-    grid?.addEventListener('click', (e) => {
-      const category = (e.target as HTMLElement).closest('.skill-category');
-      if (!category) return;
+    // Handle Category Expansion
+    const headers = document.querySelectorAll('.category-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const category = header.closest('.skill-category');
+        if (!category) return;
+        const isCurrentlyOpen = category.getAttribute('data-state') === 'open';
+        category.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open');
+      });
+    });
 
-      const isCurrentlyOpen = category.getAttribute('data-state') === 'open';
-      category.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open');
+    // Handle Nested Skill Expansion
+    const parentItems = document.querySelectorAll('.parent-item');
+    parentItems.forEach(parent => {
+      parent.addEventListener('click', (e) => {
+        e.stopPropagation(); // Avoid triggering category close when clicking a sub-skill
+        const group = parent.closest('.skill-item-group');
+        if (!group) return;
+        const isCurrentlyOpen = group.getAttribute('data-state') === 'open';
+        group.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open');
+      });
     });
   };
 
@@ -196,7 +239,6 @@ const fullExperiencePoints = determineFullExperiencePoints(
     justify-content: space-between;
     gap: var(--spacing-sm);
     cursor: pointer;
-    margin-bottom: var(--spacing-sm);
   }
 
   .category-name {
@@ -242,6 +284,22 @@ const fullExperiencePoints = determineFullExperiencePoints(
     padding-top: var(--spacing-xl);
   }
 
+  .skill-item-group {
+    list-style: none;
+    
+    &.has-children {
+      .parent-item {
+        cursor: pointer;
+        
+        &:hover {
+          .skill-name {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+
   .skill-item {
     display: grid;
     grid-template-columns: 1fr 6.5rem 2rem;
@@ -260,10 +318,74 @@ const fullExperiencePoints = determineFullExperiencePoints(
     }
 
     .skill-name {
+      display: flex;
+      align-items: center;
       line-height: 1.25;
       word-wrap: break-word;
       min-width: 0;
     }
+
+    &.is-child {
+      padding-left: var(--spacing-md);
+      opacity: 0.85;
+      font-size: 0.75rem;
+      margin-top: var(--spacing-xs);
+
+      .skill-bar {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .item-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: var(--spacing-xs);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    vertical-align: middle;
+    width: 0.75rem;
+    height: 0.75rem;
+
+    &::after {
+      content: "";
+      width: 0.4rem;
+      height: 0.4rem;
+      border-right: 0.125rem solid var(--color-bg);
+      border-bottom: 0.125rem solid var(--color-bg);
+      transform: translateY(-0.05rem) rotate(45deg);
+      transition: all 0.3s ease;
+    }
+  }
+
+  .skill-item-group[data-state="open"] {
+    .child-items-container {
+      grid-template-rows: 1fr;
+      margin-bottom: var(--spacing-sm);
+    }
+    .item-chevron {
+      transform: rotate(180deg);
+      
+      &::after {
+        border-color: var(--color-primary);
+      }
+    }
+  }
+
+  .child-items-container {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .child-list {
+    min-height: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
   }
 
   .skill-bar {

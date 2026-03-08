@@ -1,20 +1,26 @@
-import type { SkillItem } from '../@types/skills'
+import type { SkillItem } from '../content/config'
 import getSkillDuration from './get-skill-duration'
 
 const determineFullExperiencePoints = (skills: SkillItem[]): number => {
   if (skills.length === 0) return 0;
   
-  let fullExperiencePoints = getSkillDuration(skills[0].since, skills[0].end)
+  let maxDuration = 0
 
-  skills.forEach((skill) => {
+  const processSkill = (skill: SkillItem) => {
     const skillDuration = getSkillDuration(skill.since, skill.end)
-
-    if (skillDuration > fullExperiencePoints) {
-      fullExperiencePoints = skillDuration
+    if (skillDuration > maxDuration) {
+      maxDuration = skillDuration
     }
-  })
+    
+    // Recurse into children
+    if (skill.children) {
+      skill.children.forEach(processSkill)
+    }
+  }
 
-  return fullExperiencePoints
+  skills.forEach(processSkill)
+
+  return maxDuration
 }
 
 export default determineFullExperiencePoints
