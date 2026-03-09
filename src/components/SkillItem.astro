@@ -9,18 +9,21 @@ interface Props {
   isChild?: boolean;
 }
 
-const { name, since, end, fullExperiencePoints, isChild } = Astro.props;
+const { name, since, end, fullExperiencePoints, isChild } = Astro.props
 
-const duration = getSkillDuration(since, end);
-const barTotal = fullExperiencePoints;
-const barFilled = duration;
+const duration = getSkillDuration(since, end)
+const barTotal = fullExperiencePoints
+const barFilled = duration
 
 // Mobile normalized to 10 points
-const mTotal = 10;
-const mFilled = Math.max(1, Math.round((duration / fullExperiencePoints) * mTotal));
+const mobileAspectTotalExperienceSpace = 10
+const mobileAspectDuration = Math.max(1, Math.round(
+  (duration / fullExperiencePoints) * mobileAspectTotalExperienceSpace)
+)
 
 const getDurationLabel = (since: number, end?: number): string => {
   const years = getSkillDuration(since, end)
+
   return `${years} ${years === 1 ? 'Yr' : 'Yrs'}`
 }
 ---
@@ -32,15 +35,26 @@ const getDurationLabel = (since: number, end?: number): string => {
   </p>
   <div class="skill-bar">
     {/* Desktop Scale */}
-    <div class="segments desktop-only" style={`--total: ${barTotal}; --filled: ${barFilled}`}>
-      <div class="bar-track">{"=".repeat(barTotal)}</div>
-      <div class="bar-fill">{"=".repeat(barFilled)}</div>
+    <div
+      class="segments desktop-only"
+      style={`--total: ${barTotal}; --filled: ${barFilled}`}
+    >
+      <div class="bar-track">{'='.repeat(barTotal)}</div>
+      <div class="bar-fill">{'='.repeat(barFilled)}</div>
     </div>
     
     {/* Mobile Scale */}
-    <div class="segments mobile-only" style={`--total: ${mTotal}; --filled: ${mFilled}`}>
-      <div class="bar-track">{"=".repeat(mTotal)}</div>
-      <div class="bar-fill">{"=".repeat(mFilled)}</div>
+    <div
+      class="segments mobile-only"
+      style={`
+        --total: ${mobileAspectTotalExperienceSpace};
+        --filled: ${mobileAspectDuration}`
+      }
+    >
+      <div class="bar-track">
+        {'='.repeat(mobileAspectTotalExperienceSpace)}
+      </div>
+      <div class="bar-fill">{'='.repeat(mobileAspectDuration)}</div>
     </div>
   </div>
   <small class="skill-duration">
@@ -72,9 +86,10 @@ const getDurationLabel = (since: number, end?: number): string => {
       display: flex;
       align-items: center;
       line-height: var(--line-height-normal);
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       min-width: 0;
     }
+
 
     &.is-child {
       padding-left: var(--spacing-sm);
@@ -102,6 +117,7 @@ const getDurationLabel = (since: number, end?: number): string => {
       display: none;
 
       &.mobile-only { display: block; }
+
       @include tablet {
         &.desktop-only { display: block; }
         &.mobile-only { display: none; }

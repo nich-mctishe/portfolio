@@ -1,7 +1,8 @@
 ---
 import { getEntry } from 'astro:content'
 import Section from './Section.astro'
-import determineFullExperiencePoints from '../helpers/determine-full-experience-points'
+import determineFullExperiencePoints
+  from '../helpers/determine-full-experience-points'
 import SkillItem from './SkillItem.astro'
 
 const skillsEntry = await getEntry('skills', 'data')
@@ -30,13 +31,21 @@ const fullExperiencePoints = determineFullExperiencePoints(
             <div class="body-wrapper">
               <ul class="skill-list">
                 {category.items.map((item) => (
-                  <li class={`skill-item-group ${item.children ? 'has-children' : ''}`} data-state="closed">
+                  <li
+                    class:list={[
+                      'skill-item-group',
+                      { 'has-children': !!item.children },
+                    ]}
+                    data-state="closed"
+                  >
                     <div class="parent-item">
                       <SkillItem 
                         {...item} 
                         fullExperiencePoints={fullExperiencePoints}
                       >
-                        {item.children && <span slot="chevron" class="item-chevron"></span>}
+                        {item.children && (
+                          <span slot="chevron" class="item-chevron" />
+                        )}
                       </SkillItem>
                     </div>
 
@@ -67,33 +76,34 @@ const fullExperiencePoints = determineFullExperiencePoints(
 </Section>
 
 <script>
-  const initSkills = () => {
-    // Handle Category Expansion
-    const headers = document.querySelectorAll('.category-header');
-    headers.forEach(header => {
-      header.addEventListener('click', () => {
-        const category = header.closest('.skill-category');
-        if (!category) return;
-        const isCurrentlyOpen = category.getAttribute('data-state') === 'open';
-        category.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open');
-      });
-    });
+const initSkills = () => {
+  // Handle Category Expansion
+  const headers = document.querySelectorAll('.category-header')
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const category = header.closest('.skill-category')
+      if (!category) return
+      const isCurrentlyOpen = category.getAttribute('data-state') === 'open'
+      category.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open')
+    })
+  })
 
-    // Handle Nested Skill Expansion
-    const parentItems = document.querySelectorAll('.parent-item');
-    parentItems.forEach(parent => {
-      parent.addEventListener('click', (e) => {
-        e.stopPropagation(); // Avoid triggering category close when clicking a sub-skill
-        const group = parent.closest('.skill-item-group');
-        if (!group) return;
-        const isCurrentlyOpen = group.getAttribute('data-state') === 'open';
-        group.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open');
-      });
-    });
-  };
+  // Handle Nested Skill Expansion
+  const parentItems = document.querySelectorAll('.parent-item')
+  parentItems.forEach(parent => {
+    parent.addEventListener('click', (e) => {
+      // Avoid triggering category close when clicking a sub-skill
+      e.stopPropagation()
+      const group = parent.closest('.skill-item-group')
+      if (!group) return
+      const isCurrentlyOpen = group.getAttribute('data-state') === 'open'
+      group.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open')
+    })
+  })
+}
 
-  initSkills();
-  document.addEventListener('astro:after-swap', initSkills);
+initSkills()
+document.addEventListener('astro:after-swap', initSkills)
 </script>
 
 
@@ -200,7 +210,7 @@ const fullExperiencePoints = determineFullExperiencePoints(
 
   .category-name {
     font-size: var(--font-size-base);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     color: var(--color-bg);
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -261,6 +271,7 @@ const fullExperiencePoints = determineFullExperiencePoints(
         grid-template-rows: 1fr;
         margin-bottom: var(--spacing-sm);
       }
+
       .item-chevron {
         transform: rotate(180deg);
         

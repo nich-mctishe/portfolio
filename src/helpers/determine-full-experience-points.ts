@@ -2,7 +2,7 @@ import type { SkillItem } from '../content/config'
 import getSkillDuration from './get-skill-duration'
 
 const determineFullExperiencePoints = (skills: SkillItem[]): number => {
-  if (skills.length === 0) return 0;
+  if (skills.length === 0) return 0
   
   let maxDuration = 0
 
