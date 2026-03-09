@@ -1,18 +1,11 @@
 ---
 import { getEntry } from 'astro:content'
 import Section from './Section.astro'
-import getSkillDuration from '../helpers/get-skill-duration'
 import determineFullExperiencePoints from '../helpers/determine-full-experience-points'
+import SkillItem from './SkillItem.astro'
 
 const skillsEntry = await getEntry('skills', 'data')
 const categories = skillsEntry?.data?.categories || []
-
-const getDuration = (since: number, end?: number): string => {
-  const skillDuration = getSkillDuration(since, end)
-  const suffix = skillDuration === 1 ? 'yr' : 'yrs'
-
-  return skillDuration + suffix
-}
 
 const fullExperiencePoints = determineFullExperiencePoints(
   categories.flatMap((category) => category.items)
@@ -36,70 +29,34 @@ const fullExperiencePoints = determineFullExperiencePoints(
           <div class="category-body">
             <div class="body-wrapper">
               <ul class="skill-list">
-                {category.items.map((item) => {
-                  const duration = getSkillDuration(item.since, item.end)
-                  const dTotal = fullExperiencePoints
-                  const dFilled = duration
-                  const mTotal = 10
-                  const mFilled = Math.max(1, Math.round((duration / fullExperiencePoints) * mTotal))
-                  
-                  return (
-                    <li class={`skill-item-group ${item.children ? 'has-children' : ''}`} data-state="closed">
-                      <div class="skill-item parent-item">
-                        <p class="skill-name">
-                          {item.name}
-                          {item.children && <span class="item-chevron"></span>}
-                        </p>
-                        <div class="skill-bar">
-                          <div class="segments desktop-only" style={`--total: ${dTotal}; --filled: ${dFilled}`}>
-                            <div class="bar-track">{"=".repeat(dTotal)}</div>
-                            <div class="bar-fill">{"=".repeat(dFilled)}</div>
-                          </div>
-                          <div class="segments mobile-only" style={`--total: ${mTotal}; --filled: ${mFilled}`}>
-                            <div class="bar-track">{"=".repeat(mTotal)}</div>
-                            <div class="bar-fill">{"=".repeat(mFilled)}</div>
-                          </div>
-                        </div>
-                        <small class="skill-duration">
-                          {getDuration(item.since, item.end)}
-                        </small>
-                      </div>
+                {category.items.map((item) => (
+                  <li class={`skill-item-group ${item.children ? 'has-children' : ''}`} data-state="closed">
+                    <div class="parent-item">
+                      <SkillItem 
+                        {...item} 
+                        fullExperiencePoints={fullExperiencePoints}
+                      >
+                        {item.children && <span slot="chevron" class="item-chevron"></span>}
+                      </SkillItem>
+                    </div>
 
-                      {item.children && (
-                        <div class="child-items-container">
-                          <ul class="child-list">
-                            {item.children.map((child) => {
-                              const cDuration = getSkillDuration(child.since, child.end)
-                              const cdTotal = fullExperiencePoints
-                              const cdFilled = cDuration
-                              const cmTotal = 10
-                              const cmFilled = Math.max(1, Math.round((cDuration / fullExperiencePoints) * mTotal))
-                              
-                              return (
-                                <li class="skill-item is-child">
-                                  <p class="skill-name">{child.name}</p>
-                                  <div class="skill-bar">
-                                    <div class="segments desktop-only" style={`--total: ${cdTotal}; --filled: ${cdFilled}`}>
-                                      <div class="bar-track">{"=".repeat(cdTotal)}</div>
-                                      <div class="bar-fill">{"=".repeat(cdFilled)}</div>
-                                    </div>
-                                    <div class="segments mobile-only" style={`--total: ${cmTotal}; --filled: ${cmFilled}`}>
-                                      <div class="bar-track">{"=".repeat(cmTotal)}</div>
-                                      <div class="bar-fill">{"=".repeat(cmFilled)}</div>
-                                    </div>
-                                  </div>
-                                  <small class="skill-duration">
-                                    {getDuration(child.since, child.end)}
-                                  </small>
-                                </li>
-                              )
-                            })}
-                          </ul>
-                        </div>
-                      )}
-                    </li>
-                  )
-                })}
+                    {item.children && (
+                      <div class="child-items-container">
+                        <ul class="child-list">
+                          {item.children.map((child) => (
+                            <li>
+                              <SkillItem 
+                                {...child} 
+                                fullExperiencePoints={fullExperiencePoints} 
+                                isChild={true} 
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -292,47 +249,24 @@ const fullExperiencePoints = determineFullExperiencePoints(
         cursor: pointer;
         
         &:hover {
-          .skill-name {
+          :global(.skill-name) {
             color: var(--color-primary);
           }
         }
       }
     }
-  }
 
-  .skill-item {
-    display: grid;
-    grid-template-columns: 1fr 6.5rem 2rem;
-    width: 100%;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-    color: var(--color-bg);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    transition: all 0.25s ease;
-
-    @include tablet {
-      grid-template-columns: 1fr auto 2.5rem;
-      gap: var(--spacing-md);
-      align-items: center;
-    }
-
-    .skill-name {
-      display: flex;
-      align-items: center;
-      line-height: 1.25;
-      word-wrap: break-word;
-      min-width: 0;
-    }
-
-    &.is-child {
-      padding-left: var(--spacing-md);
-      opacity: 0.85;
-      font-size: 0.75rem;
-      margin-top: var(--spacing-xs);
-
-      .skill-bar {
-        font-size: 0.9rem;
+    &[data-state="open"] {
+      .child-items-container {
+        grid-template-rows: 1fr;
+        margin-bottom: var(--spacing-sm);
+      }
+      .item-chevron {
+        transform: rotate(180deg);
+        
+        &::after {
+          border-color: var(--color-primary);
+        }
       }
     }
   }
@@ -358,20 +292,6 @@ const fullExperiencePoints = determineFullExperiencePoints(
     }
   }
 
-  .skill-item-group[data-state="open"] {
-    .child-items-container {
-      grid-template-rows: 1fr;
-      margin-bottom: var(--spacing-sm);
-    }
-    .item-chevron {
-      transform: rotate(180deg);
-      
-      &::after {
-        border-color: var(--color-primary);
-      }
-    }
-  }
-
   .child-items-container {
     display: grid;
     grid-template-rows: 0fr;
@@ -386,65 +306,9 @@ const fullExperiencePoints = determineFullExperiencePoints(
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
-  }
-
-  .skill-bar {
-    position: relative;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    letter-spacing: -0.1em;
-    font-weight: 700;
-    font-size: 1.1rem;
-    line-height: 1;
-    height: 1.1rem; // Match font-size
-
-    .segments {
-      position: relative;
-      display: none; // Default hidden, toggled by mobile/desktop classes below
-
-      &.mobile-only { display: block; }
-      @include tablet {
-        &.desktop-only { display: block; }
-        &.mobile-only { display: none; }
-      }
+    
+    li {
+      list-style: none;
     }
-
-    .bar-track {
-      color: var(--color-bg);
-      opacity: 0.2;
-      white-space: nowrap;
-    }
-
-    .bar-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: var(--color-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0; // Start at 0
-      
-      // Stealth Exit: Stay filled until tile collapses
-      transition: width 0s 0.5s; 
-    }
-  }
-
-  // Thermometer Filling Trigger
-  .skill-category[data-state="open"] {
-    .bar-fill {
-      // Calculate width based on (filled / total)
-      width: calc((var(--filled) / var(--total)) * 100%);
-      
-      // Smooth liquid transition (2 seconds as requested)
-      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
-      transition-delay: 0.1s; // Start almost immediately
-    }
-  }
-
-  .skill-duration {
-    font-size: 0.7rem;
-    color: var(--color-bg);
-    font-weight: 400;
-    transition: color 0.25s ease;
-    text-align: right;
   }
 </style>

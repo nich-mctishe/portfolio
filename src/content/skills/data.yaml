@@ -33,9 +33,9 @@ categories:
         since: 2020
       - name: Vite
         since: 2025
-      - name: LESS/SCSS/PCSS
+      - name: LESS SCSS PCSS
         since: 2013
-      - name: HTML/CSS
+      - name: HTML CSS
         since: 2010
       - name: Angular
         since: 2014
