@@ -1,0 +1,142 @@
+---
+import getSkillDuration from '../helpers/get-skill-duration'
+
+interface Props {
+  name: string;
+  since: number;
+  end?: number;
+  fullExperiencePoints: number;
+  isChild?: boolean;
+}
+
+const { name, since, end, fullExperiencePoints, isChild } = Astro.props;
+
+const duration = getSkillDuration(since, end);
+const barTotal = fullExperiencePoints;
+const barFilled = duration;
+
+// Mobile normalized to 10 points
+const mTotal = 10;
+const mFilled = Math.max(1, Math.round((duration / fullExperiencePoints) * mTotal));
+
+const getDurationLabel = (since: number, end?: number): string => {
+  const years = getSkillDuration(since, end)
+  return `${years} ${years === 1 ? 'Yr' : 'Yrs'}`
+}
+---
+
+<div class={`skill-item ${isChild ? 'is-child' : ''}`}>
+  <p class="skill-name">
+    {name}
+    <slot name="chevron" />
+  </p>
+  <div class="skill-bar">
+    {/* Desktop Scale */}
+    <div class="segments desktop-only" style={`--total: ${barTotal}; --filled: ${barFilled}`}>
+      <div class="bar-track">{"=".repeat(barTotal)}</div>
+      <div class="bar-fill">{"=".repeat(barFilled)}</div>
+    </div>
+    
+    {/* Mobile Scale */}
+    <div class="segments mobile-only" style={`--total: ${mTotal}; --filled: ${mFilled}`}>
+      <div class="bar-track">{"=".repeat(mTotal)}</div>
+      <div class="bar-fill">{"=".repeat(mFilled)}</div>
+    </div>
+  </div>
+  <small class="skill-duration">
+    {getDurationLabel(since, end)}
+  </small>
+</div>
+
+<style lang="scss">
+  @use "../styles/mixins" as *;
+
+  .skill-item {
+    display: grid;
+    grid-template-columns: 1fr 6.5rem 2rem;
+    width: 100%;
+    align-items: flex-end;
+    gap: var(--spacing-sm);
+    color: var(--color-bg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.25s ease;
+
+    @include tablet {
+      grid-template-columns: 1fr auto 2.5rem;
+      gap: var(--spacing-md);
+      align-items: center;
+    }
+
+    .skill-name {
+      display: flex;
+      align-items: center;
+      line-height: var(--line-height-normal);
+      word-wrap: break-word;
+      min-width: 0;
+    }
+
+    &.is-child {
+      padding-left: var(--spacing-sm);
+      opacity: 0.85;
+      font-size: var(--font-size-xs);
+      margin-top: var(--spacing-xs);
+
+      .skill-bar {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .skill-bar {
+    position: relative;
+    font-family: var(--font-monospace);
+    letter-spacing: -0.1em;
+    font-weight: var(--font-wight-bold);
+    font-size: var(--font-size-base);
+    line-height: 1;
+    height: 1.1rem;
+
+    .segments {
+      position: relative;
+      display: none;
+
+      &.mobile-only { display: block; }
+      @include tablet {
+        &.desktop-only { display: block; }
+        &.mobile-only { display: none; }
+      }
+    }
+
+    .bar-track {
+      color: var(--color-bg);
+      opacity: 0.2;
+      white-space: nowrap;
+    }
+
+    .bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: var(--color-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      transition: width 0s 0.5s; 
+    }
+  }
+
+  // Animation trigger inherited from parent's data-state="open"
+  :global(.skill-category[data-state="open"]) .bar-fill {
+    width: calc((var(--filled) / var(--total)) * 100%);
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.1s;
+  }
+
+  .skill-duration {
+    font-size: var(--font-size-2xs);
+    color: var(--color-bg);
+    font-weight: var(--font-weight-normal);
+    text-align: right;
+  }
+</style>
