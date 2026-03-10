@@ -78,11 +78,9 @@ const fullExperiencePoints = determineFullExperiencePoints(
 <script>
 const initSkills = () => {
   // Handle Category Expansion
-  const headers = document.querySelectorAll('.category-header')
-  headers.forEach(header => {
-    header.addEventListener('click', () => {
-      const category = header.closest('.skill-category')
-      if (!category) return
+  const categories = document.querySelectorAll('.skill-category')
+  categories.forEach(category => {
+    category.addEventListener('click', () => {
       const isCurrentlyOpen = category.getAttribute('data-state') === 'open'
       category.setAttribute('data-state', isCurrentlyOpen ? 'closed' : 'open')
     })

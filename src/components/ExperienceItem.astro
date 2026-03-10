@@ -1,0 +1,239 @@
+---
+interface Props {
+  job: {
+    company: string;
+    role: string;
+    startDate: string;
+    endDate?: string;
+    description?: string;
+    highlights?: string[];
+    skills?: string[];
+  };
+}
+
+const { job } = Astro.props;
+---
+
+<div class="timeline-item reveal reveal-stagger">
+  <div class="timeline-event">
+    <div class="job-meta side-dates">
+      <span class="job-dates">
+        {job.startDate} — {job.endDate || 'Present'}
+      </span>
+    </div>
+    <div class="timeline-dot" />
+  </div>
+
+  <div class="job-card">
+    <div class="job-header">
+      <div class="role-company">
+        <h3 class="job-role">{job.role}</h3>
+        <span class="job-company">{job.company}</span>
+      </div>
+    </div>
+
+    {job.description && (
+      <p class="job-description">{job.description}</p>
+    )}
+
+    {job.highlights && job.highlights.length > 0 && (
+      <ul class="job-highlights">
+        {job.highlights.map((highlight) => (
+          <li>{highlight}</li>
+        ))}
+      </ul>
+    )}
+
+    {job.skills && job.skills.length > 0 && (
+      <div class="job-skills">
+        {job.skills.map((skill) => (
+          <span class="skill-pill">{skill}</span>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../styles/mixins" as *;
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-3xl);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -1.5625rem; // Padding is 14rem, line is 12.4375rem -> offset is 1.5625rem
+    top: 2.375rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 0.125rem solid var(--color-bg);
+    box-shadow: 0 0 0 0.125rem var(--color-primary);
+    z-index: 10;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 768px) {
+      left: -1.5625rem; 
+    }
+  }
+
+  .job-card {
+    background-color: var(--color-surface);
+    backdrop-filter: blur(0.625rem);
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 1.5rem;
+    padding: var(--spacing-xl);
+    box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
+    transition:
+      transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      box-shadow 0.4s ease,
+      border-color 0.4s ease;
+
+    &:hover {
+      transform: translateX(0.5rem);
+      box-shadow: 0 0.75rem 2rem var(--color-shadow);
+      border-color: var(--color-primary-light, var(--color-primary));
+
+      & ~ .timeline-dot {
+        transform: scale(1.2);
+      }
+    }
+
+    @include mobile-only {
+      margin-top: var(--spacing-xl);
+    }
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .job-role {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .job-company {
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+    font-weight: 600;
+    display: block;
+  }
+
+  .job-meta {
+    flex-shrink: 0;
+  }
+
+  .side-dates {
+    position: absolute;
+    left: -13rem;
+    top: 1.8125rem;
+    width: 11rem;
+    text-align: right;
+    display: block;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .inline-dates {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .job-dates {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    white-space: nowrap;
+    opacity: 0.9;
+    box-shadow: 0 2px 8px var(--color-shadow);
+  }
+
+  .job-description {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-loose);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+  }
+
+  .job-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-lg) 0;
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: var(--spacing-xs);
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+      color: var(--color-text-muted);
+
+      &::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--color-primary);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .job-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    border: 0.0625rem solid var(--color-border);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--color-primary);
+      color: #ffffff;
+      border-color: var(--color-primary);
+      transform: translateY(-0.1rem);
+    }
+  }
+</style>

@@ -1,7 +1,19 @@
 clients:
-  - name: Apple
+  - name: Idahoan
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/46fcc373694be7157ae057baab0d33cf.png
   - name: HBO
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/d74e1c3c6291f38df3b923be9a57b4bc.png
+  - name: Santander
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/44289bad007341a2ab87d50703e4a434.jpg
   - name: Dior
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/9f9c0da6f9a0cf8dfe29e466f079adaf.jpg
+  - name: Nike
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/ccee9d35d428a7021c46f80815ee78a1.jpg
   - name: Heineken
+    logoUrl: /logos/Heineken-Logo.svg
   - name: lululemon
   - name: WPP
+  - name: TicTac
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/434cac9729355b0f9dfce30f6e7bb292.png
+  - name: Ferrero Rocher
+    logoUrl: https://res.cloudinary.com/nichmctishe/image/upload/v1/portfolio/client/d553b70de1c7305db534b45be2097deb.png

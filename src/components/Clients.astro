@@ -17,7 +17,12 @@ const clients = clientsEntry?.data?.clients || [];
       clients.map((client) => (
         <div class="client-card reveal reveal-stagger">
           <div class="client-logo-placeholder">
-            <span class="client-name">{client.name}</span>
+            {client.logoUrl && (
+              <img src={client.logoUrl} alt={client.name} />
+            )}
+            {!client.logoUrl && (
+              <span class="client-name">{client.name}</span>
+            )}
           </div>
         </div>
       ))
