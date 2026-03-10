@@ -61,6 +61,14 @@ const { job } = Astro.props;
     position: relative;
     margin-bottom: var(--spacing-3xl);
 
+    @include mobile-only {
+      padding-top: 3.5rem;
+    }
+
+    &:hover .timeline-dot {
+      transform: scale(1.2);
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -79,8 +87,9 @@ const { job } = Astro.props;
     z-index: 10;
     transition: transform 0.3s ease;
 
-    @media (max-width: 768px) {
-      left: -1.5625rem; 
+    @include mobile-only {
+      left: -1.5625rem;
+      top: 0.25rem; // Align center with the mobile date pill
     }
   }
 
@@ -100,14 +109,6 @@ const { job } = Astro.props;
       transform: translateX(0.5rem);
       box-shadow: 0 0.75rem 2rem var(--color-shadow);
       border-color: var(--color-primary-light, var(--color-primary));
-
-      & ~ .timeline-dot {
-        transform: scale(1.2);
-      }
-    }
-
-    @include mobile-only {
-      margin-top: var(--spacing-xl);
     }
   }
 
@@ -118,7 +119,7 @@ const { job } = Astro.props;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-md);
 
-    @media (max-width: 768px) {
+    @include mobile-only {
       flex-direction: column;
       gap: 0.5rem;
     }
@@ -151,18 +152,11 @@ const { job } = Astro.props;
     text-align: right;
     display: block;
 
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  .inline-dates {
-    display: none;
-
-    @media (max-width: 768px) {
-      display: block;
-      margin-top: 0.25rem;
-      margin-bottom: 0.5rem;
+    @include mobile-only {
+      left: 0;
+      top: 0;
+      width: auto;
+      text-align: left;
     }
   }
 
