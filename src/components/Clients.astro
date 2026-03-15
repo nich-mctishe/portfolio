@@ -76,7 +76,6 @@ const clients = clientsEntry?.data?.clients || [];
     justify-content: center;
     align-items: center;
     background-color: var(--color-surface);
-    backdrop-filter: blur(0.5rem);
     border: 0.0625rem solid var(--color-border);
     border-radius: 1rem;
     padding: var(--spacing-md);
@@ -92,6 +91,20 @@ const clients = clientsEntry?.data?.clients || [];
       border-color: var(--color-primary);
       box-shadow: 0 0.625rem 1.5625rem var(--color-shadow);
       background-color: var(--color-bg);
+    }
+
+    .client-logo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
 
