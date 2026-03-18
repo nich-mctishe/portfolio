@@ -22,6 +22,15 @@ const { job } = Astro.props;
       <span class="job-dates">
         {job.startDate} — {job.endDate || 'Present'}
       </span>
+      {job.location && (
+        <span class="job-location">
+          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="location-icon">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          {job.location}
+        </span>
+      )}
     </div>
     <div class="timeline-dot" />
   </div>
@@ -35,15 +44,7 @@ const { job } = Astro.props;
       )}
       <div class="role-company">
         <h3 class="job-role">{job.role}</h3>
-        <div class="job-details">
-          <span class="job-company">{job.company}</span>
-          {job.location && (
-            <span class="job-location">
-              <span class="separator">•</span>
-              {job.location}
-            </span>
-          )}
-        </div>
+        <span class="job-company">{job.company}</span>
       </div>
     </div>
 
@@ -92,7 +93,7 @@ const { job } = Astro.props;
   .timeline-dot {
     position: absolute;
     left: -1.5625rem; // Padding is 14rem, line is 12.4375rem -> offset is 1.5625rem
-    top: 2.375rem;
+    top: 4rem;
     width: 0.875rem;
     height: 0.875rem;
     border-radius: 50%;
@@ -120,6 +121,10 @@ const { job } = Astro.props;
       box-shadow 0.4s ease,
       border-color 0.4s ease;
 
+    @include mobile-only {
+      padding: var(--spacing-lg) var(--spacing-md);
+    }
+
     &:hover {
       transform: translateX(0.5rem);
       box-shadow: 0 0.75rem 2rem var(--color-shadow);
@@ -138,6 +143,7 @@ const { job } = Astro.props;
 
     @include mobile-only {
       gap: var(--spacing-md);
+      flex-wrap: nowrap;
     }
   }
 
@@ -168,8 +174,8 @@ const { job } = Astro.props;
     transition: transform 0.4s ease;
 
     @include mobile-only {
-      width: 4rem;
-      height: 4rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     .job-card:hover & {
@@ -191,30 +197,10 @@ const { job } = Astro.props;
     }
   }
 
-  .job-details {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
   .job-company {
     font-size: var(--font-size-base);
     color: var(--color-primary);
     font-weight: 600;
-  }
-
-  .job-location {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .separator {
-    color: var(--color-border);
-    font-size: 0.8em;
   }
 
   .job-meta {
@@ -223,17 +209,39 @@ const { job } = Astro.props;
 
   .side-dates {
     position: absolute;
-    left: -13rem;
-    top: 1.8125rem;
-    width: 11rem;
-    text-align: right;
-    display: block;
+    right: calc(100% + 2rem);
+    top: 3.4375rem;
+    width: max-content;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+
+    @media (min-width: 1440px) {
+      flex-direction: row-reverse;
+      align-items: center;
+      text-align: right;
+    }
 
     @include mobile-only {
+      right: auto;
       left: 0;
       top: 0;
       width: auto;
       text-align: left;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    @include tablet {
+      align-items: center;
+      text-align: right;
     }
   }
 
@@ -251,6 +259,24 @@ const { job } = Astro.props;
     white-space: nowrap;
     opacity: 0.9;
     box-shadow: 0 2px 8px var(--color-shadow);
+
+    @include mobile-only {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  .job-location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0.8;
+    font-weight: 600;
+
+    .location-icon {
+      flex-shrink: 0;
+    }
   }
 
   .job-description {

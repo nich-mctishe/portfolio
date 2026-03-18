@@ -59,7 +59,7 @@ jobs:
       - Webpack
       - Docker
   
-  - company: Hogarth Worldwide (Part of WPP Group)
+  - company: Hogarth Worldwide / WPP
     logoUrl: /logos/hogarth.svg
     role: Full Stack Developer
     location: London, UK

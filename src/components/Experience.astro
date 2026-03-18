@@ -64,7 +64,7 @@ const jobs = experienceEntry?.data?.jobs || [];
       content: "";
       position: absolute;
       left: 12.8rem; // Center point for the line
-      top: 1rem;
+      top: 0;
       bottom: 1rem;
       width: 0.125rem;
       background: linear-gradient(
@@ -74,7 +74,7 @@ const jobs = experienceEntry?.data?.jobs || [];
         var(--color-primary),
         transparent
       );
-      opacity: 0.3;
+      opacity: 1;
 
       @include mobile-only {
         left: 0.8125rem;
