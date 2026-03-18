@@ -1,47 +1,82 @@
 jobs:
   - company: Lululemon Athletica
+    logoUrl: /logos/lululemon.svg
     role: Senior Engineer 1
+    location: Vancouver, BC
     startDate: "2019-05"
     endDate: "Present"
     description: Led the development team on a number of retail technology projects.
     highlights:
-      - Architected and implemented a microservices-based architecture handling 1M+ daily transactions.
-      - Reduced system latency by 40% through optimized database queries and caching strategies.
-      - Mentored a team of 5 junior and mid-level developers, fostering a culture of code quality.
+      - Initially leading a small group of designers, engineers and QAs building a back of house app that underpins a stores guest outreach strategy
+      - As the team gained traction, we also absorbed more projects including ownership over in-store monitors, ecom MFEs, source-of-truth APIs and data stores, and even Andriod touchscreen devices.
+      - As the project size grew, the team also grew. Peaking at around 15 engineers and and a host of analysts, project managers and other support staff.
+      - Mainly used AWS Serverless architecture for cost optimised environments, with a focus on processing heavier items behind the scenes with the help of SNS, SQS Step functions. In other instances EKS and EC2 based architecture was used when Serverless was no longer cost optimal.
+      - Other key technologies included NodeJs, Python, NextJs, Vue, React and Kotlin.
+      - Developed one-click, gated deployment processes unsing git and github flow implemented via Terraform, AWS SAM, and Cloudformation through CIs such as Jenkins and Gitlab. 
+      - Ensured high quality and highly considered code was being added to code-base, and encouraged the team to take ownership and responsibility over their work and encouraged a test first culture with a high mature test coverage centred around BDD.
+      - Regularly held COP sessions and other more informal sessions to help keep the team abreast of changes to the team, org, and industry and ensure best-practice was always a fluidic discussion.
+      - Worked with Architects and product owners to realise product visions and create high quality solutions along with implementation plans that could then be handed down to various development teams to be completed. This also included tech-debt, EOL, and enhancement roadmaps.
+      - Lead RCA when needed and instilled a scientific and mature analysis culture within the team. 
+      - Lead a rollout of AI integrated practices to the team.
+      - Regularly liaised with product and analysis stakeholders to prioritise work and establish or reestablish project priorities when needed both during sprint ceremonies and outside of them.
+      - Ensured that each team member felt like they belonged on the team, and worked with each member to ensure they were getting the most out of their time a lululemon.
+      - Built a series of AI tools to help stores manage and curate comms using the brand's voice and tone.
     skills:
       - TypeScript
       - Node.js
       - AWS
-      - PostgreSQL
-      - React
+      - Vue.js
+      - Next.js
+      - Kotlin
+      - Python
+      - Terraform
+      - AWS SAM
+      - Cloudformation
+      - Jenkins
+      - Gitlab
+      - BDD
+      - AI
   - company: Aesop Agency
+    logoUrl: /logos/aesop.svg
     role: Full Stack Developer
+    location: London, UK
     startDate: "2015-11"
     endDate: "2019-03"
-    description: Delivered fast paced ad campaigns, web apps, and interactive experiences for a number of major clients.
+    description: London based integrated advertising / design agency that focused on a storytelling model to deliver compelling visual communications working with clients such as HBO, Idahoan, Roche and Ferrero.
     highlights:
-      - Developed a custom component library used across 10+ major client websites.
-      - Improved lighthouse scores for key accounts by an average of 25 points.
-      - Collaborated closely with design teams to translate complex wireframes into responsive layouts.
+      - Delivered high-quality, scalable solutions for clients under tight deadlines and with constrained resources.
+      - Managed migration and evolution of the core tech stack from a PHP/Rackspace setup to a more modern Node.js/Express/React environment utilizing Docker and Digital Ocean.
+      - "Notable work: 49s infrastructure rebuild, splitting a complex backend into various service layers all hosted on AWS EC2 load balanced servers, and the Mycelia “life of a song” data visualisation tool, which was shortlisted for a Webby."
+      - Defined project scope, provided technical planning, and led client communication for high-profile projects, including the prototyping of interactive Oculus VR experiences for the HBO Game of Thrones story universe.
     skills:
-      - Vue.js
+      - React
+      - Next.js
+      - Node.js
+      - AWS
+      - MongoDB
       - JavaScript
       - SCSS
       - Webpack
-      - Storybook
+      - Docker
   
   - company: Hogarth Worldwide (Part of WPP Group)
-    role: QA Tester -> Full Stack Developer
+    logoUrl: /logos/hogarth.svg
+    role: Full Stack Developer
+    location: London, UK
     startDate: "2012-10"
     endDate: "2015-03"
-    description: Delivered fast paced ad campaigns, web apps, and interactive experiences for a number of major clients.
+    description: A London based implementation agency under the WPP umbrella, with a global presence and record breaking growth.
     highlights:
-      - Developed a custom component library used across 10+ major client websites.
-      - Improved lighthouse scores for key accounts by an average of 25 points.
-      - Collaborated closely with design teams to translate complex wireframes into responsive layouts.
+      - Maintained web presences for Dior, Heineken, Santander and Nike using Laravel, Codeignitor, TWIG as backend tools and and a front end of Grunt, LESS and JS.
+      - Initial work as a QC tester ensuring web and mobile applications were built to high standards.
+      - Trained a team of testers and rolled a series of standardised processes to hubs across the world.
+      - Later moved into the role of Junior Developer.
     skills:
-      - Vue.js
+      - PHP
       - JavaScript
-      - SCSS
-      - Webpack
-      - Storybook
+      - LESS
+      - Grunt
+      - TWIG
+      - Codeignitor
+      - Laravel
+      
