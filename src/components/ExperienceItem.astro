@@ -14,9 +14,10 @@ interface Props {
 }
 
 const { job } = Astro.props;
+const hasManyHighlights = job.highlights && job.highlights.length > 1;
 ---
 
-<div class="timeline-item reveal reveal-stagger">
+<div class="timeline-item reveal reveal-stagger" data-accordion>
   <div class="timeline-event">
     <div class="job-meta side-dates">
       <span class="job-dates">
@@ -53,11 +54,21 @@ const { job } = Astro.props;
     )}
 
     {job.highlights && job.highlights.length > 0 && (
-      <ul class="job-highlights">
-        {job.highlights.map((highlight) => (
-          <li>{highlight}</li>
-        ))}
-      </ul>
+      <div class="highlights-container" data-expanded="false" data-expandable={hasManyHighlights ? "true" : "false"}>
+        <ul class="job-highlights">
+          {job.highlights.map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+        {hasManyHighlights && (
+          <button class="expand-btn" aria-label="Expand highlights">
+            <span class="btn-text">View all highlights</span>
+            <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        )}
+      </div>
     )}
 
     {job.skills && job.skills.length > 0 && (
@@ -70,12 +81,50 @@ const { job } = Astro.props;
   </div>
 </div>
 
+<script>
+  function initExperienceAccordions() {
+    document.querySelectorAll('.timeline-item[data-accordion]').forEach(accordion => {
+      const btn = accordion.querySelector('.expand-btn');
+      const container = accordion.querySelector('.highlights-container');
+      const text = accordion.querySelector('.btn-text');
+      
+      if (btn && container && text && !accordion.hasAttribute('data-initialized')) {
+        btn.addEventListener('click', () => {
+          const isExpanded = container.getAttribute('data-expanded') === 'true';
+          container.setAttribute('data-expanded', String(!isExpanded));
+          text.textContent = isExpanded ? 'View all highlights' : 'Show less';
+
+          if (isExpanded) {
+            // When collapsing, smoothly scroll back to the top of this experience item
+            setTimeout(() => {
+              const headerOffset = 100; // Account for the sticky navigation header
+              const elementPosition = accordion.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }, 50);
+          }
+        });
+        accordion.setAttribute('data-initialized', 'true');
+      }
+    });
+  }
+
+  // Initialize on both raw load and Astro soft-nav
+  initExperienceAccordions();
+  document.addEventListener('astro:page-load', initExperienceAccordions);
+</script>
+
 <style lang="scss">
   @use "../styles/mixins" as *;
 
   .timeline-item {
     position: relative;
     margin-bottom: var(--spacing-3xl);
+    display: block;
 
     @include mobile-only {
       padding-top: 3.5rem;
@@ -287,10 +336,39 @@ const { job } = Astro.props;
     opacity: 0.9;
   }
 
+  .highlights-container {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+
+    &[data-expandable="true"] {
+      &[data-expanded="false"] {
+        .job-highlights {
+          max-height: 8rem;
+          overflow: hidden;
+          mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
+      }
+
+      &[data-expanded="true"] {
+        .job-highlights {
+          max-height: 2000px;
+          mask-image: none;
+          -webkit-mask-image: none;
+        }
+
+        .chevron {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
   .job-highlights {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--spacing-lg) 0;
+    margin: 0;
+    transition: max-height 0.5s ease-in-out;
 
     li {
       position: relative;
@@ -306,7 +384,38 @@ const { job } = Astro.props;
         left: 0;
         color: var(--color-primary);
         font-weight: bold;
+        transition: transform 0.3s ease;
       }
+
+      &:hover::before {
+        transform: translateX(0.1rem);
+      }
+    }
+  }
+
+  .expand-btn {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    font-family: inherit;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .chevron {
+      transition: transform 0.3s ease;
     }
   }
 
