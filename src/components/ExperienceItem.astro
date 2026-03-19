@@ -341,20 +341,25 @@ const hasManyHighlights = job.highlights && job.highlights.length > 1;
     margin-bottom: var(--spacing-lg);
 
     &[data-expandable="true"] {
+      .job-highlights {
+        /* Set base properties allowing smooth mask flow during transition */
+        padding-bottom: 2rem;
+        mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent 100%);
+      }
+
       &[data-expanded="false"] {
         .job-highlights {
           max-height: 8rem;
+          margin-bottom: 0;
           overflow: hidden;
-          mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-          -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
         }
       }
 
       &[data-expanded="true"] {
         .job-highlights {
-          max-height: 2000px;
-          mask-image: none;
-          -webkit-mask-image: none;
+          max-height: 100rem; /* Closer upper bound aligns the easing curve duration tightly */
+          margin-bottom: 0;
         }
 
         .chevron {
@@ -368,7 +373,7 @@ const hasManyHighlights = job.highlights && job.highlights.length > 1;
     list-style: none;
     padding: 0;
     margin: 0;
-    transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.4s ease-in-out;
 
     li {
       position: relative;
