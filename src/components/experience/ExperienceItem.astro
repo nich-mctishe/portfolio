@@ -1,0 +1,53 @@
+---
+import TimelineEvent from './TimelineEvent.astro';
+import JobCard from './JobCard.astro';
+
+interface Props {
+  job: {
+    company: string;
+    logoUrl?: string;
+    role: string;
+    location?: string;
+    startDate: string;
+    endDate?: string;
+    description?: string;
+    highlights?: string[];
+    skills?: string[];
+  };
+  index: number;
+}
+
+const { job, index } = Astro.props;
+const jobId = `job-experience-${index}`;
+---
+
+<div id={jobId} class="timeline-item reveal reveal-stagger">
+  <TimelineEvent 
+    startDate={job.startDate} 
+    endDate={job.endDate} 
+    location={job.location} 
+  />
+  <JobCard job={job} scrollTarget={`#${jobId}`} />
+</div>
+
+<style lang="scss">
+  @use "../../styles/mixins" as *;
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-3xl);
+    display: block;
+
+    @include mobile-only {
+      padding-top: 3.5rem;
+    }
+
+    &:hover :global(.timeline-dot) {
+      transform: scale(1.2);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+</style>

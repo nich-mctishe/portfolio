@@ -1,0 +1,166 @@
+---
+interface Props {
+  highlights?: string[];
+  scrollTarget: string;
+}
+
+const { highlights, scrollTarget } = Astro.props;
+const hasManyHighlights = highlights && highlights.length > 1;
+
+if (!highlights || highlights.length === 0) {
+  return null;
+}
+---
+
+<div 
+  class="highlights-container" 
+  data-expanded="false" 
+  data-expandable={hasManyHighlights ? "true" : "false"}
+  data-scroll-target={scrollTarget}
+>
+  <ul class="job-highlights">
+    {highlights.map((highlight) => (
+      <li>{highlight}</li>
+    ))}
+  </ul>
+  {hasManyHighlights && (
+    <button class="expand-btn" aria-label="Expand highlights">
+      <span class="btn-text">View all highlights</span>
+      <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  )}
+</div>
+
+<script>
+  function initExperienceAccordions() {
+    document.querySelectorAll('.highlights-container[data-expandable="true"]').forEach(container => {
+      const btn = container.querySelector('.expand-btn');
+      const text = container.querySelector('.btn-text');
+      
+      // Prevent double init across Astro swap navigations
+      if (btn && text && !container.hasAttribute('data-initialized')) {
+        btn.addEventListener('click', () => {
+          const isExpanded = container.getAttribute('data-expanded') === 'true';
+          container.setAttribute('data-expanded', String(!isExpanded));
+          text.textContent = isExpanded ? 'View all highlights' : 'Show less';
+
+          if (isExpanded) {
+            // When collapsing, smoothly scroll back to the deterministic target
+            setTimeout(() => {
+              const headerOffset = 100; 
+              const targetSelector = container.getAttribute('data-scroll-target');
+              const scrollTarget = targetSelector ? document.querySelector(targetSelector) : null;
+              
+              if (scrollTarget) {
+                const elementPosition = scrollTarget.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }, 50);
+          }
+        });
+        container.setAttribute('data-initialized', 'true');
+      }
+    });
+  }
+
+  // Initialize on both raw load and Astro soft-nav
+  initExperienceAccordions();
+  document.addEventListener('astro:page-load', initExperienceAccordions);
+</script>
+
+<style lang="scss">
+  .highlights-container {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+
+    &[data-expandable="true"] {
+      .job-highlights {
+        /* Set base properties allowing smooth mask flow during transition */
+        padding-bottom: 2rem;
+        mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent 100%);
+      }
+
+      &[data-expanded="false"] {
+        .job-highlights {
+          max-height: 8rem;
+          margin-bottom: 0;
+          overflow: hidden;
+        }
+      }
+
+      &[data-expanded="true"] {
+        .job-highlights {
+          max-height: 100rem; /* Closer upper bound aligns the easing curve duration tightly */
+          margin-bottom: 0;
+        }
+
+        .chevron {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .job-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: max-height 0.4s ease-in-out;
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: var(--spacing-xs);
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+      color: var(--color-text-muted);
+
+      &::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--color-primary);
+        font-weight: bold;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover::before {
+        transform: translateX(0.1rem);
+      }
+    }
+  }
+
+  .expand-btn {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    font-family: inherit;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .chevron {
+      transition: transform 0.3s ease;
+    }
+  }
+</style>

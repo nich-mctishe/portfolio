@@ -1,0 +1,110 @@
+---
+interface Props {
+  role: string;
+  company: string;
+  logoUrl?: string;
+  description?: string;
+}
+
+const { role, company, logoUrl, description } = Astro.props;
+---
+
+<div class="job-header">
+  {logoUrl && (
+    <div class="company-logo-wrapper">
+      <img class="company-logo" src={logoUrl} alt={company} />
+    </div>
+  )}
+  <div class="role-company">
+    <h3 class="job-role">{role}</h3>
+    <span class="job-company">{company}</span>
+  </div>
+</div>
+
+{description && (
+  <p class="job-description">{description}</p>
+)}
+
+<style lang="scss">
+  @use "../../styles/mixins" as *;
+
+  .job-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+
+    @include mobile-only {
+      gap: var(--spacing-md);
+      flex-wrap: nowrap;
+    }
+  }
+
+  .role-company {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .job-role {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .company-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 5rem;
+    height: 5rem;
+    transition: transform 0.4s ease;
+
+    @include mobile-only {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    // Bind to the hovered state of the outer card wrapper globally
+    :global(.job-card:hover) & {
+      transform: scale(1.05);
+    }
+  }
+
+  .company-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    
+    :global(.job-card:hover) & {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+  }
+
+  .job-company {
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .job-description {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-loose);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+  }
+</style>

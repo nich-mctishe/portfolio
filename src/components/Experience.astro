@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content'
 import Section from './Section.astro'
-import ExperienceItem from './ExperienceItem.astro'
+import ExperienceItem from './experience/ExperienceItem.astro'
 
 const experienceEntry = await getEntry('experience', 'data')
 const jobs = experienceEntry?.data?.jobs || [];
@@ -15,8 +15,8 @@ const jobs = experienceEntry?.data?.jobs || [];
 
   <div class="timeline">
     {
-      jobs.map((job) => (
-        <ExperienceItem job={job} />
+      jobs.map((job, index) => (
+        <ExperienceItem job={job} index={index} />
       ))
     }
   </div>

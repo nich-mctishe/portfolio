@@ -1,0 +1,57 @@
+---
+import JobHeader from './JobHeader.astro';
+import JobHighlights from './JobHighlights.astro';
+import JobSkills from './JobSkills.astro';
+
+interface Props {
+  job: {
+    company: string;
+    logoUrl?: string;
+    role: string;
+    description?: string;
+    highlights?: string[];
+    skills?: string[];
+  };
+  scrollTarget: string;
+}
+
+const { job, scrollTarget } = Astro.props;
+---
+
+<div class="job-card">
+  <JobHeader 
+    role={job.role} 
+    company={job.company} 
+    logoUrl={job.logoUrl} 
+    description={job.description} 
+  />
+  <JobHighlights highlights={job.highlights} scrollTarget={scrollTarget} />
+  <JobSkills skills={job.skills} />
+</div>
+
+<style lang="scss">
+  @use "../../styles/mixins" as *;
+
+  .job-card {
+    background-color: var(--color-surface);
+    backdrop-filter: blur(0.625rem);
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 1.5rem;
+    padding: var(--spacing-xl);
+    box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
+    transition:
+      transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      box-shadow 0.4s ease,
+      border-color 0.4s ease;
+
+    @include mobile-only {
+      padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    &:hover {
+      transform: translateX(0.5rem);
+      box-shadow: 0 0.75rem 2rem var(--color-shadow);
+      border-color: var(--color-primary-light, var(--color-primary));
+    }
+  }
+</style>

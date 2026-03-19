@@ -1,0 +1,126 @@
+---
+interface Props {
+  startDate: string;
+  endDate?: string;
+  location?: string;
+}
+
+const { startDate, endDate, location } = Astro.props;
+---
+
+<div class="timeline-event">
+  <div class="job-meta side-dates">
+    <span class="job-dates">
+      {startDate} — {endDate || 'Present'}
+    </span>
+    {location && (
+      <span class="job-location">
+        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="location-icon">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        {location}
+      </span>
+    )}
+  </div>
+  <div class="timeline-dot" />
+</div>
+
+<style lang="scss">
+  @use "../../styles/mixins" as *;
+
+  .timeline-dot {
+    position: absolute;
+    left: -1.5625rem;
+    top: 4rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    border: 0.125rem solid var(--color-bg);
+    box-shadow: 0 0 0 0.125rem var(--color-primary);
+    z-index: 10;
+    transition: transform 0.3s ease;
+
+    @include mobile-only {
+      left: -1.5625rem;
+      top: 0.4rem;
+    }
+  }
+
+  .job-meta {
+    flex-shrink: 0;
+  }
+
+  .side-dates {
+    position: absolute;
+    right: calc(100% + 2rem);
+    top: 3.4375rem;
+    width: max-content;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+
+    @media (min-width: 1440px) {
+      flex-direction: row-reverse;
+      align-items: center;
+      text-align: right;
+    }
+
+    @include mobile-only {
+      right: auto;
+      left: 0;
+      top: 0;
+      width: auto;
+      text-align: left;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    @include tablet {
+      align-items: center;
+      text-align: right;
+    }
+  }
+
+  .job-dates {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    white-space: nowrap;
+    opacity: 0.9;
+    box-shadow: 0 2px 8px var(--color-shadow);
+
+    @include mobile-only {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  .job-location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0.8;
+    font-weight: 600;
+
+    .location-icon {
+      flex-shrink: 0;
+    }
+  }
+</style>
