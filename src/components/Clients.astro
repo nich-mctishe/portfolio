@@ -43,7 +43,7 @@ const clients = clientsEntry?.data?.clients || [];
   }
 
   .section-title {
-    font-size: var(--font-size-2xl);
+    @include main-title;
     margin-bottom: var(--spacing-sm);
   }
 
@@ -79,17 +79,15 @@ const clients = clientsEntry?.data?.clients || [];
     border: 0.0625rem solid var(--color-border);
     border-radius: 1rem;
     padding: var(--spacing-md);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @include hover-lift(-0.5rem, var(--color-shadow));
     filter: grayscale(1);
     opacity: 0.8;
-    box-shadow: 0 0.25rem 0.9375rem var(--color-shadow);
 
     &:hover {
       filter: grayscale(0);
       opacity: 1;
-      transform: translateY(-0.5rem) scale(1.05);
+      transform: translateY(-0.5rem) scale(1.05); // user had scale here too. 
       border-color: var(--color-primary);
-      box-shadow: 0 0.625rem 1.5625rem var(--color-shadow);
       background-color: var(--color-bg);
     }
 
@@ -109,12 +107,9 @@ const clients = clientsEntry?.data?.clients || [];
   }
 
   .client-name {
-    font-size: 0.75rem;
-    font-weight: 700;
+    @include pill-text;
     text-align: center;
     color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     transition: color 0.3s ease;
 
     .client-card:hover & {

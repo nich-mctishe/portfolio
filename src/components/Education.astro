@@ -38,7 +38,7 @@ const qualifications = educationEntry?.data?.qualifications || []
   }
 
   .section-title {
-    font-size: var(--font-size-2xl);
+    @include main-title;
     margin-bottom: var(--spacing-sm);
   }
 
@@ -70,20 +70,11 @@ const qualifications = educationEntry?.data?.qualifications || []
     padding: var(--spacing-2xl) var(--spacing-xl);
     text-align: center;
     box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
-    transition:
-      transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-      box-shadow 0.3s ease;
-
-    &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0.625rem 1.875rem var(--color-shadow);
-    }
+    @include hover-lift(-0.5rem);
   }
 
   .degree {
-    font-size: var(--font-size-base);
-    font-weight: 700;
-    color: var(--color-text);
+    @include sub-title-h3;
     margin-bottom: var(--spacing-sm);
   }
 
@@ -95,11 +86,7 @@ const qualifications = educationEntry?.data?.qualifications || []
   }
 
   .year {
-    font-size: 0.75rem;
-    font-weight: 700;
+    @include pill-text;
     color: var(--color-text-muted);
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 </style>

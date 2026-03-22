@@ -125,7 +125,7 @@ document.addEventListener('astro:after-swap', initSkills)
   }
 
   .section-title {
-    font-size: var(--font-size-2xl);
+    @include main-title;
     margin-bottom: var(--spacing-sm);
   }
 
@@ -177,10 +177,7 @@ document.addEventListener('astro:after-swap', initSkills)
       }
     }
 
-    &:hover {
-      transform: translateY(-0.75rem);
-      box-shadow: 0 0.9375rem 2.8125rem var(--color-shadow);
-    }
+    @include hover-lift(-0.75rem, var(--color-shadow));
 
     &[data-state="open"] {
       .category-body {
@@ -207,11 +204,8 @@ document.addEventListener('astro:after-swap', initSkills)
   }
 
   .category-name {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-bold);
+    @include sub-title-h4;
     color: var(--color-bg);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
   }
 
   .category-chevron {

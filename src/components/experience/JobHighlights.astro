@@ -91,6 +91,8 @@ document.addEventListener('astro:page-load', initExperienceAccordions)
 </script>
 
 <style lang="scss">
+  @use "../../styles/mixins" as *;
+
   .highlights-container {
     position: relative;
     margin-bottom: var(--spacing-lg);
@@ -158,17 +160,8 @@ document.addEventListener('astro:page-load', initExperienceAccordions)
   }
 
   .expand-btn {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+    @include meta-text(var(--color-primary));
     margin-top: 0.5rem;
-    background: none;
-    border: none;
-    color: var(--color-primary);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
     cursor: pointer;
     padding: 0;
     transition: all 0.3s ease;

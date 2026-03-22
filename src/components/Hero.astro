@@ -96,14 +96,13 @@ const personal = personalEntry?.data || {
     gap: var(--spacing-lg);
 
     p {
-      font-size: var(--font-size-sm);
-      color: var(--color-text-muted);
-      font-family: var(--font-body);
+      @include body-text(var(--font-size-sm), var(--color-text-muted));
       margin-bottom: var(--spacing-xl);
       margin-right: var(--spacing-xl);
       max-width: 35rem;
       white-space: break-spaces;
     }
+    
 
     @include tablet {
       align-items: flex-start;

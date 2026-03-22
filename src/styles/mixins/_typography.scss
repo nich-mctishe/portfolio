@@ -1,0 +1,71 @@
+// ==========================================================================
+// Typography Mixins
+// ==========================================================================
+// Generic title and text mixins for a consistent, reusable design system.
+
+@mixin main-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-family: var(--font-heading);
+  line-height: var(--line-height-tight);
+}
+
+// Like Job Role / Primary Focus inside cards
+@mixin sub-title-h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+// Like Company Name / Secondary Focus
+@mixin sub-title-h3 {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+}
+
+// Like Skill Category / Tertiary Focus
+@mixin sub-title-h4 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-heading);
+}
+
+@mixin body-text($size: var(--font-size-base), $color: var(--color-text)) {
+  font-size: $size;
+  line-height: var(--line-height-normal);
+  color: $color;
+}
+
+@mixin pill-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@mixin meta-text($color: var(--color-text-muted)) {
+  font-size: var(--font-size-sm);
+  color: $color;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@mixin small-meta($color: var(--color-text-muted)) {
+  font-size: var(--font-size-2xs);
+  color: $color;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

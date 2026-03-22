@@ -51,12 +51,8 @@ const { role, company, logoUrl, description } = Astro.props;
   }
 
   .job-role {
-    font-size: var(--font-size-xl);
-    font-weight: 800;
-    color: var(--color-text);
+    @include sub-title-h2;
     margin-bottom: 0.25rem;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
   }
 
   .company-logo-wrapper {
@@ -94,15 +90,11 @@ const { role, company, logoUrl, description } = Astro.props;
   }
 
   .job-company {
-    font-size: var(--font-size-base);
-    color: var(--color-primary);
-    font-weight: 600;
+    @include sub-title-h3;
   }
 
   .job-description {
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-loose);
-    color: var(--color-text);
+    @include body-text;
     margin-bottom: var(--spacing-md);
     opacity: 0.9;
   }

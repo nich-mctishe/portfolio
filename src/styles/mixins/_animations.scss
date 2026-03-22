@@ -1,0 +1,55 @@
+// ==========================================================================
+// Animation & Transition Mixins
+// ==========================================================================
+// Standardises animation styles and transitions for a premium feel.
+
+@mixin float($speed: 12s, $delay: 0s) {
+  animation: float $speed ease-in-out infinite;
+  animation-delay: $delay;
+}
+
+@mixin transition-standard($property: all, $duration: 0.4s, $ease: ease) {
+  transition: $property $duration $ease;
+}
+
+// Bouncy transition used for cards and buttons
+@mixin transition-bounce($property: transform, $duration: 0.4s) {
+  transition: $property $duration cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// Hover effect for premium cards (translate and shadow)
+@mixin hover-lift($translate: -0.5rem, $shadow-color: var(--color-shadow)) {
+  @include transition-bounce;
+
+  &:hover {
+    transform: translateY($translate);
+    box-shadow: 0 0.75rem 2rem $shadow-color;
+  }
+}
+
+// Floating keyframes
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(2rem, -2rem) rotate(5deg);
+  }
+
+  66% {
+    transform: translate(-1.5rem, 2rem) rotate(-5deg);
+  }
+}
+
+@keyframes nav-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateY(-0.5rem) rotate(3deg);
+  }
+}
