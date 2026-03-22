@@ -56,29 +56,19 @@ const clients = clientsEntry?.data?.clients || [];
   }
 
   .clients-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-md);
+    @include grid-responsive(2, 3, 6, var(--spacing-md));
 
     @include tablet {
-      grid-template-columns: repeat(3, 1fr);
       gap: var(--spacing-xl);
-    }
-
-    @include desktop {
-      grid-template-columns: repeat(6, 1fr);
     }
   }
 
   .client-card {
+    @include card-base(var(--spacing-md), 1rem);
     aspect-ratio: 3 / 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-surface);
-    border: 0.0625rem solid var(--color-border);
-    border-radius: 1rem;
-    padding: var(--spacing-md);
     @include hover-lift(-0.5rem, var(--color-shadow));
     filter: grayscale(1);
     opacity: 0.8;

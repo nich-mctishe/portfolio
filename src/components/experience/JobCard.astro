@@ -33,18 +33,9 @@ const { job, scrollTarget } = Astro.props;
   @use "../../styles/mixins" as *;
 
   .job-card {
-    background-color: var(--color-surface);
-    backdrop-filter: blur(0.625rem);
-    border: 0.0625rem solid var(--color-border);
-    border-radius: 1.5rem;
-    padding: var(--spacing-xl);
-    box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
+    @include card-base;
     @include hover-lift(0.5rem);
     transform: none;
-
-    @include mobile-only {
-      padding: var(--spacing-lg) var(--spacing-md);
-    }
 
     &:hover {
       transform: translateX(0.5rem); // Keeping the user's specific translateX

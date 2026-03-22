@@ -51,25 +51,14 @@ const qualifications = educationEntry?.data?.qualifications || []
   }
 
   .education-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    @include grid-responsive(1, 2, 2, var(--spacing-xl));
     max-width: 50rem;
     margin: 0 auto;
-
-    @include tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 
   .education-card {
-    background-color: var(--color-surface);
-    backdrop-filter: blur(0.625rem);
-    border: 0.0625rem solid var(--color-border);
-    border-radius: 1.5rem;
-    padding: var(--spacing-2xl) var(--spacing-xl);
+    @include card-base(var(--spacing-2xl) var(--spacing-xl));
     text-align: center;
-    box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
     @include hover-lift(-0.5rem);
   }
 

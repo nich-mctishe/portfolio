@@ -1,0 +1,84 @@
+// ==========================================================================
+// Layout & Grid Mixins
+// ==========================================================================
+// Standardises grids, containers, and common display patterns.
+
+@use 'breakpoints' as *;
+
+@mixin section-container {
+  width: 100%;
+  max-width: 87.5rem; // 1400px
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+@mixin grid-responsive($columns-mobile: 1, $columns-tablet: 2, $columns-desktop: 3, $gap: var(--spacing-xl)) {
+  display: grid;
+  grid-template-columns: repeat($columns-mobile, 1fr);
+  gap: $gap;
+
+  @if $columns-tablet {
+    @include tablet {
+      grid-template-columns: repeat($columns-tablet, 1fr);
+    }
+  }
+
+  @if $columns-desktop {
+    @include desktop {
+      grid-template-columns: repeat($columns-desktop, 1fr);
+    }
+  }
+}
+
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+@mixin flex-between($direction: row, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: space-between;
+  gap: $gap;
+}
+
+@mixin masonry-grid($mobile-gap: var(--spacing-xl), $tablet-cols: 2, $desktop-cols: 3, $col-gap: var(--spacing-2xl)) {
+  display: flex;
+  flex-direction: column;
+  gap: $mobile-gap;
+
+  @include tablet {
+    display: block;
+    column-count: $tablet-cols;
+    column-gap: $col-gap;
+    
+    // Ensure children don't break across columns
+    & > * {
+      break-inside: avoid;
+      margin-bottom: $mobile-gap;
+    }
+  }
+
+  @if $desktop-cols {
+    @include desktop {
+      column-count: $desktop-cols;
+    }
+  }
+}
+
+@mixin card-base($padding: var(--spacing-xl), $radius: 1.5rem) {
+  background-color: var(--color-surface);
+  backdrop-filter: blur(0.625rem);
+  border: 0.0625rem solid var(--color-border);
+  border-radius: $radius;
+  padding: $padding;
+  box-shadow: 0 0.25rem 1.25rem var(--color-shadow);
+  
+  @include mobile-only {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
