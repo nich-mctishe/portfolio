@@ -6,7 +6,7 @@ import tsParser from '@typescript-eslint/parser'
 export default [
   ...eslintPluginAstro.configs.recommended,
   {
-    ignores: ['.astro/**']
+    ignores: ['**/.astro/**']
   },
   {
     // Global stylistic rules applied to all JS, TS, and Astro files

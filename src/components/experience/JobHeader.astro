@@ -30,16 +30,15 @@ const { role, company, logoUrl, description } = Astro.props;
 
   .job-header {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
-    flex-wrap: wrap;
 
     @include mobile-only {
       gap: var(--spacing-md);
-      flex-wrap: nowrap;
+      flex-flow: row nowrap;
     }
   }
 

@@ -14,3 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Light & dark mode theming via CSS custom properties
 - ESLint (flat config + Astro plugin) and Prettier
 - Project documentation (project-aims, tech-stack, task-breakdown)
+- Header and footer components
+- Skills section with pill-style tags
+- Experience section with timeline and accordion-style highlights

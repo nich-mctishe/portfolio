@@ -5,7 +5,7 @@ interface Props {
   location?: string;
 }
 
-const { startDate, endDate, location } = Astro.props;
+const { startDate, endDate, location } = Astro.props
 ---
 
 <div class="timeline-event">
@@ -15,7 +15,17 @@ const { startDate, endDate, location } = Astro.props;
     </span>
     {location && (
       <span class="job-location">
-        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="location-icon">
+        <svg 
+          viewBox="0 0 24 24" 
+          width="12" 
+          height="12" 
+          stroke="currentColor" 
+          stroke-width="2" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="location-icon"
+        >
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
           <circle cx="12" cy="10" r="3"></circle>
         </svg>
@@ -59,13 +69,12 @@ const { startDate, endDate, location } = Astro.props;
     width: max-content;
     text-align: left;
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    flex-wrap: nowrap;
     gap: 0.75rem;
 
-    @media (min-width: 1440px) {
+    @include wide-desktop {
       flex-direction: row-reverse;
       align-items: center;
       text-align: right;
@@ -77,10 +86,9 @@ const { startDate, endDate, location } = Astro.props;
       top: 0;
       width: auto;
       text-align: left;
-      flex-direction: row;
+      flex-flow: row wrap;
       justify-content: flex-start;
       align-items: center;
-      flex-wrap: wrap;
       gap: 0.5rem;
     }
 
@@ -98,12 +106,12 @@ const { startDate, endDate, location } = Astro.props;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    border: 0.0625rem solid var(--color-border);
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
     white-space: nowrap;
     opacity: 0.9;
-    box-shadow: 0 2px 8px var(--color-shadow);
+    box-shadow: 0 0.125rem 0.5rem var(--color-shadow);
 
     @include mobile-only {
       padding: 0.25rem 0.5rem;
