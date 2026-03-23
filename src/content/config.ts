@@ -4,12 +4,14 @@ const baseItemSchema = z.object({
   name: z.string(),
   since: z.number(),
   end: z.number().optional(),
+  active: z.boolean().default(true),
 })
 
 // Infer types from Zod schemas
 export type BaseSkillItem = z.infer<typeof baseItemSchema>
 export type SkillItem = BaseSkillItem & {
   children?: BaseSkillItem[]
+  active: boolean
 }
 
 const itemWithChildrenSchema = baseItemSchema.extend({
@@ -21,7 +23,9 @@ const skills = defineCollection({
   schema: z.object({
     categories: z.array(z.object({
       name: z.string(),
-      items: z.array(itemWithChildrenSchema)
+      items: z.array(itemWithChildrenSchema.extend({
+        active: z.boolean().default(true)
+      }))
     }))
   })
 })
@@ -44,6 +48,7 @@ const experience = defineCollection({
       logoUrl: z.string().optional(),
       logoAdaptive: z.boolean().optional(),
       role: z.string(),
+      active: z.boolean().default(true),
       startDate: z.string(),
       endDate: z.string().optional(),
       description: z.string().optional(),
@@ -62,6 +67,7 @@ const education = defineCollection({
       logoUrl: z.string().optional(),
       logoAdaptive: z.boolean().optional(),
       degree: z.string(),
+      active: z.boolean().default(true),
       year: z.string(),
       synopsis: z.string().optional(),
     }))
@@ -75,6 +81,7 @@ const clients = defineCollection({
       name: z.string(),
       logoUrl: z.string().optional(),
       logoAdjust: z.boolean().optional(),
+      active: z.boolean().default(true),
     }))
   })
 })

@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `logoAdjust` property to Clients schema for theme-responsive light/dark mode logo adjustments.
 - Implemented `.agent/skills` for `linting`, `code-review`, `changelog`, and `research` to automate development quality checks and onboarding.
 - Documented the project's **Component Architecture** in `README.md` and `src/components/README.md`.
+- Updated **Education section** with theme-adaptive institution logos and expandable synopsis.
+- Implemented site-wide `active` flag for toggling visibility of Skills, Jobs, Education, and Clients via data YAML.
+- Added **Troubleshooting Guide** (`docs/troubleshooting.md`) for common development environment issues.
 
 ### Changed
 
@@ -30,8 +33,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optimized Experience section layout for 320px minimum width (maintaining single-line date/meta info).
 - Improved mobile Job Highlights readability by increasing `max-height` and refining the fade-out mask to prevent text clipping.
 - Reduced line-height of `job-description` and `skill-name` for a cleaner text flow.
+- Enhanced **Mobile Navigation**: Removed background, added animated hamburger menu, and fixed Hero section overlap on mobile.
+- Refactored **Skills.astro** into modular sub-components for improved maintainability.
 
 ### Fixed
 
 - Corrected duplicate `mask-*` declarations in `JobHeader.astro` matching Stylelint rules.
 - Fixed clipping of "outreach strategy" and long bullet points in mobile Job Highlights.
+- Prevented **Skill duration** wrapping on mobile by adjusting grid layout.
+- Finalized **Falmouth University logo** to be theme-aware in both light and dark modes.

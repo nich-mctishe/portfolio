@@ -27,7 +27,7 @@ To ensure all notable project changes are documented in a clear, standardized, a
 -   Keep the format consistent with [keepachangelog.com](https://keepachangelog.com/en/1.1.0/).
 
 ### Action Protocol
-At the end of a significant task or session:
+At the end of a significant task or session you must always:
 1.  Run the `linting` and `code-review` skills.
 2.  If successful, update the `[Unreleased]` section of `CHANGELOG.md` with a summary of work done.
 3.  Commit the changes (if version control is active).

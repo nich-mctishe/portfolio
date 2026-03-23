@@ -3,7 +3,8 @@ import { getEntry } from 'astro:content'
 import Section from './Section.astro'
 
 const clientsEntry = await getEntry('clients', 'data')
-const clients = clientsEntry?.data?.clients || [];
+const clients = (clientsEntry?.data?.clients || [])
+  .filter(c => c.active !== false);
 ---
 
 <Section id="clients" class="clients-section">

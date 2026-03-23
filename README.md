@@ -47,11 +47,21 @@ We follow a strict hierarchy for the `src/components/` directory:
 
 See [src/components/README.md](src/components/README.md) for full architectural details.
 
+## Content Management
+
+### Active Flags
+All major content collections (Skills, Experience, Education, Clients) support an `active` flag. This allows you to toggle the visibility of specific items without removing them from your data files.
+
+-   **Logic**: Items are visible by default.
+-   **Usage**: Add `active: false` to any entry in a `data.yaml` file to hide it.
+-   **Nesting**: In the Skills section, the flag can be applied to entire categories, parent skills, or specific sub-skills.
+
 ## Documentation
 
 - [Project Aims](docs/project-aims.md) — requirements, tech stack, design notes
 - [Tech Stack](docs/tech-stack.md) — rationale for each technology choice
 - [Task Breakdown](docs/task-breakdown.md) — phased build plan with delegatable tasks
+- [Troubleshooting](docs/troubleshooting.md) — known issues and environment fixes
 - [Changelog](CHANGELOG.md) — release history
 
 ## Tech stack

@@ -4,7 +4,8 @@ import Section from './Section.astro'
 import ExperienceItem from './experience/ExperienceItem.astro'
 
 const experienceEntry = await getEntry('experience', 'data')
-const jobs = experienceEntry?.data?.jobs || [];
+const jobs = (experienceEntry?.data?.jobs || [])
+  .filter(job => job.active !== false);
 ---
 
 <Section id="experience" class="experience-section">

@@ -3,7 +3,8 @@ import { getEntry } from 'astro:content'
 import Section from './Section.astro'
 
 const educationEntry = await getEntry('education', 'data')
-const qualifications = educationEntry?.data?.qualifications || []
+const qualifications = (educationEntry?.data?.qualifications || [])
+  .filter(q => q.active !== false);
 ---
 
 <Section id="education" class="education-section">
@@ -24,12 +25,19 @@ const qualifications = educationEntry?.data?.qualifications || []
             {edu.logoUrl && (
               <div class="logo-wrapper">
                 <div 
-                  class:list={['edu-logo', { 'adaptive-logo': edu.logoAdaptive }]}
+                  class:list={[
+                    'edu-logo', 
+                    { 'adaptive-logo': edu.logoAdaptive }
+                  ]}
                   role="img"
                   aria-label={edu.institution}
-                  style={edu.logoAdaptive ? `--logo-url: url(${edu.logoUrl})` : undefined}
+                  style={edu.logoAdaptive 
+                    ? `--logo-url: url(${edu.logoUrl})` 
+                    : undefined}
                 >
-                  {!edu.logoAdaptive && <img src={edu.logoUrl} alt={edu.institution} />}
+                  {!edu.logoAdaptive && (
+                    <img src={edu.logoUrl} alt={edu.institution} />
+                  )}
                 </div>
               </div>
             )}
@@ -62,7 +70,8 @@ const qualifications = educationEntry?.data?.qualifications || []
 
 <script>
 const initEducation = () => {
-  const cards = document.querySelectorAll('.education-card[data-expandable="true"]')
+  const selector = '.education-card[data-expandable="true"]'
+  const cards = document.querySelectorAll(selector)
   cards.forEach(card => {
     const btn = card.querySelector('.expand-btn')
     btn?.addEventListener('click', () => {
@@ -95,6 +104,7 @@ document.addEventListener('astro:after-swap', initEducation)
   
   .section-title {
     @include main-title;
+
     margin-bottom: var(--spacing-sm);
   }
   
@@ -205,22 +215,26 @@ document.addEventListener('astro:after-swap', initEducation)
   
   .degree {
     @include sub-title-h3;
+
     line-height: var(--line-height-normal);
   }
   
   .year {
     @include small-meta;
+
     color: var(--color-primary);
   }
   
   .institution {
     @include body-text(var(--font-size-sm), var(--color-text-muted));
+
     font-weight: var(--font-weight-medium);
     margin-bottom: 0.125rem;
   }
   
   .location {
     @include small-meta;
+
     opacity: 0.7;
   }
   
@@ -234,14 +248,17 @@ document.addEventListener('astro:after-swap', initEducation)
   
   .synopsis {
     min-height: 0;
+
     @include body-text(var(--font-size-sm));
+
     line-height: var(--line-height-semi-loose);
     padding-bottom: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 0.0625rem solid var(--color-border);
   }
   
   .expand-btn {
     @include meta-text(var(--color-primary));
+
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
@@ -261,8 +278,8 @@ document.addEventListener('astro:after-swap', initEducation)
   .chevron {
     width: 0.6rem;
     height: 0.6rem;
-    border-right: 2px solid var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
+    border-right: 0.125rem solid var(--color-primary);
+    border-bottom: 0.125rem solid var(--color-primary);
     transform: rotate(45deg);
     transition: transform 0.4s ease;
     margin-top: -0.25rem;
