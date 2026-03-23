@@ -16,17 +16,18 @@ Items to be completed for v1.0.0:
 - [x] Remove outline from skill-cateogry click
  
 ## Education
-- [ ] Update Eduction to include logo
-- [ ] Allow section to be expandable and inlcude course synopsis
+- [x] Update Eduction to include logo
+- [x] Update Falmouth logo to work in both light and dark mode
+- [x] Allow section to be expandable and inlcude course synopsis
 
 ## Global Clients
-- [ ] Update HBO, Dior and WPP to be off black so they work better with light and dark mode, gel better with the other freay logos
+- [x] Update HBO, Dior and WPP to be off black so they work better with light and dark mode, gel better with the other freay logos
 
 ## Header
-- [ ] Make light/dark mode toggle to appear only when flag present
-- [ ] Remove background colour on mobile menu
-- [ ] Make mobile header button animated
-- [ ] Move up visual-wrapper and make hero-content longer for mobile stop bubbles from covering text
+- [x] Make light/dark mode toggle to appear only when flag present
+- [x] Remove background colour on mobile menu
+- [x] Make mobile header button animated
+- [x] Move up visual-wrapper and make hero-content longer for mobile stop bubbles from covering text
 
 ## Career Highlights
 - [ ] Create simple career highlights section for around a dozen highlights

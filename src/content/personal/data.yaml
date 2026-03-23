@@ -10,6 +10,7 @@ description: |
   Outside of work, I also like to push myself, and pursue a number of passions including Road/Gravel Cycling, Mountain Biking, Skiing, camping and Off-Roading. I like to travel the world. I love cooking and can often be found stoking a fire.
 
   At home, I like to build things, cook, and code.
+showThemeToggle: true
 socials:
   - platform: GitHub
     icon: https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg

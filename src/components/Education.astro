@@ -23,7 +23,14 @@ const qualifications = educationEntry?.data?.qualifications || []
           <div class="card-main">
             {edu.logoUrl && (
               <div class="logo-wrapper">
-                <img src={edu.logoUrl} alt={edu.institution} />
+                <div 
+                  class:list={['edu-logo', { 'adaptive-logo': edu.logoAdaptive }]}
+                  role="img"
+                  aria-label={edu.institution}
+                  style={edu.logoAdaptive ? `--logo-url: url(${edu.logoUrl})` : undefined}
+                >
+                  {!edu.logoAdaptive && <img src={edu.logoUrl} alt={edu.institution} />}
+                </div>
               </div>
             )}
             <div class="edu-content">
@@ -153,6 +160,28 @@ document.addEventListener('astro:after-swap', initEducation)
       width: 100%;
       height: 100%;
       object-fit: contain;
+    }
+  }
+  
+  .edu-logo {
+    width: 100%;
+    height: 100%;
+    
+    &.adaptive-logo {
+      background-color: var(--color-text);
+      opacity: 0.8;
+      mask-image: var(--logo-url);
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      transition: all 0.3s ease;
+    }
+  }
+  
+  .education-card:hover {
+    .edu-logo.adaptive-logo {
+      background-color: var(--color-primary);
+      opacity: 1;
     }
   }
   

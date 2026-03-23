@@ -60,6 +60,7 @@ const education = defineCollection({
       institution: z.string(),
       location: z.string().optional(),
       logoUrl: z.string().optional(),
+      logoAdaptive: z.boolean().optional(),
       degree: z.string(),
       year: z.string(),
       synopsis: z.string().optional(),
@@ -86,6 +87,7 @@ const personal = defineCollection({
     email: z.string().email(),
     location: z.string(),
     description: z.string(),
+    showThemeToggle: z.boolean().optional(),
     socials: z.array(z.object({
       platform: z.string(),
       icon: z.string().url(),

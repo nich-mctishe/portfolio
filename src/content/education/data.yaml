@@ -2,6 +2,7 @@ qualifications:
   - institution: Falmouth University
     location: Falmouth, UK
     logoUrl: /logos/falmouth-uni.svg
+    logoAdaptive: true
     degree: BA (Hons) Digital Media
     year: "2009-2012"
     synopsis: "Explored the intersection of design, technology, and storytelling. Focus on interactive experiences, web development, and digital system architecture."
