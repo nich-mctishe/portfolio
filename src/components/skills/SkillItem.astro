@@ -1,5 +1,5 @@
 ---
-import getSkillDuration from '../helpers/get-skill-duration'
+import getSkillDuration from '../../helpers/get-skill-duration'
 
 interface Props {
   name: string;
@@ -63,11 +63,11 @@ const getDurationLabel = (since: number, end?: number): string => {
 </div>
 
 <style lang="scss">
-  @use "../styles/mixins" as *;
+  @use "../../styles/mixins" as *;
 
   .skill-item {
     display: grid;
-    grid-template-columns: 1fr 6.5rem 2rem;
+    grid-template-columns: 1fr 6.5rem 3rem;
     width: 100%;
     align-items: flex-end;
     gap: var(--spacing-sm);
@@ -151,6 +151,7 @@ const getDurationLabel = (since: number, end?: number): string => {
 
   .skill-duration {
     @include small-meta;
+    white-space: nowrap;
     color: var(--color-bg);
     text-align: right;
   }

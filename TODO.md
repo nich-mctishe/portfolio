@@ -11,9 +11,9 @@ Items to be completed for v1.0.0:
 - [x] Make work experince font size match other section headers
 
 ## Skills
-- [ ] Make skills duration appear on one line when duration is double-digit years
-- [ ] Move skillItem into skills sub component folder
-- [ ] Remove outline from skill-cateogry click
+- [x] Make skills duration appear on one line when duration is double-digit years
+- [x] Move skillItem into skills sub component folder
+- [x] Remove outline from skill-cateogry click
  
 ## Education
 - [ ] Update Eduction to include logo
@@ -40,4 +40,4 @@ Items to be completed for v1.0.0:
 - [ ] Add favicon
 - [ ] Complete Implementation plan steps
 - [ ] Capture projects/side-projects copy from current site and place in content folder
-- [ ] 
+- [ ] Unit tests!

@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content'
 import Section from './Section.astro'
 import determineFullExperiencePoints
   from '../helpers/determine-full-experience-points'
-import SkillItem from './SkillItem.astro'
+import SkillItem from './skills/SkillItem.astro'
 
 const skillsEntry = await getEntry('skills', 'data')
 const categories = skillsEntry?.data?.categories || []
@@ -126,6 +126,7 @@ document.addEventListener('astro:after-swap', initSkills)
 
   .section-title {
     @include main-title;
+
     margin-bottom: var(--spacing-sm);
   }
 
@@ -143,6 +144,10 @@ document.addEventListener('astro:after-swap', initSkills)
 
   .skill-category {
     @include card-base(var(--spacing-lg));
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+
     transition:
       transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
       box-shadow 0.3s ease;
@@ -188,6 +193,7 @@ document.addEventListener('astro:after-swap', initSkills)
 
   .category-name {
     @include sub-title-h4;
+
     color: var(--color-bg);
   }
 

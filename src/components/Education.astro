@@ -12,18 +12,67 @@ const qualifications = educationEntry?.data?.qualifications || []
     <div class="title-underline"></div>
   </div>
 
-  <div class="education-grid">
+  <div class="education-container">
     {
-      qualifications.map((edu) => (
-        <div class="education-card reveal reveal-stagger">
-          <h3 class="degree">{edu.degree}</h3>
-          <p class="institution">{edu.institution}</p>
-          <span class="year">{edu.year}</span>
+      qualifications.map((edu, index) => (
+        <div 
+          class="education-card reveal reveal-stagger" 
+          data-expandable={!!edu.synopsis}
+          data-expanded="false"
+        >
+          <div class="card-main">
+            {edu.logoUrl && (
+              <div class="logo-wrapper">
+                <img src={edu.logoUrl} alt={edu.institution} />
+              </div>
+            )}
+            <div class="edu-content">
+              <div class="edu-meta">
+                <h3 class="degree">{edu.degree}</h3>
+                <span class="year">{edu.year}</span>
+              </div>
+              <p class="institution">{edu.institution}</p>
+              {edu.location && <span class="location">{edu.location}</span>}
+            </div>
+          </div>
+
+          {edu.synopsis && (
+            <div class="expansion-content">
+              <div class="synopsis-wrapper">
+                <p class="synopsis">{edu.synopsis}</p>
+              </div>
+              <button class="expand-btn" aria-label="Toggle synopsis">
+                <span class="btn-text">View synopsis</span>
+                <div class="chevron"></div>
+              </button>
+            </div>
+          )}
         </div>
       ))
     }
   </div>
 </Section>
+
+<script>
+const initEducation = () => {
+  const cards = document.querySelectorAll('.education-card[data-expandable="true"]')
+  cards.forEach(card => {
+    const btn = card.querySelector('.expand-btn')
+    btn?.addEventListener('click', () => {
+      const isExpanded = card.getAttribute('data-expanded') === 'true'
+      card.setAttribute('data-expanded', !isExpanded ? 'true' : 'false')
+      
+      const btnText = btn.querySelector('.btn-text')
+      if (btnText) {
+        btnText.textContent = !isExpanded ? 'Hide synopsis' : 'View synopsis'
+      }
+    })
+  })
+}
+
+initEducation()
+document.addEventListener('astro:after-swap', initEducation)
+</script>
 
 <style lang="scss">
   @use "../styles/mixins" as *;
@@ -34,14 +83,14 @@ const qualifications = educationEntry?.data?.qualifications || []
 
   .section-header {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-4xl);
   }
-
+  
   .section-title {
     @include main-title;
     margin-bottom: var(--spacing-sm);
   }
-
+  
   .title-underline {
     width: 4rem;
     height: 0.25rem;
@@ -49,33 +98,144 @@ const qualifications = educationEntry?.data?.qualifications || []
     margin: 0 auto;
     border-radius: 0.125rem;
   }
-
-  .education-grid {
-    @include grid-responsive(1, 2, 2, var(--spacing-xl));
+  
+  .education-container {
     max-width: 50rem;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
   }
-
+  
   .education-card {
-    @include card-base(var(--spacing-2xl) var(--spacing-xl));
-    text-align: center;
-    @include hover-lift(-0.5rem);
+    @include card-base(var(--spacing-xl));
+    @include hover-lift(-0.25rem);
+    
+    &[data-expanded="true"] {
+      border-color: var(--color-primary-light, var(--color-primary));
+      
+      .chevron {
+        transform: rotate(180deg);
+      }
+      
+      .synopsis-wrapper {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        margin-top: var(--spacing-lg);
+      }
+    }
   }
-
+  
+  .card-main {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+    
+    @include mobile-only {
+      gap: var(--spacing-md);
+    }
+  }
+  
+  .logo-wrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    @include mobile-only {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  
+  .edu-content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .edu-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: 0.25rem;
+    
+    @include mobile-only {
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+  }
+  
   .degree {
     @include sub-title-h3;
-    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-normal);
   }
-
-  .institution {
-    font-size: 0.875rem;
-    color: var(--color-primary);
-    font-weight: 500;
-    margin-bottom: var(--spacing-md);
-  }
-
+  
   .year {
-    @include pill-text;
-    color: var(--color-text-muted);
+    @include small-meta;
+    color: var(--color-primary);
+  }
+  
+  .institution {
+    @include body-text(var(--font-size-sm), var(--color-text-muted));
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.125rem;
+  }
+  
+  .location {
+    @include small-meta;
+    opacity: 0.7;
+  }
+  
+  .synopsis-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .synopsis {
+    min-height: 0;
+    @include body-text(var(--font-size-sm));
+    line-height: var(--line-height-semi-loose);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .expand-btn {
+    @include meta-text(var(--color-primary));
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: var(--color-surface-hover);
+    }
+  }
+  
+  .chevron {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    transform: rotate(45deg);
+    transition: transform 0.4s ease;
+    margin-top: -0.25rem;
   }
 </style>

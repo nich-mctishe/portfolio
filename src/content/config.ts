@@ -58,8 +58,11 @@ const education = defineCollection({
   schema: z.object({
     qualifications: z.array(z.object({
       institution: z.string(),
+      location: z.string().optional(),
+      logoUrl: z.string().optional(),
       degree: z.string(),
-      year: z.string()
+      year: z.string(),
+      synopsis: z.string().optional(),
     }))
   })
 })
@@ -70,7 +73,7 @@ const clients = defineCollection({
     clients: z.array(z.object({
       name: z.string(),
       logoUrl: z.string().optional(),
-      logoAdaptive: z.boolean().optional(),
+      logoAdjust: z.boolean().optional(),
     }))
   })
 })

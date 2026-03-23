@@ -3,10 +3,12 @@ clients:
     logoUrl: /logos/idahoan.svg
   - name: HBO
     logoUrl: /logos/hbo.svg
+    logoAdjust: true
   - name: Santander
     logoUrl: /logos/santander.svg
   - name: Dior
     logoUrl: /logos/dior.svg
+    logoAdjust: true
   - name: Nike
     logoUrl: /logos/nike.svg
   - name: Heineken
@@ -15,6 +17,7 @@ clients:
     logoUrl: /logos/lululemon.svg
   - name: WPP
     logoUrl: /logos/wpp.svg
+    logoAdjust: true
   - name: TicTac
     logoUrl: /logos/tictac.svg
   - name: Ferrero Rocher

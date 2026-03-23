@@ -14,7 +14,7 @@ const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
   {logoUrl && (
     <div class="company-logo-wrapper">
       <div 
-        class:list={["company-logo", { "adaptive-logo": logoAdaptive }]}
+        class:list={['company-logo', { 'adaptive-logo': logoAdaptive }]}
         role="img"
         aria-label={company}
         style={logoAdaptive ? `--logo-url: url(${logoUrl})` : undefined}
@@ -60,6 +60,7 @@ const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
 
   .job-role {
     @include sub-title-h2;
+
     margin-bottom: 0.5rem;
   }
 
@@ -103,13 +104,9 @@ const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
     &.adaptive-logo {
       background-color: var(--color-text);
       opacity: 0.8;
-      -webkit-mask-image: var(--logo-url);
       mask-image: var(--logo-url);
-      -webkit-mask-size: contain;
       mask-size: contain;
-      -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
-      -webkit-mask-position: center;
       mask-position: center;
     }
     
@@ -122,7 +119,8 @@ const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
       }
 
       &.adaptive-logo {
-        background-color: var(--color-primary); /* Pop to primary color on hover! */
+        /* Pop to primary color on hover! */
+        background-color: var(--color-primary);
       }
     }
   }
@@ -133,6 +131,7 @@ const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
 
   .job-description {
     @include body-text;
+
     margin-bottom: var(--spacing-md);
     opacity: 0.9;
   }
