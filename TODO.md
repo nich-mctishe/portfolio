@@ -30,7 +30,7 @@ Items to be completed for v1.0.0:
 - [x] Move up visual-wrapper and make hero-content longer for mobile stop bubbles from covering text
 
 ## Career Highlights
-- [ ] Create simple career highlights section for around a dozen highlights
+- [x] Create simple career highlights section for around a dozen highlights
 
 ## SASS
 - [x] Create mixins to cover all uses of text. This will standardise font sizes and line heights across the site

@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated **Education section** with theme-adaptive institution logos and expandable synopsis.
 - Implemented site-wide `active` flag for toggling visibility of Skills, Jobs, Education, and Clients via data YAML.
 - Added **Troubleshooting Guide** (`docs/troubleshooting.md`) for common development environment issues.
+- Created **Career Highlights section** with numbered markers and interactive list items, positioned above Skills.
 
 ### Changed
 

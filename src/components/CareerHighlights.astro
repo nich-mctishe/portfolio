@@ -1,0 +1,132 @@
+---
+import { getEntry } from 'astro:content'
+import Section from './Section.astro'
+
+const highlightsEntry = await getEntry('career-highlights', 'data')
+const highlights = (highlightsEntry?.data?.['career-highlights'] || [])
+  .filter((item: any) => item.active !== false)
+---
+
+<Section id="career-highlights" class="highlights-section">
+  <div class="section-header">
+    <h2 class="section-title">Career Highlights</h2>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="highlights-container">
+    <ul class="highlights-list">
+      {
+        highlights.map((item: any, index: number) => (
+          <li class="highlight-item reveal">
+            <div class="highlight-marker">
+              <span class="marker-number">
+                {(index + 1).toString().padStart(2, '0')}
+              </span>
+            </div>
+            <p class="highlight-text">{item.highlight}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>
+
+<style lang="scss">
+  @use "../styles/mixins" as *;
+
+  .highlights-section {
+    background-color: var(--color-bg);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .section-title {
+    @include main-title;
+
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .title-underline {
+    width: 3.5rem;
+    height: 0.25rem;
+    background: var(--color-primary);
+    margin: 0 auto;
+    border-radius: 1rem;
+  }
+
+  .highlights-container {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+  }
+
+  .highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    padding: 0;
+    list-style: none;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    border-radius: 1rem;
+    background-color: var(--color-surface);
+    border: 0.0625rem solid var(--color-border);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      transform: translateX(0.5rem);
+      border-color: var(--color-primary);
+      box-shadow: 0 0.5rem 1.5rem var(--color-shadow);
+    }
+  }
+
+  .highlight-marker {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    box-shadow: 0 0.25rem 0.625rem var(--color-shadow);
+  }
+
+  .highlight-text {
+    @include body-text(var(--font-size-md));
+
+    margin: 0;
+    line-height: var(--line-height-semi-loose);
+  }
+
+  @include mobile-only {
+    .highlight-item {
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+
+      &:hover {
+        transform: translateY(-0.25rem);
+      }
+    }
+
+    .highlight-marker {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: var(--font-size-xs);
+    }
+  }
+</style>

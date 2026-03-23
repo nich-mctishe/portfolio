@@ -86,6 +86,16 @@ const clients = defineCollection({
   })
 })
 
+const careerHighlights = defineCollection({
+  type: 'data',
+  schema: z.object({
+    'career-highlights': z.array(z.object({
+      highlight: z.string(),
+      active: z.boolean().default(true),
+    }))
+  })
+})
+
 const personal = defineCollection({
   type: 'data',
   schema: z.object({
@@ -109,4 +119,5 @@ export const collections = {
   education,
   clients,
   personal,
+  'career-highlights': careerHighlights,
 }
