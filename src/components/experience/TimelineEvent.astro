@@ -87,7 +87,6 @@ const { startDate, endDate, location } = Astro.props
       width: 100%;
       text-align: left;
       flex-flow: row nowrap;
-      justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
     }
@@ -110,7 +109,8 @@ const { startDate, endDate, location } = Astro.props
     box-shadow: 0 0.125rem 0.5rem var(--color-shadow);
 
     @include mobile-only {
-      padding: 0.25rem 0.5rem;
+      padding: 0.25rem 0.4rem;
+      font-size: 0.65rem;
     }
   }
 
@@ -120,6 +120,11 @@ const { startDate, endDate, location } = Astro.props
 
     .location-icon {
       flex-shrink: 0;
+    }
+
+    @include mobile-only {
+      padding: 0.25rem 0.4rem;
+      font-size: 0.65rem;
     }
   }
 </style>

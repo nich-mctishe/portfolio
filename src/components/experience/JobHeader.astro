@@ -3,16 +3,24 @@ interface Props {
   role: string;
   company: string;
   logoUrl?: string;
+  logoAdaptive?: boolean;
   description?: string;
 }
 
-const { role, company, logoUrl, description } = Astro.props;
+const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
 ---
 
 <div class="job-header">
   {logoUrl && (
     <div class="company-logo-wrapper">
-      <img class="company-logo" src={logoUrl} alt={company} />
+      <div 
+        class:list={["company-logo", { "adaptive-logo": logoAdaptive }]}
+        role="img"
+        aria-label={company}
+        style={logoAdaptive ? `--logo-url: url(${logoUrl})` : undefined}
+      >
+        {!logoAdaptive && <img src={logoUrl} alt={company} />}
+      </div>
     </div>
   )}
   <div class="role-company">
@@ -52,7 +60,7 @@ const { role, company, logoUrl, description } = Astro.props;
 
   .job-role {
     @include sub-title-h2;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
 
   .company-logo-wrapper {
@@ -78,14 +86,44 @@ const { role, company, logoUrl, description } = Astro.props;
   .company-logo {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    &.adaptive-logo {
+      background-color: var(--color-text);
+      opacity: 0.8;
+      -webkit-mask-image: var(--logo-url);
+      mask-image: var(--logo-url);
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+    }
     
     :global(.job-card:hover) & {
-      filter: grayscale(0);
       opacity: 1;
+      
+      img {
+        filter: grayscale(0);
+        opacity: 1;
+      }
+
+      &.adaptive-logo {
+        background-color: var(--color-primary); /* Pop to primary color on hover! */
+      }
     }
   }
 

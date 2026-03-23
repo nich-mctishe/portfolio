@@ -42,6 +42,7 @@ const experience = defineCollection({
       company: z.string(),
       location: z.string().optional(),
       logoUrl: z.string().optional(),
+      logoAdaptive: z.boolean().optional(),
       role: z.string(),
       startDate: z.string(),
       endDate: z.string().optional(),
@@ -69,6 +70,7 @@ const clients = defineCollection({
     clients: z.array(z.object({
       name: z.string(),
       logoUrl: z.string().optional(),
+      logoAdaptive: z.boolean().optional(),
     }))
   })
 })

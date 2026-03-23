@@ -98,29 +98,29 @@ document.addEventListener('astro:page-load', initExperienceAccordions)
     margin-bottom: var(--spacing-lg);
 
     &[data-expandable="true"] {
-      .job-highlights {
-        /* Set base properties allowing smooth mask flow during transition */
-        padding-bottom: 2rem;
-        mask-image: linear-gradient(
-          to bottom, 
-          var(--color-text) calc(100% - 2rem), 
-          transparent 100%
-        );
-      }
-
       &[data-expanded="false"] {
         .job-highlights {
-          max-height: 8rem;
+          /* Increased height to avoid clipping early on mobile */
+          max-height: 10rem;
           margin-bottom: 0;
           overflow: hidden;
+
+          /* Subtle mask at the very bottom */
+          padding-bottom: 2rem;
+          mask-image: linear-gradient(
+            to bottom,
+            var(--color-text) calc(100% - 2.5rem),
+            transparent 100%
+          );
         }
       }
 
       &[data-expanded="true"] {
         .job-highlights {
-          /* Closer upper bound aligns the easing curve duration tightly */
-          max-height: 100rem; 
+          max-height: 125rem;
           margin-bottom: 0;
+          /* Remove mask when content is fully visible */
+          mask-image: none;
         }
 
         .chevron {
@@ -135,6 +135,8 @@ document.addEventListener('astro:page-load', initExperienceAccordions)
     padding: 0;
     margin: 0;
     transition: max-height 0.4s ease-in-out;
+    transition-delay: 0.1s;
+    overflow: hidden;
 
     li {
       position: relative;

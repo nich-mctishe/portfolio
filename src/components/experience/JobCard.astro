@@ -7,6 +7,7 @@ interface Props {
   job: {
     company: string;
     logoUrl?: string;
+    logoAdaptive?: boolean;
     role: string;
     description?: string;
     highlights?: string[];
@@ -23,6 +24,7 @@ const { job, scrollTarget } = Astro.props;
     role={job.role} 
     company={job.company} 
     logoUrl={job.logoUrl} 
+    logoAdaptive={job.logoAdaptive}
     description={job.description} 
   />
   <JobHighlights highlights={job.highlights} scrollTarget={scrollTarget} />

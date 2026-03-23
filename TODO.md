@@ -2,9 +2,10 @@
 Items to be completed for v1.0.0:
 
 ## Experience
-- [x] Ensure date and location displays on one line for minimum size of 320px
-- [ ] Adjust max length of job highlights to ensure it is not covering highlights in mobile view
-- [ ] Update Aesop logo to remove white background
+- [x] Ensure date and location displays on one line for minimum size of 320px (still not quite right)
+- [x] Adjust max length of job highlights to ensure it is not covering highlights in mobile view
+- [x] Adjust title and company line heights to be more consistent
+- [x] Update Aesop logo to remove white background
 - [x] Shrink line height of job-description
 - [x] Remove fade out effect on Work experience underline
 - [x] Make work experince font size match other section headers
@@ -12,7 +13,8 @@ Items to be completed for v1.0.0:
 ## Skills
 - [ ] Make skills duration appear on one line when duration is double-digit years
 - [ ] Move skillItem into skills sub component folder
-
+- [ ] Remove outline from skill-cateogry click
+ 
 ## Education
 - [ ] Update Eduction to include logo
 - [ ] Allow section to be expandable and inlcude course synopsis

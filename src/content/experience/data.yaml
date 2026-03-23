@@ -38,6 +38,7 @@ jobs:
       - AI
   - company: Aesop Agency
     logoUrl: /logos/aesop.svg
+    logoAdaptive: true
     role: Full Stack Developer
     location: London, UK
     startDate: "2015-11"
@@ -59,9 +60,10 @@ jobs:
       - Webpack
       - Docker
   
-  - company: Hogarth Worldwide / WPP
+  - company: Hogarth Worldwide
     logoUrl: /logos/hogarth.svg
-    role: Full Stack Developer
+    logoAdaptive: true
+    role: Developer
     location: London, UK
     startDate: "2012-10"
     endDate: "2015-03"

@@ -4,7 +4,7 @@
 // Generic title and text mixins for a consistent, reusable design system.
 
 @mixin main-title {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-2xl);
   font-weight: 800;
   letter-spacing: -0.04em;
   font-family: var(--font-heading);
@@ -27,6 +27,7 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   font-family: var(--font-heading);
+  line-height: var(--line-height-normal);
 }
 
 // Like Skill Category / Tertiary Focus
@@ -36,11 +37,12 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-family: var(--font-heading);
+  line-height: var(--line-height-normal);
 }
 
 @mixin body-text($size: var(--font-size-base), $color: var(--color-text)) {
   font-size: $size;
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-semi-loose);
   color: $color;
 }
 
