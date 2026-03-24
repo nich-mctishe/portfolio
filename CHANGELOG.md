@@ -43,3 +43,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed clipping of "outreach strategy" and long bullet points in mobile Job Highlights.
 - Prevented **Skill duration** wrapping on mobile by adjusting grid layout.
 - Finalized **Falmouth University logo** to be theme-aware in both light and dark modes.
+- Fixed **Education synopsis chevron** animation to point in the correct direction when expanded.
+- Redesigned **Career Highlights** to use a cleaner, list-based aesthetic with custom iconography instead of cards.

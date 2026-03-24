@@ -19,6 +19,7 @@ Items to be completed for v1.0.0:
 - [x] Update Eduction to include logo
 - [x] Update Falmouth logo to work in both light and dark mode
 - [x] Allow section to be expandable and inlcude course synopsis
+- [x] Fix synopsis chevron to animate correctly (not point in the right direction)
 
 ## Global Clients
 - [x] Update HBO, Dior and WPP to be off black so they work better with light and dark mode, gel better with the other freay logos
@@ -31,6 +32,7 @@ Items to be completed for v1.0.0:
 
 ## Career Highlights
 - [x] Create simple career highlights section for around a dozen highlights
+- [x] Make each highlight not appear in a card, or be ordered, but instead appear as more of a list.
 
 ## SASS
 - [x] Create mixins to cover all uses of text. This will standardise font sizes and line heights across the site
