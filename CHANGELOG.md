@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implemented site-wide `active` flag for toggling visibility of Skills, Jobs, Education, and Clients via data YAML.
 - Added **Troubleshooting Guide** (`docs/troubleshooting.md`) for common development environment issues.
 - Created **Career Highlights section** with numbered markers and interactive list items, positioned above Skills.
+- Configured site-wide SEO metadata, Open Graph labels, and JSON-LD schema using `BaseLayout.astro`.
+- Created `robots.txt` and integrated `@astrojs/sitemap`.
 
 ### Changed
 

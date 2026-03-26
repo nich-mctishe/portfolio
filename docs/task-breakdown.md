@@ -75,11 +75,11 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 
 ## Phase 7 — SEO & Metadata
 
-- [ ] **7.1** Set up Astro `<head>` metadata — `<title>`, `<meta description>`, Open Graph tags
-- [ ] **7.2** Implement JSON-LD structured data — `Person` schema generated from `personal.yaml`
-- [ ] **7.3** Add semantic HTML landmarks — `<main>`, `<section>`, `<nav>`, `<footer>`, proper heading hierarchy
-- [ ] **7.4** Configure Astro sitemap integration
-- [ ] **7.5** Add `robots.txt` and `favicon`
+- [x] **7.1** Set up Astro `<head>` metadata — `<title>`, `<meta description>`, Open Graph tags
+- [x] **7.2** Implement JSON-LD structured data — `Person` schema generated from `personal.yaml`
+- [x] **7.3** Add semantic HTML landmarks — `<main>`, `<section>`, `<nav>`, `<footer>`, proper heading hierarchy
+- [x] **7.4** Configure Astro sitemap integration
+- [x] **7.5** Add `robots.txt` and `favicon`
 
 ---
 

@@ -1,13 +1,46 @@
 ---
+import { getEntry } from 'astro:content'
 import '../styles/global.scss'
 import SiteHeader from '../components/SiteHeader.astro'
 import SiteFooter from '../components/SiteFooter.astro'
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description, 
+  image = '/favicon.svg' 
+} = Astro.props
+
+const personalEntry = await getEntry('personal', 'data')
+const personal = personalEntry?.data || {
+  name: 'Nicholas Headlong',
+  title: 'Software Engineer & Solution Architect',
+  description: 'A senior engineer...',
+  location: 'Vancouver, BC, Canada',
+  email: '',
+  socials: []
+}
+
+const metaDescription = description || personal.description.split('\n')[0]
+
+// Ensure Astro.site is defined in your astro.config.mjs to use this correctly
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url)
+const socialImageURL = new URL(image, Astro.site || Astro.url)
+
+const jsonLd = {
+  '@context': 'https://schema.org/',
+  '@type': 'Person',
+  name: personal.name,
+  jobTitle: personal.title,
+  description: metaDescription,
+  url: Astro.site ? Astro.site.toString() : Astro.url.origin,
+  sameAs: personal.socials.map((s: { url: string }) => s.url)
+}
 ---
 
 <!doctype html>
@@ -27,6 +60,30 @@ const { title } = Astro.props;
     />
 
     <title>{title}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={title} />
+    <meta name="description" content={metaDescription} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={metaDescription} />
+    <meta property="twitter:image" content={socialImageURL} />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- 
       Theme setup script: runs inline in the <head> to prevent FOUC 
