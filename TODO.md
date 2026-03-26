@@ -29,6 +29,7 @@ Items to be completed for v1.0.0:
 - [x] Remove background colour on mobile menu
 - [x] Make mobile header button animated
 - [x] Move up visual-wrapper and make hero-content longer for mobile stop bubbles from covering text
+- [x] Remove menu button outline on click/focus
 
 ## Career Highlights
 - [x] Create simple career highlights section for around a dozen highlights
