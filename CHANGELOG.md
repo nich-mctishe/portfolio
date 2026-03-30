@@ -28,6 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created **Career Highlights section** with numbered markers and interactive list items, positioned above Skills.
 - Configured site-wide SEO metadata, Open Graph labels, and JSON-LD schema using `BaseLayout.astro`.
 - Created `robots.txt` and integrated `@astrojs/sitemap`.
+- Configured E2E testing framework utilising `@playwright/test` and `@cucumber/cucumber` (BDD).
+- Built automated Visual Regression Testing (VRT) suite via Playwright configured for multiple viewports.
+- Configured initial CI automated testing workflow (`.github/workflows/ci.yml`).
+- BDD unit tests for `JobCard.astro` and `ExperienceItem.astro`.
+- Project-wide "No Abbreviations" directive to all `.agent/skills` and documentation.
+
 
 ### Changed
 
@@ -38,6 +44,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reduced line-height of `job-description` and `skill-name` for a cleaner text flow.
 - Enhanced **Mobile Navigation**: Removed background, added animated hamburger menu, and fixed Hero section overlap on mobile.
 - Refactored **Skills.astro** into modular sub-components for improved maintainability.
+- Refactored all `init-*` helper modules to non-abbreviated names: `hero-bubbles.ts`, `initiate-highlight-accordions.ts`, `initiate-education-accordions.ts`, and `theme-manager.ts`.
+- Project-wide rename of variables and functions to remove abbreviations (e.g., `sel` -> `selector`, `doc` -> `documentInstance`, `btn` -> `expandButton`, `text` -> `buttonText`, `init` -> `initialize`).
+- Renamed `getSkillDuration` to `calculateSkillDuration` and `experience-points` to `determine-full-experience-points`.
+- Standardised unit test suite to use a strict Given/When/Then BDD structure, achieving ~83% coverage.
 
 ### Fixed
 

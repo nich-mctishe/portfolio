@@ -27,7 +27,7 @@
   }
 }
 
-// Floating keyframes
+// Floating keyframes — driven by per-bubble CSS custom properties set in JS
 @keyframes float {
   0%,
   100% {
@@ -35,11 +35,15 @@
   }
 
   33% {
-    transform: translate(2rem, -2rem) rotate(5deg);
+    transform:
+      translate(var(--float-x1, 2rem), var(--float-y1, -2rem))
+      rotate(var(--float-r1, 5deg));
   }
 
   66% {
-    transform: translate(-1.5rem, 2rem) rotate(-5deg);
+    transform:
+      translate(var(--float-x2, -1.5rem), var(--float-y2, 2rem))
+      rotate(var(--float-r2, -5deg));
   }
 }
 

@@ -94,14 +94,14 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 
 ## Phase 9 — Testing
 
-- [ ] **9.1** Install and configure Playwright + cucumber-js
-- [ ] **9.2** Write BDD feature files for key user journeys:
-  - [ ] Nav visible on load, sections reachable
-  - [ ] Dark/light mode toggle works and persists
-  - [ ] All content sections render correctly
-  - [ ] Responsive layout at each breakpoint
-- [ ] **9.3** Set up Playwright visual regression (screenshot comparison)
-- [ ] **9.4** Add test step to GitHub Actions CI pipeline
+- [x] **9.1** Install and configure Playwright + cucumber-js
+- [x] **9.2** Write BDD feature files for key user journeys:
+  - [x] Nav visible on load, sections reachable
+  - [x] Dark/light mode toggle works and persists (in VRT currently)
+  - [x] All content sections render correctly
+  - [x] Responsive layout at each breakpoint (configured in Playwright Projects)
+- [x] **9.3** Set up Playwright visual regression (screenshot comparison)
+- [x] **9.4** Add test step to GitHub Actions CI pipeline
 
 ---
 

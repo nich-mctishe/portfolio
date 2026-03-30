@@ -3,6 +3,9 @@ name: linting
 description: Ensures code adheres to project ESLint and Stylelint rules.
 ---
 
+#### 4. Naming Clarity ("Is it clear?")
+- **No Abbreviations**: Ensure that all variables, functions, and filenames are descriptive and avoid abbreviations (e.g., `initialize` instead of `init`).
+
 ### Purpose
 To verify that all changes follow the project's coding standards as defined in `eslint.config.js` and `stylelint.config.mjs`.
 
@@ -18,8 +21,9 @@ To verify that all changes follow the project's coding standards as defined in `
 -   **Quotes**: Use single quotes (`quotes: single`).
 -   **Line Length**: Max 80 characters.
 -   **Filenames**:
-    -   Global default: `kebab-case` (e.g., `theme-toggle.ts`).
     -   Astro Components & Layouts: `PascalCase` (e.g., `SiteHeader.astro`).
+
+23. **Abbreviation Policy**: Refrain from abbreviating anything in this project (variables, functions, filenames) unless strictly necessary, as it clouds clarity. (e.g., use `initialize` instead of `init`).
 
 ### Key Rules (Stylelint)
 -   **No `px` units**: Disallowed in components, layouts, and global styles. Use `rem` or CSS variables.

@@ -32,9 +32,7 @@ const personal = personalEntry?.data || {
     </div>
 
     <div class="visual-wrapper">
-      <div class="bubble bubble-1"></div>
-      <div class="bubble bubble-2"></div>
-      <div class="bubble bubble-3"></div>
+      <div class="bubbles-bg"></div>
       <div class="bubble-large">
         <h1 class="name">{personal.name}</h1>
         <p class="role">{personal.title}</p>
@@ -178,6 +176,7 @@ const personal = personalEntry?.data || {
     height: 18rem;
     border-radius: 50%;
     background-color: var(--color-primary);
+    border: 2px solid var(--color-border);
     animation: float 12s ease-in-out infinite;
 
     h1,
@@ -209,13 +208,14 @@ const personal = personalEntry?.data || {
     }
   }
 
-  .bubble {
+  .visual-wrapper :global(.bubble) {
     position: absolute;
     border-radius: 50%;
     backdrop-filter: blur(0.25rem);
+    opacity: 0.75;
     width: var(--size, 5rem);
     height: var(--size, 5rem);
-    background-color: var(--color, var(--color-secondary));
+    background-color: var(--color);
     animation: float var(--speed, 10s) ease-in-out infinite;
     animation-delay: var(--delay, 0s);
     z-index: -1;
@@ -228,66 +228,27 @@ const personal = personalEntry?.data || {
     }
 
     33% {
-      transform: translate(2rem, -2rem) rotate(5deg);
+      transform: translate(var(--float-x1, 2rem), var(--float-y1, -2rem)) 
+                 rotate(var(--float-r1, 5deg));
     }
 
     66% {
-      transform: translate(-1.5rem, 2rem) rotate(-5deg);
+      transform: translate(var(--float-x2, -1.5rem), var(--float-y2, 2rem)) 
+                 rotate(var(--float-r2, -5deg));
     }
   }
 </style>
 
 <script>
-  const randomizeBubbles = () => {
-    const bubbles = Array.from(document.querySelectorAll('.bubble'))
-    const colors = [
-      'var(--color-secondary)',
-      'var(--color-tertiary)',
-      'var(--color-quaternary)',
-    ]
+  import { initializeHeroBubbles } from '../helpers/hero-bubbles'
 
-    // Create a shuffled list of corners to ensure each 
-    // bubble gets a unique quadrant and avoids overlap
-    const corners = [
-      { vertical: 'top', horizontal: 'left' },
-      { vertical: 'top', horizontal: 'right' },
-      { vertical: 'bottom', horizontal: 'left' },
-      { vertical: 'bottom', horizontal: 'right' },
-    ].sort(() => Math.random() - 0.5)
-
-    bubbles.forEach((bubble, index) => {
-      // Random aesthetic properties
-      const size = Math.floor(Math.random() * 8 + 4) + 'rem'
-      const speed = Math.floor(Math.random() * 12 + 8) + 's'
-      const delay = Math.floor(Math.random() * 6) * -1 + 's'
-      const color = colors[Math.floor(Math.random() * colors.length)]
-
-      // Assign a unique quadrant based on index
-      const corner = corners[index % corners.length]
-
-      // Random values for peripheral but safe interior (from 2% to 10%)
-      const vVal = Math.floor(Math.random() * 5) + '%'
-      const hVal = Math.floor(Math.random() * 5) + '%'
-
-      // Apply to bubble
-      const b = bubble as HTMLElement
-      b.style.setProperty('--size', size)
-      b.style.setProperty('--speed', speed)
-      b.style.setProperty('--delay', delay)
-      b.style.setProperty('--color', color)
-
-      // Reset all positioning styles first
-      b.style.top = 'auto'
-      b.style.bottom = 'auto'
-      b.style.left = 'auto'
-      b.style.right = 'auto'
-
-      // Apply new safe position in its unique quadrant
-      b.style.setProperty(corner.vertical, vVal)
-      b.style.setProperty(corner.horizontal, hVal)
-    })
+  function initialize() {
+    const container = document.querySelector('.bubbles-bg') as HTMLElement
+    if (container) {
+      initializeHeroBubbles(container)
+    }
   }
 
-  // Initialize on load
-  randomizeBubbles()
+  initialize()
+  document.addEventListener('astro:after-swap', initialize)
 </script>

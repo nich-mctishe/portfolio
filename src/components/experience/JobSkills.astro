@@ -3,18 +3,18 @@ interface Props {
   skills?: string[];
 }
 
-const { skills } = Astro.props
+import { calculateSkillDuration } from '../../helpers/calculate-skill-duration'
 
-if (!skills || skills.length === 0) {
-  return null
-}
+const { skills } = Astro.props
 ---
 
-<div class="job-skills">
-  {skills.map((skill) => (
-    <span class="skill-pill">{skill}</span>
-  ))}
-</div>
+{skills && skills.length > 0 && (
+  <div class="job-skills">
+    {skills.map((skill) => (
+      <span class="skill-pill">{skill}</span>
+    ))}
+  </div>
+)}
 
 <style lang="scss">
   .job-skills {

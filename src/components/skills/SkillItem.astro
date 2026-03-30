@@ -1,5 +1,5 @@
 ---
-import getSkillDuration from '../../helpers/get-skill-duration'
+import { calculateSkillDuration } from '../../helpers/calculate-skill-duration'
 
 interface Props {
   name: string;
@@ -11,7 +11,7 @@ interface Props {
 
 const { name, since, end, fullExperiencePoints, isChild } = Astro.props
 
-const duration = getSkillDuration(since, end)
+const duration = calculateSkillDuration(since, end)
 const barTotal = fullExperiencePoints
 const barFilled = duration
 
@@ -22,7 +22,7 @@ const mobileAspectDuration = Math.max(1, Math.round(
 )
 
 const getDurationLabel = (since: number, end?: number): string => {
-  const years = getSkillDuration(since, end)
+  const years = calculateSkillDuration(since, end)
 
   return `${years} ${years === 1 ? 'Yr' : 'Yrs'}`
 }

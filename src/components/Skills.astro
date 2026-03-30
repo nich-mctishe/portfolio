@@ -1,8 +1,7 @@
 ---
 import { getEntry } from 'astro:content'
 import Section from './Section.astro'
-import determineFullExperiencePoints
-  from '../helpers/determine-full-experience-points'
+import { determineFullExperiencePoints } from '../helpers/determine-full-experience-points'
 import SkillItem from './skills/SkillItem.astro'
 
 const skillsEntry = await getEntry('skills', 'data')

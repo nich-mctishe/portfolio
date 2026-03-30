@@ -69,25 +69,10 @@ const qualifications = (educationEntry?.data?.qualifications || [])
 </Section>
 
 <script>
-const initEducation = () => {
-  const selector = '.education-card[data-expandable="true"]'
-  const cards = document.querySelectorAll(selector)
-  cards.forEach(card => {
-    const btn = card.querySelector('.expand-btn')
-    btn?.addEventListener('click', () => {
-      const isExpanded = card.getAttribute('data-expanded') === 'true'
-      card.setAttribute('data-expanded', !isExpanded ? 'true' : 'false')
-      
-      const btnText = btn.querySelector('.btn-text')
-      if (btnText) {
-        btnText.textContent = !isExpanded ? 'Hide synopsis' : 'View synopsis'
-      }
-    })
-  })
-}
+import { initiateEducationAccordions } from '../helpers/initiate-education-accordions'
 
-initEducation()
-document.addEventListener('astro:after-swap', initEducation)
+initiateEducationAccordions()
+document.addEventListener('astro:after-swap', () => initiateEducationAccordions())
 </script>
 
 <style lang="scss">

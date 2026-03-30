@@ -24,6 +24,9 @@ To perform a rigorous multi-pass review of any solution before final submission,
 -   **Performance**: minimize large assets and ensure efficient script execution.
 -   **Linting**: Always apply the `linting` skill as the final step.
 
+#### 4. Naming Clarity ("Is it clear?")
+-   **No Abbreviations**: Ensure that all variables, functions, and filenames are descriptive and avoid abbreviations (e.g., `initialize` instead of `init`).
+
 ### Protocol
 -   **Self-Correction**: If a review pass identifies a flaw, the agent MUST fix it before presenting the solution to the user.
 -   **Verification**: Always provide proof (logs or screenshots) that the code works as intended.

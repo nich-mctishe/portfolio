@@ -4,6 +4,13 @@ import { getViteConfig } from 'astro/config'
 export default getViteConfig({
   test: {
     environment: 'happy-dom',
+    environmentOptions: {
+      happyDOM: {
+        settings: {
+          disableCSSFileLoading: true,
+        }
+      }
+    },
     setupFiles: ['./src/tests/setup.ts'],
     globals: true,
     coverage: {

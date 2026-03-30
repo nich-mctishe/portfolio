@@ -91,36 +91,16 @@
 </style>
 
 <script>
-class ThemeToggle {
-  btn: HTMLElement | null
+import { ThemeManager } from '../helpers/theme-manager'
 
-  constructor() {
-    this.btn = document.getElementById('theme-toggle')
-    if (this.btn) {
-      this.btn.addEventListener('click', () => this.toggleTheme())
-    }
-  }
-
-  toggleTheme() {
-    const element = document.documentElement
-    const isDark = element.getAttribute('data-theme') === 'dark'
-    const newTheme = isDark ? 'light' : 'dark'
-
-    element.setAttribute('data-theme', newTheme)
-    localStorage.setItem('theme', newTheme)
+const initialize = () => {
+  const manager = new ThemeManager()
+  const btn = document.getElementById('theme-toggle')
+  if (btn) {
+    btn.addEventListener('click', () => manager.toggleTheme())
   }
 }
 
-// Initialize the event listener
-new ThemeToggle()
-
-// Re-initialize if View Transitions are used in the future
-document.addEventListener('astro:after-swap', () => {
-  new ThemeToggle()
-  if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark')
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light')
-  }
-})
+initialize()
+document.addEventListener('astro:after-swap', initialize)
 </script>

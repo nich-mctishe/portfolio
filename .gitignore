@@ -25,3 +25,16 @@ pnpm-debug.log*
 # lock files from other package managers
 yarn.lock
 package-lock.json
+
+# testing
+coverage/
+playwright-report/
+test-results/
+blob-report/
+vitest.results.json
+
+# temporary/debug files
+*.txt
+test-colors.js
+.DS_Store
+*.log

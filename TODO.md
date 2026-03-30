@@ -44,6 +44,6 @@ Items to be completed for v1.0.0:
 - [ ] Add favicon
 - [ ] Complete Implementation plan steps
 - [ ] Capture projects/side-projects copy from current site and place in content folder
-- [ ] Unit tests!
+- [x] Unit tests!
 - [x] Create an active flag for each experience, skill, client, project, education etc. This will allow us to easily hide/show items without having to delete them
 - [ ] For myself: Check site against the actual CV for consistency and accuracy
