@@ -41,9 +41,9 @@ Items to be completed for v1.0.0:
 - [x] Create mixin for above 1440px media query
 
 ## General
-- [ ] Add favicon
+- [x] Add favicon
 - [ ] Complete Implementation plan steps
-- [ ] Pull and store all data from the current nicholasheadlong.co.uk site
+- [x] Pull and store all data from the current nicholasheadlong.co.uk site
 - [x] Unit tests!
 - [x] Create an active flag for each experience, skill, client, project, education etc. This will allow us to easily hide/show items without having to delete them
 - [ ] For myself: Check site against the actual CV for consistency and accuracy
