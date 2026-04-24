@@ -1,0 +1,22 @@
+jobs:
+  - company: Aesop, The Brand Storytelling Agency
+    logoUrl: ./assets/logos/aesop-legacy.jpg
+    role: Fullstack Developer
+    location: London
+    startDate: "2015-11"
+    endDate: "Present"
+    description: Working for a creative agency, my job was to translate the creative to (virtual) reality. Building small applications as well as scalable solutions with limited resources and tight deadlines to the highest possible standards. Planning and researching the best courses of action for the briefs that come in as well as liaising with and providing technical assistance to the client account teams, the client and their third parties, creating digestible plans and pitches in order to win work and producing comprehensive documentation to hand over finished products to any internal and external parties that may be required to maintain them.
+    highlights:
+      - Worked on a range of projects for clients like 49s, Roche, Idahoan, Ferrero, and Game Of Thrones.
+    skills: []
+  - company: Hogarth Worldwide (part of WPP Group)
+    logoUrl: ./assets/logos/hogarth-legacy.jpg
+    role: QA Tester / Junior Developer
+    location: London
+    startDate: "2012-11"
+    endDate: "2015-02"
+    description: Initial work as a QC tester ensuring web and mobile applications were built to high standards. Trained a team of testers and rolled a series of standardised processes to hubs across the world, before being promoted to a development role. As a Junior Developer, I worked on a variety of projects for global clients.
+    highlights:
+      - Promoted from QA Tester to Junior Developer.
+      - Worked for clients such as Santander, Pfizer, Nike, Dior, Betfair, BAT and HSBC.
+    skills: []

@@ -1,0 +1,100 @@
+# Projects
+- title: "Mycelia: Life Of A Song"
+  type: "project"
+  description: "Artist and Songwriter Imogen Heap completed a research project she spearheaded, whereupon she collected and analysed all the contracts and revenue streams from her most popular song \"Hide and Seek\" as well as derivatives, remixes, and royalties from tv and film appearances (either recorded performance or non-digetic music). By early 2018, she and her team had an abundance of data that she wanted to enable people to examine, reference and use to understand how the music industry, so often famed for its opaqueness, worked with regards to the recording, publishing and distribution of one song during its lifecycle, with the aim to educate, and generate a conversation about how to enact change in the industry. We were approached to provide an application that could provide an interactive breakdown of revenue streams and royalty payments, not just to her, but also to all the third parties they were able to ascertain, as well information about the mycelia project, all the while being able to operate in areas were there may not be fast internet connection (like a conference) but not being an app a user would have to download.\n\nThis application was split into an api to collect and analyse the data, and a NextJs static front end generator to display the data. The visualisation was powered by pixiJS, and breakdowns were built using a series of svgs constructed to a pattern that could be easily animated using steps to keep their uniformity. when requests to api were run they could be heavily cached and saved to a json file, meaning it could be done on build and deploy, meaning there were no speed or loading issues. The Api was build using express and graphQL, while the front end was heavily React and NextJs. This created the rich infographic feel the client was hoping for while ensuring a confusing subject like media ownership was easy to tackle for the layman user. \n\n http://loas.myceliaformusic.org/ (http://loas.myceliaformusic.org/)"
+  technologies: ["NodeJS", "Express", "NextJS", "React", "Redux", "Webpack", "SCSS (SASS)", "Docker", "GraphQL", "Mongo/Mongoose"]
+  images:
+    - "./assets/projects/mycelia-1.jpg"
+    - "./assets/projects/mycelia-2.jpg"
+
+- title: "49s API and Engine Revamp"
+  type: "project"
+  description: "the digital betting company 49s approached Aesop in 2017 exasperated by the inefficiency of the revamp they had sought from another company the year before. While happy with the look and feel of the main site, they not only found the cms difficult to use, but also the results parsing system would intermittently fail and the front end server would struggle to handle the enormous load (around 300rps at peak times and a general load of almost a million requests a day). The site not only displays live and archived results but also contains information on permutation histories for numbers games and rider histories for virtual betting games. The client had found they were losing customers considerably since the re-launch, and needed a fast but durable solution. Other considerations regarded resources, scalability and their desire to retain their current hosting provider.\n\nTo mitigate against server issues we split out their ecosystem into 7 nodes: Java results fetcher (provided by the 3rd party results setting company), Node based results parser (the results were provided in an XML format and updated in an inconsistent way, therefore I quickly realised it would need to be isolated from the main API to prevent it bringing the entire system down at the wrong time), a Node API to parse result and histories requests as efficiently as possible, a Mongo Database cluster, an Nginx asset server to deal with and cache large assets, and lastly the CMS and front end element. These were then placed behind a load balancer with an auto scaling rule set up to ensure harmonious expansion and contraction of resources that would lead to a seamless user experience. We shifted from PHP to node as it is considerably faster and potentially a more future proof solution, and ensure that all images were set to auto restart and that exceptions were caught and logged as they were thrown. Generally the rebuild was a success and they have managed to not only regain their dropped off users, but expand their customer base further, implement new games, and pursue different advertising solutions while facing no performance issues. \n\n49s.co.uk (http://49s.co.uk)"
+  technologies: ["NodeJS", "KeystoneJS", "ActionheroJS", "Mongo/Mongoose", "AWS", "Docker", "Wercker", "Load Balancing", "High User Load", "Webpack", "postCSS", "lodash", "jQuery", "APIS", "RESTful Architecture", "PUG/JADE"]
+  images:
+    - "./assets/projects/49s-1.jpg"
+    - "./assets/projects/49s-2.png"
+
+- title: "Tic Tac Happy Rewards 2"
+  type: "project"
+  description: "Continuing on from the success of Tic Tacs first campaign (run by the same agency), I was tasked in early 2016 with implementing their planned follow up a year later. The campaign in essence allowed customers to collect points contained on packets of Tic Tacs (a popular small lozenge mint or sweet confectionary). As Users collected these points they were presented with rewards for the work ranging from more Tic Tacs and cinema tickets to a Tic Tac game (a handy port of flappy birds we were able to quickly re-skin), right up to speakers and other special edition branded merchandise.\n\nThe front end of the app was completely restyled from the previous version, therefore I decided to scrap the previous custom made version to one that was built using Laravel with a view to being able to enable us to instantiate and re-skin a clone in subsequent years should the need arise. Login data tracking was implemented to allow for either a custom sign up, or through Facebook, and a delay timer was implemented between entering reward codes to allay the Clients's fears about over-subscription and fake account creation. Some gifts required small monetary deposits to be made, which, for convenience, was handled by Stripe. The front end was intricate, colourful and contained all the energy of Tic Tacs brand. This meant that a visual experience was required on all devices and sizes so heavy css preprocessing was employed in order to achieve that."
+  technologies: ["Laravel 5", "Docker", "Digital Ocean", "Composer", "NPM", "jQuery", "Stripe", "SCSS (SASS)", "APIS", "PostgreSQL"]
+  images:
+    - "./assets/projects/tictac-1.jpg"
+    - "./assets/projects/tictac-2.jpg"
+
+- title: "Game Of Thrones: Dragonstone Map Room"
+  type: "project"
+  description: "A speculative project commissioned in 2017, as a challenge by HBO to build new and interesting interactive experiences as well as a desire to recycle countless number of high res 3d assets that were used on the collection of dvd colors that had already been produced by Aesop.\n\nUsing a 3d scan of the table of Westeros used in the TV Series as a centerpiece, we decided to create a replica Map Room and allow the user to move around it while wearing an Occulus VR headset. To provide an informative aspect the user was able to summon factual data about a location on the table (and subsequently, on the actual show) when looking at an selecting the piece on the table. Digetic and Non-Digetic sound was also added in to enhance the realism of the location."
+  technologies: ["Unity", "C#", "VR", "Occulus"]
+  images:
+    - "./assets/projects/got-1.jpg"
+    - "./assets/projects/got-2.jpg"
+
+- title: "Santander Mortgages App and API"
+  type: "project"
+  description: "Santander Mortgages was a two part site that site, commissioned in 2014, within the Santander-products domain. There is a backend service that takes individual pieces of mortgage data, supplies by the client in Microsoft Excel format, and converts it to be stored in various YAML files dependent on the mortgage “product” supplied.\n            \n\n            \n\n            The Angular script would then take these saved variables in an API call and calculate results based on various details the user had supplied\n            \n\n            \n\n            My task was to script both the front and back end of this application.\n            \n\n            the live site can be found here (http://www.santander-products.co.uk/mortgages/)\n\nSilex was chosen for its lightweight framework, as an alternative to the likes of the heavier Symfony, and Laravel.\n            \n\n            \n\n            A lot of the calculations required, had to be converted from a test spreadsheet that made use of native Excel functions, like rate().\n            \n\n            \n\n            This was then put through a custom angular factory that would make the required calculations and place results in object calls.\n            \n\n            \n\n            The site had a desktop tablet version, and a smaller mobile version that was determined by user agent in the server side.\n            \n\n            \n\n            This script was later extended to handle Santander’s Loan rate calculators as well."
+  technologies: ["AngularJs", "SCSS (SASS)", "HTML5", "Silex"]
+  images:
+    - "./assets/projects/santander-1.png"
+    - "./assets/projects/santander-2.png"
+
+- title: "Gramercy park Studios (GPS) full CMS site"
+  type: "project"
+  description: "This project was the 2nd phase implementation of the Gramercy Park Studios website, actioned in 2014, and based on rearranging content to make more accessible for future clients, based on new UX designs. This also required upgrading the backend infrastructure to cope with the new data. I needed to remap the new database, and include new components.\n\n  The site can be found here (https://www.gramercyparkstudios.com)\n\nPreviously, the project content of the site was served only on the main page. The client preferred a way of extracting content onto pages of different projects based on a generic category or categories (sound, 3d animation…) and served onto a grid before being taken to a project template page.\n\nFurthermore, the client wanted a list of tagged “credits” that could be generated in the back end by building a generic credit name and creditor section. On top of this, it was imperative that all image and video content be served in an optional grid with the most important piece of content at the top with the biggest frame (at 100% width) and then 2 sub main images or videos below (at 50% width each), and 4 lesser below that (at 25% width each), clicking on these would then bring up an overlay. I also implemented a drag and drop reorganisation system in order to easily change the order of these assets.\n\nI also abstracted what was currently on static information on contact details, and other such sections, to include them in the new Laravel 4 CMS."
+  technologies: ["jQuery", "LESS", "CSS3", "HTML5", "Laravel 4", "MYSQL"]
+  images:
+    - "./assets/projects/gps-1.png"
+    - "./assets/projects/gps-2.png"
+
+- title: "Heineken StarCabs"
+  type: "project"
+  description: "Star Cabs is an online experience from Heineken that on selected days gives the User the chance to get a free lift in a taxi to another pub that sells heineken.\n            \n\n            \n\n            Please find an article that gives the app more of an overview here (https://www.campaignlive.co.uk/article/heineken-star-cabs-competition-offers-drinkers-free-london-taxi-rides/1306325?src_site=marketingmagazine)\n\nHeineken starcabs site used a .net that unfortunately, we had no real access to. Now, the application prefers uses to take images of themselves and upload to this .Net server. Since, the handling of file uploads via JSON can be a difficult one, and we had no real access to the client's server, it was deemed appropriate by us to host a PHP script elsewhere that could format the images and ensure they were correctly uploaded to the other server before sending a response back to the app.\n            \n\n            \n\n            The PHP script was a fully OOP script using PHP5.\n            \n\n            \n\n            It split parts of the file into blobs, waited for upload to finish, then perform standard validation of the asset, before sending the request on in a post."
+  technologies: ["JSON", "PHP"]
+  images:
+    - "./assets/projects/heineken-starcabs.png"
+
+- title: "nicholasheadlong.co.uk Site"
+  type: "project"
+  description: "The nicholasheadlong.co.uk is a portfolio site that shows me off as a professional practitioner.\n            \n\n            \n\n            The site works in two parts; An elegant CMS API that handles the storing of file and text data, as well as renders view partials that can be produced by the angular front end when required.\n            \n\n            \n\n            please find a like to the API side on gitHub here\n\nThe CMS API is built by Laravel 5 and works by using the eloquent ORM and considering that all non file db transactions will be entered in the same way, i then built a service that could find the relevent Model required based on URI lookup and save both model and dependents data to a SQLLITE database.\n            \n\n            \n\n            The file uploads are handled in another service as they would be coming via a JSON object.\n            \n\n            \n\n            The Site was Hosted on AWS, in a linux environment, and has recently moved to Digital Ocean, using a Dokku one click app, that is deployed using wercker."
+  technologies: ["JSON", "APIS", "CSS (SASS)", "HTML5", "Laravel 5", "MYSQL and SQLITE", "RESTful Architecture", "AngularJS", "AWS"]
+  images:
+    - "./assets/projects/portfolio-site-1.png"
+    - "./assets/projects/portfolio-site-2.png"
+
+- title: "Creative Cars"
+  type: "project"
+  description: "Creative Cars is a Full CMS site built with Codeigniter, and served using Views enhanced with jQuery.\n            \n\n            \n\n            This project was undertaken in 2012, on a freelance basis for a Bodywork specialist based in Dorset, UK. This was the first professional work I undertook after the completion of my degree.\n            \n\n            \n\n            My hope foremost, is this might demonstrate how i have developed over the last few years.\n            \n\n            \n\n            The site can be found here (https://www.creative-cars.co.uk)\n\nThe site is fully responsive across desktop, mobile and tablet. it use the codeigniter framework as a CMS to handle the uploading of images, and text, as well the rendering of view files in the traditional MVC sense."
+  technologies: ["PHP", "MYSQL", "CodeIgniter", "HTML5", "CSS3", "LESS", "jQuery", "Grunt"]
+  images:
+    - "./assets/projects/creative-cars-1.png"
+    - "./assets/projects/creative-cars-2.png"
+
+# Side Projects
+- title: "Digital Archeology"
+  type: "side_project"
+  description: "I have been part of a team of people involved with archiving notable sites and innovations from the early web and web 2.0 to a usable condition and restoring the machinery they would have been used on in order to preserve these artifacts for future generations. we ran the World Wide Web (Tim Berners-Lee’s initial website) on a contemporary NeXt computer, updated a 1989 Mac Color Classic with TCP/IP capabilities and ran Alan Emtage’s Archie search engine (the first ever) on a Mosaic browser, as well as unarchiving silicon valley firsts, like pizza net, Dr Fun, and the dancing baby, and their european contemporaries, like eBoy, BowieNet, and IKEA, all on the original machinery contemporary to their respective eras. We also sought to conduct interviews with some of the pioneers of the early internet and web."
+  technologies: ["HTML 1, 2, 3", "Mosaic", "IE", "NetScape", "Early CSS", "Early JS"]
+  images:
+    - "./assets/projects/digital-arch-next-demo.png"
+
+- title: "64 Bits"
+  type: "side_project"
+  description: "This exhibition took place in London's Olympic Park for three months in 2016 and showcased 64 examples from our digital archaeology collection as well as pieces of 8 bit and ASCII art, Susan Care’s UX designs for the early Apple Macintosh OS and a collection of BBC microcomputers to educate the younger generation in BASIC programming and highlight some of the challenges of early software engineers."
+  technologies: ["JSON", "LAMP stack", "Mac OS Classic", "early 90s networking", "HTML 1, 2, 3", "Solaris", "Windows 3.1 for Workgroups"]
+  images:
+    - "./assets/projects/64_Bits_Exhibition.jpg"
+
+- title: "64 Bits Bytesize"
+  type: "side_project"
+  description: "A scaled down (shall we say 16 bit) version of the early show that ran for 10 days in late 2017 exclusively for Publicis group on Bakers Street. It featured 16 contemporary sites, relevant to Pulicis' operation as well as 16 pieces of era specific artwork. On the main entrance LCD was Find Next.\n\n 64bits.co.uk/ (http://64bits.co.uk/)"
+  technologies: ["LAMP", "early 90s networking", "NeXt"]
+  images:
+    - "./assets/projects/64BitsBytesizePublicisUK.jpg"
+
+- title: "Find Next"
+  type: "side_project"
+  description: "Among our most cherished exhibits, I implemented an innovation matrix data visualisation called Find Next that highlighted traits of the various innovators of the era, with a hope to find the perfect cocktail of traits that delivers success (or at least technological innovation). \n\nFind Next (in non kiosk mode) (http://139.59.171.223/)"
+  technologies: ["KeystoneJS", "ProcessingJS", "Webpack", "PostCSS", "Lodash", "jQuery"]
+  images:
+    - "./assets/projects/find-next.png"

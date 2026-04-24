@@ -1,0 +1,15 @@
+{
+  "name": "Nicholas Headlong",
+  "title": "INTERACTIVE DEVELOPER",
+  "email": "nicholas@nicholasheadlong.co.uk",
+  "location": "Vancouver, BC (formerly London, UK)",
+  "description": "Full stack web developer, with over 6 years professional experience working for global agencies based in London on a variety of clients like HBO, Santander, Heineken, Ferrero and Doir. This combined a variety of BAU work with a series of “one off” applications created on tight fixed deadlines. This work included building mortgage and loan calculators in angular with corresponding API processors, apps designed to visualise incomes and contracts for the music industry making it easier for the layperson to understand, and API designed to parse and categorise betting results and histories. I have also built, and hosted, full CMS sites for a number of clients to help self-manage their online presence. As a person, I am always keen to enhance my skillset. I enjoy problem solving and know there is always a fitting solution out there somewhere. I admire the beauty of well written code, and write to the highest standards myself wherever possible. Along with scripted languages, a thirst for knowledge, a respect for cultures and their boundaries, a knowledge of geopolitical, and ideological history, as well as a basic grasp of a number of spoken languages, makes me a multi-cultured element to any multinational company.",
+  "showThemeToggle": true,
+  "socials": [
+    {
+      "platform": "GitHub",
+      "icon": "https://github.com/favicon.ico",
+      "url": "https://github.com/nich-mctishe"
+    }
+  ]
+}

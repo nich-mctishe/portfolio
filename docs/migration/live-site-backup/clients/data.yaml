@@ -1,0 +1,26 @@
+clients:
+  - name: HBO
+    logoUrl: ./assets/logos/hbo.png
+  - name: Santander
+    logoUrl: ./assets/logos/santander.png
+  - name: Heineken
+    logoUrl: ./assets/logos/heineken.png
+  - name: Ferrero
+    logoUrl: ./assets/logos/ferrero.png
+  - name: Dior
+    logoUrl: ./assets/logos/dior.png
+  - name: Nike
+    logoUrl: ./assets/logos/nike.png
+  - name: Pfizer
+    logoUrl: ./assets/logos/pfizer.jpg
+  - name: Betfair
+    logoUrl: ./assets/logos/betfair.jpg
+  - name: BAT
+  - name: HSBC
+  - name: Aesop
+  - name: Hogarth
+  - name: 49's
+  - name: Idahoan
+  - name: Tic Tac
+  - name: Roche
+  - name: Game Of Thrones

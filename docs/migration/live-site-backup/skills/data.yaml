@@ -1,0 +1,127 @@
+categories:
+  - name: Backend
+    items:
+      - name: NodeJS
+        since: 2012
+      - name: PHP (OOP/PSR)
+        since: 2012
+      - name: MYSQL
+        since: 2012
+      - name: PostgreSQL
+        since: 2012
+      - name: SQLite
+        since: 2012
+      - name: MariaDB
+        since: 2012
+      - name: Mongo/Mongoose
+        since: 2012
+      - name: Express
+        since: 2012
+      - name: NextJS
+        since: 2012
+      - name: KeystoneJS
+        since: 2012
+      - name: ActionHeroJS
+        since: 2012
+      - name: Laravel 4 & 5
+        since: 2012
+      - name: Silex
+        since: 2012
+      - name: CodeIgniter
+        since: 2012
+      - name: Composer
+        since: 2012
+      - name: NPM & Yarn
+        since: 2012
+      - name: RESTful Architecture
+        since: 2012
+  - name: Frontend
+    items:
+      - name: HTML5
+        since: 2012
+      - name: CSS3
+        since: 2012
+      - name: LESS
+        since: 2012
+      - name: SCSS/SASS
+        since: 2012
+      - name: PostCss
+        since: 2012
+      - name: Webpack
+        since: 2012
+      - name: ReactJS
+        since: 2012
+      - name: Redux
+        since: 2012
+      - name: jQuery
+        since: 2012
+      - name: lodash
+        since: 2012
+      - name: AngularJS
+        since: 2012
+      - name: Gulp
+        since: 2012
+      - name: Grunt
+        since: 2012
+      - name: Cordova
+        since: 2012
+      - name: APIs
+        since: 2012
+      - name: JSON
+        since: 2012
+      - name: XML
+        since: 2012
+  - name: DevOps
+    items:
+      - name: UNIX
+        since: 2012
+      - name: Bash/Shell
+        since: 2012
+      - name: Docker
+        since: 2012
+      - name: Wercker
+        since: 2012
+      - name: LAMP
+        since: 2012
+      - name: Linux Server Management
+        since: 2012
+      - name: GIT
+        since: 2012
+      - name: AWS
+        since: 2012
+      - name: Digital Ocean
+        since: 2012
+      - name: Dokku
+        since: 2012
+      - name: GitHub
+        since: 2012
+      - name: BitBucket
+        since: 2012
+      - name: Slack
+        since: 2012
+      - name: Jenkins
+        since: 2012
+  - name: Software
+    items:
+      - name: Photoshop
+        since: 2012
+      - name: Illustrator
+        since: 2012
+      - name: In Design
+        since: 2012
+  - name: Other
+    items:
+      - name: Java (OOP/Android)
+        since: 2012
+      - name: jMonkeyEngine
+        since: 2012
+      - name: Unity C#
+        since: 2012
+      - name: Oculus VR
+        since: 2012
+      - name: Arduino
+        since: 2012
+      - name: Processing
+        since: 2012
+      - name: GA/UA
+        since: 2012
