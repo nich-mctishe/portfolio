@@ -35,10 +35,27 @@ describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', (
       it('And it should have the correct data-scroll-target', () => {
         expect(rendered).toContain('data-scroll-target="#job-1"')
       })
+
+      it('And it should render an ExpandableButton with text "View all highlights"', () => {
+        expect(rendered).toContain('expand-btn')
+        expect(rendered).toContain('View all highlights')
+      })
+
+      it('And the ExpandableButton should have aria-label "Expand highlights"', () => {
+        expect(rendered).toContain('aria-label="Expand highlights"')
+      })
+
+      it('And the ExpandableButton should have the job-highlight-btn class', () => {
+        expect(rendered).toContain('job-highlight-btn')
+      })
+
+      it('And the ExpandableButton should render the chevron SVG', () => {
+        expect(rendered).toContain('class="chevron"')
+      })
     })
   })
 
-  describe('Given a single highlight', () => {
+  describe('Given a single highlight and scrollTarget="#job-2"', () => {
     const props = {
       highlights: ['Single highlight'],
       scrollTarget: '#job-2'
@@ -61,10 +78,15 @@ describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', (
       it('And it should have data-expandable="false"', () => {
         expect(rendered).toContain('data-expandable="false"')
       })
+
+      it('And it should NOT render an ExpandableButton', () => {
+        expect(rendered).not.toContain('expand-btn')
+        expect(rendered).not.toContain('View all highlights')
+      })
     })
   })
 
-  describe('Given an empty highlights array', () => {
+  describe('Given an empty highlights array and scrollTarget="#job-3"', () => {
     const props = {
       highlights: [],
       scrollTarget: '#job-3'
@@ -80,13 +102,17 @@ describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', (
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should return an empty string (excluding scripts)', () => {
+      it('Then it should not render the highlights-container', () => {
         expect(rendered).not.toContain('highlights-container')
+      })
+
+      it('And it should not render an ExpandableButton', () => {
+        expect(rendered).not.toContain('expand-btn')
       })
     })
   })
 
-  describe('Given no highlights prop', () => {
+  describe('Given no highlights prop and scrollTarget="#job-4"', () => {
     const props = {
       scrollTarget: '#job-4'
     }
@@ -101,8 +127,12 @@ describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', (
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should return an empty string (excluding scripts) without throwing', () => {
+      it('Then it should not render the highlights-container without throwing', () => {
         expect(rendered).not.toContain('highlights-container')
+      })
+
+      it('And it should not render an ExpandableButton', () => {
+        expect(rendered).not.toContain('expand-btn')
       })
     })
   })

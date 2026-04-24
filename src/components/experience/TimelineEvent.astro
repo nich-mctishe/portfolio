@@ -54,7 +54,7 @@ const { startDate, endDate, location } = Astro.props
 
     @include mobile-only {
       left: -1.5625rem;
-      top: 0.4rem;
+      top: 0.35rem;
     }
   }
 
@@ -84,7 +84,9 @@ const { startDate, endDate, location } = Astro.props
       right: auto;
       left: 0;
       top: 0;
-      width: 100%;
+      /* Constrain width so truncation can happen safely */
+      width: calc(100vw - 4rem); 
+      max-width: 100%;
       text-align: left;
       flex-flow: row nowrap;
       align-items: center;
@@ -108,9 +110,10 @@ const { startDate, endDate, location } = Astro.props
     white-space: nowrap;
     opacity: 0.9;
     box-shadow: 0 0.125rem 0.5rem var(--color-shadow);
+    flex-shrink: 0;
 
     @include mobile-only {
-      padding: 0.25rem 0.4rem;
+      padding: 0.25rem 0.5rem;
       font-size: 0.65rem;
     }
   }
@@ -125,8 +128,17 @@ const { startDate, endDate, location } = Astro.props
     }
 
     @include mobile-only {
-      padding: 0.25rem 0.4rem;
+      padding: 0.25rem 0;
       font-size: 0.65rem;
+      /* Guarantee single line truncation on location if extremely tight */
+      flex-shrink: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
     }
   }
 </style>
