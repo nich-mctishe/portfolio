@@ -1,0 +1,52 @@
+---
+interface Props {
+  text: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const { text, ariaLabel = "Expand details", class: className } = Astro.props
+---
+
+<button class:list={["expand-btn", className]} aria-label={ariaLabel}>
+  <span class="btn-text">{text}</span>
+  <svg 
+    class="chevron" 
+    viewBox="0 0 24 24" 
+    width="16" 
+    height="16" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    fill="none" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  >
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+</button>
+
+<style lang="scss">
+  @use "../../styles/mixins" as *;
+
+  .expand-btn {
+    @include meta-text(var(--color-primary));
+    
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    transition: all 0.3s ease;
+    font-family: inherit;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .chevron {
+      transition: transform 0.3s ease;
+    }
+  }
+</style>

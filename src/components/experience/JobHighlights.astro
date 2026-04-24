@@ -1,4 +1,6 @@
 ---
+import ExpandableButton from '../general/ExpandableButton.astro';
+
 interface Props {
   highlights?: string[];
   scrollTarget: string;
@@ -21,22 +23,7 @@ const hasManyHighlights = highlights && highlights.length > 1
       ))}
     </ul>
     {hasManyHighlights && (
-      <button class="expand-btn" aria-label="Expand highlights">
-        <span class="btn-text">View all highlights</span>
-        <svg 
-          class="chevron" 
-          viewBox="0 0 24 24" 
-          width="16" 
-          height="16" 
-          stroke="currentColor" 
-          stroke-width="2" 
-          fill="none" 
-          stroke-linecap="round" 
-          stroke-linejoin="round"
-        >
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </button>
+      <ExpandableButton text="View all highlights" ariaLabel="Expand highlights" class="job-highlight-btn" />
     )}
   </div>
 )}
@@ -103,7 +90,7 @@ document.addEventListener('astro:after-swap', initialize)
           mask-image: none;
         }
 
-        .chevron {
+        :global(.chevron) {
           transform: rotate(180deg);
         }
       }
@@ -141,21 +128,7 @@ document.addEventListener('astro:after-swap', initialize)
     }
   }
 
-  .expand-btn {
-    @include meta-text(var(--color-primary));
-
+  :global(.job-highlight-btn) {
     margin-top: 0.5rem;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.3s ease;
-    font-family: inherit;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    .chevron {
-      transition: transform 0.3s ease;
-    }
   }
 </style>
