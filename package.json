@@ -13,6 +13,9 @@
     "test:e2e": "NODE_OPTIONS='--import tsx' cucumber-js -c tests/e2e/cucumber.js",
     "test:vrt": "playwright test -c playwright.config.ts",
     "test:vrt:update": "playwright test -c playwright.config.ts --update-snapshots",
+    "docker:vrt:build": "docker build -t portfolio-vrt .",
+    "docker:vrt:update": "docker run --rm -v $(pwd):/work -w /work portfolio-vrt pnpm test:vrt:update",
+    "docker:vrt:run": "docker run --rm -v $(pwd):/work -w /work portfolio-vrt pnpm test:vrt",
     "test:all": "pnpm run test --run && pnpm run test:e2e && pnpm run test:vrt",
     "astro": "astro"
   },
