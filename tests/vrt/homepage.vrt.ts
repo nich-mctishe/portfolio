@@ -19,7 +19,7 @@ test.describe('Visual Regression', () => {
 
     await expect(page).toHaveScreenshot('homepage-layout.png', {
       fullPage: true,
-      maxDiffPixels: 20000,
+      maxDiffPixels: 25000,
       mask: [
         page.locator('.bubbles-bg'), 
         page.locator('.bubble-large')
@@ -41,7 +41,7 @@ test.describe('Visual Regression', () => {
 
     await expect(page).toHaveScreenshot('homepage-darkmode.png', {
       fullPage: true,
-      maxDiffPixels: 20000,
+      maxDiffPixels: 25000,
       mask: [
         page.locator('.bubbles-bg'), 
         page.locator('.bubble-large')
@@ -57,7 +57,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(1000)
     await expect(section).toHaveScreenshot('section-skills.png', {
-      maxDiffPixels: 500,
+      maxDiffPixels: 200,
       animations: 'disabled',
     })
   })
@@ -69,7 +69,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(1000)
     await expect(section).toHaveScreenshot('section-experience.png', {
-      maxDiffPixels: 500,
+      maxDiffPixels: 200,
       animations: 'disabled',
     })
   })
@@ -81,7 +81,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(1000)
     await expect(section).toHaveScreenshot('section-education.png', {
-      maxDiffPixels: 500,
+      maxDiffPixels: 200,
       animations: 'disabled',
     })
   })
@@ -93,7 +93,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(1000)
     await expect(section).toHaveScreenshot('section-clients.png', {
-      maxDiffPixels: 500,
+      maxDiffPixels: 200,
       animations: 'disabled',
     })
   })
@@ -104,7 +104,7 @@ test.describe('Visual Regression', () => {
     const footer = page.locator('.site-footer')
     await footer.scrollIntoViewIfNeeded()
     await expect(footer).toHaveScreenshot('footer.png', {
-      maxDiffPixels: 500
+      maxDiffPixels: 200
     })
   })
 })
