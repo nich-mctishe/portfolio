@@ -20,7 +20,7 @@ export default defineConfig({
     },
     {
       name: 'Tablet iPad',
-      use: { ...devices['iPad Pro'] },
+      use: { ...devices['iPad'] },
     },
   ],
   webServer: {
