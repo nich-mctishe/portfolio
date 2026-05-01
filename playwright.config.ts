@@ -12,15 +12,24 @@ export default defineConfig({
   projects: [
     {
       name: 'Desktop Chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1280, height: 720 }
+      },
     },
     {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 13'] },
+      use: { 
+        ...devices['iPhone 13'],
+        viewport: { width: 390, height: 844 }
+      },
     },
     {
       name: 'Tablet iPad',
-      use: { ...devices['iPad'] },
+      use: { 
+        ...devices['iPad'],
+        viewport: { width: 768, height: 1024 }
+      },
     },
   ],
   webServer: {
