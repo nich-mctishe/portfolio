@@ -14,6 +14,14 @@ export default defineConfig({
       name: 'Desktop Chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 13'] },
+    },
+    {
+      name: 'Tablet iPad',
+      use: { ...devices['iPad Pro'] },
+    },
   ],
   webServer: {
     command: 'pnpm preview',
