@@ -35,8 +35,10 @@ jobs:
         run: pnpm exec wait-on http://localhost:4321 --timeout 30000
       - name: Run Cucumber BDD
         run: pnpm test:e2e
+      - name: Build VRT Docker image
+        run: pnpm run docker:vrt:build
       - name: Run Playwright VRT
-        run: pnpm test:vrt
+        run: pnpm run docker:vrt:run
       - name: Cleanup - Stop server
         if: always()
         run: pkill -f "serve.*dist" || true
