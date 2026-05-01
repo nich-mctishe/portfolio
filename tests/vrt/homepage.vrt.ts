@@ -55,7 +55,7 @@ test.describe('Visual Regression', () => {
     await page.waitForLoadState('networkidle')
     const section = page.locator('#skills')
     await section.scrollIntoViewIfNeeded()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-skills.png', {
       maxDiffPixels: 200,
       animations: 'disabled',
@@ -67,7 +67,7 @@ test.describe('Visual Regression', () => {
     await page.waitForLoadState('networkidle')
     const section = page.locator('#experience')
     await section.scrollIntoViewIfNeeded()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-experience.png', {
       maxDiffPixels: 200,
       animations: 'disabled',
@@ -79,7 +79,7 @@ test.describe('Visual Regression', () => {
     await page.waitForLoadState('networkidle')
     const section = page.locator('#education')
     await section.scrollIntoViewIfNeeded()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-education.png', {
       maxDiffPixels: 200,
       animations: 'disabled',
@@ -91,7 +91,7 @@ test.describe('Visual Regression', () => {
     await page.waitForLoadState('networkidle')
     const section = page.locator('#clients')
     await section.scrollIntoViewIfNeeded()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-clients.png', {
       maxDiffPixels: 200,
       animations: 'disabled',

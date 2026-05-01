@@ -1,4 +1,4 @@
-FROM node:24-bullseye
+FROM mcr.microsoft.com/playwright:v1.58.2-jammy
 
 WORKDIR /work
 
@@ -6,9 +6,10 @@ RUN npm install -g pnpm@10.29.1
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
-RUN pnpm exec playwright install --with-deps
 
 COPY . ./
+
+RUN pnpm build
 
 ENV CI=true
 
