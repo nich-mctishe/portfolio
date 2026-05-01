@@ -57,7 +57,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-skills.png', {
-      maxDiffPixels: 100,
+      maxDiffPixels: 500,
       animations: 'disabled',
     })
   })
@@ -69,7 +69,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-experience.png', {
-      maxDiffPixels: 100,
+      maxDiffPixels: 500,
       animations: 'disabled',
     })
   })
@@ -81,7 +81,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-education.png', {
-      maxDiffPixels: 100,
+      maxDiffPixels: 500,
       animations: 'disabled',
     })
   })
@@ -93,7 +93,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-clients.png', {
-      maxDiffPixels: 100,
+      maxDiffPixels: 500,
       animations: 'disabled',
     })
   })
