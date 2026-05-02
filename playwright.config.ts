@@ -6,7 +6,7 @@ export default defineConfig({
   fullyParallel: true,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://localhost:4321/portfolio/',
     trace: 'on-first-retry',
   },
   projects: [
@@ -34,7 +34,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'pnpm preview',
-    url: 'http://localhost:4321',
+    url: 'http://localhost:4321/portfolio/',
     reuseExistingServer: true,
   },
 })

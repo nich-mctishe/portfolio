@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // Uncomment `base` if deploying to a subpath like https://user.github.io/portfolio
   site: 'https://nich-mctishe.github.io',
-  // base: '/portfolio',
+  base: '/portfolio/',
 
   integrations: [sitemap()],
 })

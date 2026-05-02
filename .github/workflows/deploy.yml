@@ -9,7 +9,7 @@ env:
 
 permissions:
   contents: read
-  deployments: write
+  pages: write
   id-token: write
 
 jobs:

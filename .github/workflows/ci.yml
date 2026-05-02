@@ -32,7 +32,7 @@ jobs:
       - name: Start static server
         run: pnpm exec serve -l 4321 dist &
       - name: Wait for server to be ready
-        run: pnpm exec wait-on http://localhost:4321 --timeout 30000
+        run: pnpm exec wait-on http://localhost:4321/portfolio/ --timeout 30000
       - name: Run Cucumber BDD
         run: pnpm test:e2e
       - name: Run Playwright VRT
