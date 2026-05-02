@@ -130,6 +130,7 @@ Configured in `playwright.config.ts` via `projects`:
 | Project Name | Device | Width | Height |
 |---|---|---|---|
 | Desktop Chromium | Chrome | 1280px | 720px |
+| Tablet Safari | iPad | 1024px | 768px |
 | Mobile Safari | iPhone 13 | 390px | 844px |
 
 ---
@@ -138,10 +139,10 @@ Configured in `playwright.config.ts` via `projects`:
 
 1. Add a `test(...)` block in `tests/vrt/homepage.vrt.ts` (or create a new file for a new route).
 2. Use a descriptive snapshot name: `section-skills-scrolled.png`.
-3. Run `pnpm test:vrt:update` once — this generates the baseline `.png`.
+3. Run `pnpm docker:vrt:update` once — this generates the baseline `.png`.
 4. Visually confirm the screenshot looks correct.
 5. Commit both the test file and the new `.png` snapshot.
-6. Future `pnpm test:vrt` runs will compare against this baseline.
+6. Future `pnpm docker:vrt:run` runs will compare against this baseline.
 
 ---
 

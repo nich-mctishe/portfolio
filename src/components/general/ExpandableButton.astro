@@ -5,10 +5,10 @@ interface Props {
   class?: string;
 }
 
-const { text, ariaLabel = "Expand details", class: className } = Astro.props
+const { text, ariaLabel = 'Expand details', class: className } = Astro.props
 ---
 
-<button class:list={["expand-btn", className]} aria-label={ariaLabel}>
+<button class:list={['expand-btn', className]} aria-label={ariaLabel}>
   <span class="btn-text">{text}</span>
   <svg 
     class="chevron" 

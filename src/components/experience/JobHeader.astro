@@ -7,7 +7,13 @@ interface Props {
   description?: string;
 }
 
-const { role, company, logoUrl, logoAdaptive, description } = Astro.props;
+const { 
+  role, company, logoUrl: rawLogoUrl, logoAdaptive, description 
+} = Astro.props
+
+const logoUrl = (rawLogoUrl?.startsWith('/') && rawLogoUrl)
+  ? `${import.meta.env.BASE_URL}${rawLogoUrl.slice(1)}` 
+  : rawLogoUrl;
 ---
 
 <div class="job-header">

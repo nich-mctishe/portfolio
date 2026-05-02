@@ -4,7 +4,11 @@ import { CustomWorld } from '../support/world.js'
 
 Given('I open the portfolio homepage', async function (this: CustomWorld) {
   // Use localhost in dev mode or a configured base URL if deployed
-  const baseURL = process.env.BASE_URL || 'http://localhost:4321/'
+  const isGH = !!process.env.GITHUB_ACTIONS
+  const fallback = isGH 
+    ? 'http://localhost:4321/portfolio/' 
+    : 'http://localhost:4321/'
+  const baseURL = process.env.BASE_URL || fallback
   await this.page!.goto(baseURL)
   // Wait for the full page load, especially with Astro animations
   await this.page!.waitForLoadState('networkidle')

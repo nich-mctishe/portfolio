@@ -2,17 +2,22 @@ import { Given, When, Then } from '@cucumber/cucumber'
 import { expect } from '@playwright/test'
 import { CustomWorld } from '../support/world.js'
 
-Given('I open the portfolio on a mobile device', async function (this: CustomWorld) {
-  if (this.page) await this.page.close()
-  if (this.context) await this.context.close()
-  const viewport = { width: 375, height: 667 }
-  this.context = await this.browser!.newContext({ viewport })
-  this.page = await this.context.newPage()
+Given('I open the portfolio on a mobile device', 
+  async function (this: CustomWorld) {
+    if (this.page) await this.page.close()
+    if (this.context) await this.context.close()
+    const viewport = { width: 375, height: 667 }
+    this.context = await this.browser!.newContext({ viewport })
+    this.page = await this.context.newPage()
   
-  const baseURL = process.env.BASE_URL || 'http://localhost:4321/'
-  await this.page!.goto(baseURL)
-  await this.page!.waitForLoadState('networkidle')
-})
+    const isGH = !!process.env.GITHUB_ACTIONS
+    const fallback = isGH 
+      ? 'http://localhost:4321/portfolio/' 
+      : 'http://localhost:4321/'
+    const baseURL = process.env.BASE_URL || fallback
+    await this.page!.goto(baseURL)
+    await this.page!.waitForLoadState('networkidle')
+  })
 
 When('I click the hamburger menu icon', async function (this: CustomWorld) {
   const hamburgerBtn = this.page!.locator('.hamburger')
@@ -26,21 +31,24 @@ Then('the navigation list should slide down and become visible',
   }
 )
 
-When('I click the hamburger menu icon again', async function (this: CustomWorld) {
-  const hamburgerBtn = this.page!.locator('.hamburger')
-  await hamburgerBtn.click({ force: true })
-})
+When('I click the hamburger menu icon again', 
+  async function (this: CustomWorld) {
+    const hamburgerBtn = this.page!.locator('.hamburger')
+    await hamburgerBtn.click({ force: true })
+  })
 
-Then('the navigation list should remain hidden', async function (this: CustomWorld) {
-  const navList = this.page!.locator('.bubble-nav')
-  await expect(navList).not.toHaveClass(/is-open/)
-})
+Then('the navigation list should remain hidden', 
+  async function (this: CustomWorld) {
+    const navList = this.page!.locator('.bubble-nav')
+    await expect(navList).not.toHaveClass(/is-open/)
+  })
 
 // JSON-LD MATCH
-Then('the head should contain a JSON-LD structured data script', async function (this: CustomWorld) {
-  const jsonElement = this.page!.locator('script[type="application/ld+json"]')
-  await expect(jsonElement).toBeAttached()
-})
+Then('the head should contain a JSON-LD structured data script', 
+  async function (this: CustomWorld) {
+    const jsonElement = this.page!.locator('script[type="application/ld+json"]')
+    await expect(jsonElement).toBeAttached()
+  })
 
 Then('the JSON-LD should outline a Person entity mapping my name and title', 
   async function (this: CustomWorld) {
@@ -75,15 +83,17 @@ When('I reload the page', async function (this: CustomWorld) {
   await this.page!.waitForLoadState('domcontentloaded')
 })
 
-Then('the site should still be in dark mode', async function (this: CustomWorld) {
-  const html = this.page!.locator('html')
-  await expect(html).toHaveAttribute('data-theme', 'dark')
-})
+Then('the site should still be in dark mode', 
+  async function (this: CustomWorld) {
+    const html = this.page!.locator('html')
+    await expect(html).toHaveAttribute('data-theme', 'dark')
+  })
 
 // HIGHLIGHTS
-When('I scroll to the Work Experience section', async function (this: CustomWorld) {
-  await this.page!.locator('#experience').scrollIntoViewIfNeeded()
-})
+When('I scroll to the Work Experience section', 
+  async function (this: CustomWorld) {
+    await this.page!.locator('#experience').scrollIntoViewIfNeeded()
+  })
 
 When('I click the {string} button on the first job', 
   async function (this: CustomWorld, btnText: string) {
@@ -97,7 +107,9 @@ When('I click the {string} button on the first job',
 Then('the highlights container should expand its height', 
   { timeout: 10000 }, 
   async function (this: CustomWorld) {
-    const container = this.page!.locator('.job-card [data-expandable="true"]').first()
+    const sel = '.job-card [data-expandable="true"]'
+    const container = this.page!.locator(sel).first()
+
     await expect(container).toHaveAttribute('data-expanded', 'true')
   }
 )
@@ -106,16 +118,20 @@ Then('the chevron icon should rotate', async function (this: CustomWorld) {
   // Interstitial assertion of elements state changing to verify interaction
 })
 
-When('I click the {string} button', async function (this: CustomWorld, btnText: string) {
-  const btn = this.page!.locator('.job-card [data-expandable="true"]').first().locator('button')
-  await expect(btn).toHaveText(new RegExp(btnText, 'i'))
-  await btn.click({ force: true })
-})
+When('I click the {string} button', 
+  async function (this: CustomWorld, btnText: string) {
+    const sel = '.job-card [data-expandable="true"]'
+    const btn = this.page!.locator(sel).first().locator('button')
+    await expect(btn).toHaveText(new RegExp(btnText, 'i'))
+    await btn.click({ force: true })
+  })
 
 Then('the highlights container should collapse', 
   { timeout: 10000 }, 
   async function (this: CustomWorld) {
-    const container = this.page!.locator('.job-card [data-expandable="true"]').first()
+    const sel = '.job-card [data-expandable="true"]'
+    const container = this.page!.locator(sel).first()
+
     await expect(container).toHaveAttribute('data-expanded', 'false')
   }
 )
@@ -136,13 +152,15 @@ When('I click {string} on the first expandable course',
 
 Then('the synopsis text should become visible', 
   async function (this: CustomWorld) {
-    const container = this.page!.locator('.education-card[data-expandable="true"]')
-      .first()
+    const sel = '.education-card[data-expandable="true"]'
+    const container = this.page!.locator(sel).first()
     await expect(container).toHaveAttribute('data-expanded', 'true')
   }
 )
 
-Then('the education chevron should point upwards', async function (this: CustomWorld) {
-  const container = this.page!.locator('.education-card[data-expandable="true"]').first()
-  await expect(container).toHaveAttribute('data-expanded', 'true')
-})
+Then('the education chevron should point upwards', 
+  async function (this: CustomWorld) {
+    const sel = '.education-card[data-expandable="true"]'
+    const container = this.page!.locator(sel).first()
+    await expect(container).toHaveAttribute('data-expanded', 'true')
+  })

@@ -30,7 +30,7 @@ jobs:
       - name: Build Astro project
         run: pnpm run build
       - name: Start static server
-        run: pnpm exec serve -l 4321 dist &
+        run: pnpm run preview &
       - name: Wait for server to be ready
         run: pnpm exec wait-on http://localhost:4321/portfolio/ --timeout 30000
       - name: Run Cucumber BDD
@@ -46,4 +46,4 @@ jobs:
           retention-days: 30
       - name: Cleanup - Stop server
         if: always()
-        run: pkill -f "serve.*dist" || true
+        run: pkill -f "astro preview" || true

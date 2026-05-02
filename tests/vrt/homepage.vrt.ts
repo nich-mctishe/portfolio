@@ -9,7 +9,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Homepage maintains layout integrity', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     
     // Ensure all critical animations and elements are loaded
     await page.waitForLoadState('networkidle')
@@ -29,7 +29,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Dark mode maintains layout integrity', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     await page.waitForLoadState('networkidle')
 
     // Toggle dark mode
@@ -51,7 +51,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Skills section maintains design', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     await page.waitForLoadState('networkidle')
     const section = page.locator('#skills')
     await section.scrollIntoViewIfNeeded()
@@ -63,7 +63,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Experience section maintains design', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     await page.waitForLoadState('networkidle')
     const section = page.locator('#experience')
     await section.scrollIntoViewIfNeeded()
@@ -75,7 +75,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Education section maintains design', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     await page.waitForLoadState('networkidle')
     const section = page.locator('#education')
     await section.scrollIntoViewIfNeeded()
@@ -87,7 +87,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Clients section maintains design', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     await page.waitForLoadState('networkidle')
     const section = page.locator('#clients')
     await section.scrollIntoViewIfNeeded()
@@ -99,7 +99,7 @@ test.describe('Visual Regression', () => {
   })
 
   test('Footer maintains design', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('')
     await page.waitForLoadState('networkidle')
     const footer = page.locator('.site-footer')
     await footer.scrollIntoViewIfNeeded()

@@ -5,7 +5,15 @@ import ExpandableButton from './general/ExpandableButton.astro'
 
 const educationEntry = await getEntry('education', 'data')
 const qualifications = (educationEntry?.data?.qualifications || [])
-  .filter(q => q.active !== false);
+  .filter(q => q.active !== false)
+  .map(q => {
+    const isAbs = q.logoUrl?.startsWith('/')
+    const logoUrl = (isAbs && q.logoUrl) 
+      ? `${import.meta.env.BASE_URL}${q.logoUrl.slice(1)}` 
+      : q.logoUrl
+      
+    return { ...q, logoUrl }
+  });
 ---
 
 <Section id="education" class="education-section">

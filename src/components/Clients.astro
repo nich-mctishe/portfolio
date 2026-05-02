@@ -4,7 +4,15 @@ import Section from './Section.astro'
 
 const clientsEntry = await getEntry('clients', 'data')
 const clients = (clientsEntry?.data?.clients || [])
-  .filter(c => c.active !== false);
+  .filter(c => c.active !== false)
+  .map(c => {
+    const isAbs = c.logoUrl?.startsWith('/')
+    const logoUrl = (isAbs && c.logoUrl) 
+      ? `${import.meta.env.BASE_URL}${c.logoUrl.slice(1)}` 
+      : c.logoUrl
+
+    return { ...c, logoUrl }
+  });
 ---
 
 <Section id="clients" class="clients-section">
