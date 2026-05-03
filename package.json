@@ -18,7 +18,7 @@
     "docker:vrt:build": "docker build -t portfolio-vrt .",
     "docker:vrt:update": "docker run --rm -v $(pwd):/work -v /work/node_modules -v /work/dist portfolio-vrt pnpm test:vrt:update",
     "docker:vrt:run": "docker run --rm -v $(pwd):/work -v /work/node_modules -v /work/dist portfolio-vrt pnpm test:vrt",
-    "test:all": "pnpm run test --run && pnpm run test:e2e && pnpm run test:vrt",
+    "test:all": "pnpm run test --run && pnpm run test:e2e && pnpm run docker:vrt:run",
     "astro": "astro"
   },
   "dependencies": {
