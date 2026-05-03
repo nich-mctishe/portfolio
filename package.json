@@ -11,6 +11,7 @@
     "format": "eslint --fix . && stylelint \"**/*.{css,scss,astro}\" --fix",
     "test": "vitest",
     "test:e2e": "start-server-and-test dev http://localhost:4321 test:e2e:run",
+    "test:e2e:ci": "start-server-and-test preview http://localhost:4321/portfolio/ test:e2e:run",
     "test:e2e:run": "NODE_OPTIONS='--import tsx' cucumber-js -c tests/e2e/cucumber.js",
     "test:vrt": "playwright test -c playwright.config.ts",
     "test:vrt:update": "playwright test -c playwright.config.ts --update-snapshots",

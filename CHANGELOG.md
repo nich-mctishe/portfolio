@@ -30,10 +30,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created `robots.txt` and integrated `@astrojs/sitemap`.
 - Configured E2E testing framework utilising `@playwright/test` and `@cucumber/cucumber` (BDD).
 - Configured automated server startup for E2E tests using `start-server-and-test`.
+- Resolved CI pipeline failures by orchestrating server startup within testing scripts.
+- Renamed all test directories and scripts to match project conventions (e.g., `e2e`, `vrt`).
 - Resolved `ERR_CONNECTION_REFUSED` failures in the Cucumber test suite.
 - Renamed all test files to follow strict `kebab-case` naming conventions.
 - Fixed over 70 stylistic linting errors to comply with the 80-character line length limit.
-- Updated `package.json` with dedicated `test:e2e` and `test:e2e:run` scripts.
+- Updated `package.json` with dedicated `test:e2e`, `test:e2e:ci`, and `test:e2e:run` scripts.
 - Resolved branch coverage gaps in `calculate-skill-duration` and `initiate-highlight-accordions`.
 - Built automated Visual Regression Testing (VRT) suite via Playwright configured for multiple viewports.
 - Configured initial CI automated testing workflow (`.github/workflows/ci.yml`).

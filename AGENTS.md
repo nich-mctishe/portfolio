@@ -52,9 +52,9 @@ This is the Portfolio Agent Guide for the Portfolio project.
 ## Rules and Constraints
 
 - **Testing:** All new features MUST include a test file. Any new code must be testable, and pass all existing tests. This includes unit, e2e and visual regression testing.
-    - **Unit Testing:** jest - use @.agents/skills/unit-testing/SKILL.md
-    - **E2E Testing:** Playwright - use @.agents/skills/e2e-testing/SKILL.md
-    - **Visual Regression Testing:** Playwright - use @.agents/skills/vrt/SKILL.md
+    - **Unit Testing:** jest - use .agents/skills/unit-test/SKILL.md
+    - **E2E Testing:** Playwright - use .agents/skills/e2e-testing/SKILL.md
+    - **Visual Regression Testing:** Playwright - use .agents/skills/vrt/SKILL.md
 - **Linting:** All new code must pass all linting rules. Use @.agents/skills/linting/SKILL.md when linting the project.
 - **Stylelint:** All new code must pass all stylelint rules. Use @.agents/skills/linting/SKILL.md when stylelinting the project.
 - **Changelog:** All new features MUST update the CHANGELOG.md file following the Keep a Changelog format. See @.agents/skills/changelog/SKILL.md.
