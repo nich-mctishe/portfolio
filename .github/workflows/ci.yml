@@ -32,7 +32,7 @@ jobs:
       - name: Run Cucumber BDD
         run: pnpm test:e2e:ci
       - name: Run Playwright VRT
-        run: pnpm docker:vrt:run
+        run: pnpm test:vrt
       - name: Upload Test Results
         if: failure()
         uses: actions/upload-artifact@v4

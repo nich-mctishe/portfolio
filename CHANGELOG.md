@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configured automated server startup for E2E tests using `start-server-and-test`.
 - Resolved CI pipeline failures by orchestrating server startup within testing scripts.
 - Renamed all test directories and scripts to match project conventions (e.g., `e2e`, `vrt`).
+- Updated Visual Regression Testing (VRT) baselines via Docker to account for recent stylistic and layout fixes.
 - Resolved `ERR_CONNECTION_REFUSED` failures in the Cucumber test suite.
 - Renamed all test files to follow strict `kebab-case` naming conventions.
 - Fixed over 70 stylistic linting errors to comply with the 80-character line length limit.

@@ -20,16 +20,16 @@ playwright.config.ts    ← projects: Desktop Chrome (1280px), iPhone 13 (390px)
 ```
 
 Run via:
+**Local Execution (macOS/Windows)** - Uses Docker to guarantee snapshots match CI (Linux):
 ```bash
+pnpm docker:vrt:build           # builds base docker image from dockerfile (run once)
 pnpm docker:vrt:run             # compare against stored baselines
 pnpm docker:vrt:update          # regenerate baselines after an intentional visual change
 ```
 
-> VRT requires a **built** preview server. `playwright.config.ts` runs `pnpm preview` automatically via `webServer`.
-
-If there are any issues with the docker image run:
+**CI Execution (GitHub Actions Linux runner)** - Runs natively for speed, as the environment already matches the baseline:
 ```bash
-pnpm docker:vrt:build #builds base docker image from dockerfile`
+pnpm test:vrt                   # native run for CI pipelines
 ```
 
 ---
