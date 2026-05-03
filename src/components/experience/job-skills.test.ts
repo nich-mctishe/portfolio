@@ -63,7 +63,7 @@ describe('Testing <JobSkills skills?:string[] />', () => {
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should not contain the skills container and not throw', () => {
+      it('Then it should not contain the skills container', () => {
         expect(rendered).not.toContain('job-skills')
       })
     })

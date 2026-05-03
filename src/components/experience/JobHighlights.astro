@@ -23,13 +23,19 @@ const hasManyHighlights = highlights && highlights.length > 1
       ))}
     </ul>
     {hasManyHighlights && (
-      <ExpandableButton text="View all highlights" ariaLabel="Expand highlights" class="job-highlight-btn" />
+      <ExpandableButton 
+        text="View all highlights" 
+        ariaLabel="Expand highlights" 
+        class="job-highlight-btn" 
+      />
     )}
   </div>
 )}
 
 <script>
-import { initiateHighlightAccordions } from '../../helpers/initiate-highlight-accordions'
+import { 
+  initiateHighlightAccordions 
+} from '../../helpers/initiate-highlight-accordions'
 
 function handleScroll(e: any) {
   const { target } = e.detail

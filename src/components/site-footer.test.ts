@@ -7,7 +7,7 @@ vi.mock('astro:content', () => ({
   getEntry: vi.fn()
 }))
 
-describe('Testing <SiteFooter /> — uses astro:content getEntry("personal", "data")', () => {
+describe('Testing <SiteFooter /> — uses personal entry', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.useFakeTimers()

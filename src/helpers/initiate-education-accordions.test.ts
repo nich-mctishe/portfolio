@@ -20,8 +20,12 @@ describe('education-logic', () => {
           </button>
         </div>
       `
-      container = documentInstance.querySelector('.education-card') as HTMLElement
-      expandButton = documentInstance.querySelector('.expand-btn') as HTMLButtonElement
+      container = documentInstance.querySelector(
+        '.education-card'
+      ) as HTMLElement
+      expandButton = documentInstance.querySelector(
+        '.expand-btn'
+      ) as HTMLButtonElement
       buttonText = documentInstance.querySelector('.btn-text') as HTMLElement
     })
 

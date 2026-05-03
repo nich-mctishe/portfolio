@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '../../tests/utils.ts'
 import SkillItem from './SkillItem.astro'
 
-describe('Testing <SkillItem name:string since:number end?:number fullExperiencePoints:number isChild?:boolean />', () => {
+describe('Testing <SkillItem /> with various props', () => {
   const mockSkill = {
     name: 'TypeScript',
     since: 2020,
@@ -34,20 +34,18 @@ describe('Testing <SkillItem name:string since:number end?:number fullExperience
         expect(rendered).toContain(mockSkill.name)
       })
 
-      it('Then it should calculate and display the duration label "4 Yrs"', () => {
+      it('Then it should display the duration label "4 Yrs"', () => {
         // From 2020 to 2024 (fake time set above) is 4 full years
         expect(rendered).toContain('4 Yrs')
       })
 
-      it('Then it should render desktop bar segments with --total: 10 and --filled: 4', () => {
+      it('Then it should render desktop bar segments correctly', () => {
         expect(rendered).toContain('--total: 10')
         expect(rendered).toContain('--filled: 4')
       })
 
-      it('Then it should render mobile bar segments with --total: 10 and --filled: 4', () => {
-        // (4/10) * 10 = 10 (Wait! 4/10 * 10 = 4)
+      it('Then it should render mobile bar segments correctly', () => {
         expect(rendered).toContain('--total: 10')
-        // Check for presence in the style attribute
         expect(rendered).toMatch(/--filled: 4/i)
       })
     })
@@ -86,6 +84,26 @@ describe('Testing <SkillItem name:string since:number end?:number fullExperience
     describe('When the component is rendered', () => {
       it('Then it should calculate the duration as 2 years', () => {
         expect(rendered).toContain('2 Yrs')
+      })
+    })
+  })
+
+  describe('Given a skill with a duration of exactly 1 year', () => {
+    const props = {
+      ...mockSkill,
+      since: 2023,
+      end: 2024
+    }
+    let rendered: string | null = null
+
+    beforeEach(async () => {
+      rendered = (await render(SkillItem, props)).html
+    })
+
+    describe('When the component is rendered', () => {
+      it('Then it should display the duration label "1 Yr"', () => {
+        expect(rendered).toContain('1 Yr')
+        expect(rendered).not.toContain('1 Yrs')
       })
     })
   })

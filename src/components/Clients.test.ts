@@ -7,7 +7,7 @@ vi.mock('astro:content', () => ({
   getEntry: vi.fn()
 }))
 
-describe('Testing <Clients /> — uses astro:content getEntry("clients", "data")', () => {
+describe('Testing <Clients /> — uses clients entry', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -45,7 +45,11 @@ describe('Testing <Clients /> — uses astro:content getEntry("clients", "data")
       data: {
         clients: [
           { name: 'Active Client', logoUrl: '/logos/active.svg', active: true },
-          { name: 'Inactive Client', logoUrl: '/logos/inactive.svg', active: false }
+          { 
+            name: 'Inactive Client', 
+            logoUrl: '/logos/inactive.svg', 
+            active: false 
+          }
         ]
       }
     }
@@ -84,7 +88,31 @@ describe('Testing <Clients /> — uses astro:content getEntry("clients", "data")
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should yield a valid HTML string without throwing', () => {
+      it('Then it should yield a valid HTML string', () => {
+        expect(typeof rendered).toBe('string')
+      })
+    })
+  })
+
+  describe('Given getEntry returns an empty clients array', () => {
+    const mockData = {
+      data: {
+        clients: []
+      }
+    }
+    let rendered: string | null = null
+
+    beforeEach(async () => {
+      vi.mocked(getEntry).mockResolvedValue(mockData as any)
+      rendered = (await render(Component)).html
+    })
+
+    afterEach(() => {
+      rendered = null
+    })
+
+    describe('When the component is rendered', () => {
+      it('Then it should produce a valid HTML string', () => {
         expect(typeof rendered).toBe('string')
       })
     })

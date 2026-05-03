@@ -29,6 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configured site-wide SEO metadata, Open Graph labels, and JSON-LD schema using `BaseLayout.astro`.
 - Created `robots.txt` and integrated `@astrojs/sitemap`.
 - Configured E2E testing framework utilising `@playwright/test` and `@cucumber/cucumber` (BDD).
+- Configured automated server startup for E2E tests using `start-server-and-test`.
+- Resolved `ERR_CONNECTION_REFUSED` failures in the Cucumber test suite.
+- Renamed all test files to follow strict `kebab-case` naming conventions.
+- Fixed over 70 stylistic linting errors to comply with the 80-character line length limit.
+- Updated `package.json` with dedicated `test:e2e` and `test:e2e:run` scripts.
+- Resolved branch coverage gaps in `calculate-skill-duration` and `initiate-highlight-accordions`.
 - Built automated Visual Regression Testing (VRT) suite via Playwright configured for multiple viewports.
 - Configured initial CI automated testing workflow (`.github/workflows/ci.yml`).
 - BDD unit tests for `JobCard.astro` and `ExperienceItem.astro`.

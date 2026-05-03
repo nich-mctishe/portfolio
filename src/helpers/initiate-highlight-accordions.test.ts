@@ -23,8 +23,12 @@ describe('highlights-logic', () => {
           </button>
         </div>
       `
-      container = documentInstance.querySelector('.highlights-container') as HTMLElement
-      expandButton = documentInstance.querySelector('.expand-btn') as HTMLButtonElement
+      container = documentInstance.querySelector(
+        '.highlights-container'
+      ) as HTMLElement
+      expandButton = documentInstance.querySelector(
+        '.expand-btn'
+      ) as HTMLButtonElement
       buttonText = documentInstance.querySelector('.btn-text') as HTMLElement
     })
 

@@ -40,7 +40,7 @@ describe('Testing <BaseLayout title:string description?:string />', () => {
         expect(rendered).toContain(`<title>${props.title}</title>`)
       })
 
-      it('And it should fall back to the first line of personal description for meta tag', () => {
+      it('And it should fall back to personal description for meta tag', () => {
         expect(rendered).toContain('content="First line."')
       })
 
@@ -78,7 +78,7 @@ describe('Testing <BaseLayout title:string description?:string />', () => {
     })
 
     describe('When the layout is rendered', () => {
-      it('Then the <meta name="description"> content should equal the prop value', () => {
+      it('Then the meta description should equal the prop value', () => {
         expect(rendered).toContain('content="Custom meta description"')
       })
     })

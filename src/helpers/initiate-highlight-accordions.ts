@@ -2,7 +2,9 @@
  * Helper to initialize highlights accordions in JobHighlights component.
  * Exported for unit testing and modularity.
  */
-export function initiateHighlightAccordions(documentInstance: Document = document) {
+export function initiateHighlightAccordions(
+  documentInstance: Document = document
+) {
   const selector = '.highlights-container[data-expandable="true"]'
   const containers = documentInstance.querySelectorAll(selector)
     
@@ -10,7 +12,9 @@ export function initiateHighlightAccordions(documentInstance: Document = documen
     const expandButton = container.querySelector('.expand-btn')
     const buttonText = container.querySelector('.btn-text')
       
-    if (expandButton && buttonText && !container.hasAttribute('data-initialized')) {
+    const isUninitialized = !container.hasAttribute('data-initialized')
+
+    if (expandButton && buttonText && isUninitialized) {
       expandButton.addEventListener('click', () => {
         const isExpanded = container.getAttribute('data-expanded') === 'true'
         const newState = !isExpanded

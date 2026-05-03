@@ -37,12 +37,18 @@ export function initializeHeroBubbles(container: HTMLElement) {
     const corner = isVrt ? defaultCorners[i % 4] : shuffledCorners[i % 4]
     
     // Random values for safe interior within the quadrant (from 2% to 15%)
-    const vVal = isVrt ? `${5 + (i * 3) % 10}%` : `${Math.floor(Math.random() * 13) + 2}%`
-    const hVal = isVrt ? `${5 + (i * 7) % 10}%` : `${Math.floor(Math.random() * 13) + 2}%`
+    const vVal = isVrt 
+      ? `${5 + (i * 3) % 10}%` 
+      : `${Math.floor(Math.random() * 13) + 2}%`
+    const hVal = isVrt 
+      ? `${5 + (i * 7) % 10}%` 
+      : `${Math.floor(Math.random() * 13) + 2}%`
 
     // Measurements
     const size = isVrt ? '40px' : Math.floor(Math.random() * 8 + 4) + 'rem'
-    const color = colors[isVrt ? i % colors.length : Math.floor(Math.random() * colors.length)]
+    const color = colors[
+      isVrt ? i % colors.length : Math.floor(Math.random() * colors.length)
+    ]
     const speed = isVrt ? '15s' : `${Math.random() * 10 + 10}s`
     const delay = isVrt ? `${i * 0.5}s` : `${Math.random() * 5}s`
     

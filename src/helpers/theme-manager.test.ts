@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
 import { ThemeManager } from './theme-manager'
 
-describe('ThemeManager', () => {
+describe('Testing ThemeManager class', () => {
   let element: HTMLElement
   let storage: any
   let manager: ThemeManager
@@ -15,35 +15,91 @@ describe('ThemeManager', () => {
     manager = new ThemeManager(element, storage)
   })
 
-  describe('When toggleTheme is called', () => {
-    it('Then it should switch from light to dark', () => {
+  afterEach(() => {
+    vi.clearAllMocks()
+  })
+
+  describe('Given the theme is currently light', () => {
+    beforeEach(() => {
       element.setAttribute('data-theme', 'light')
-      const result = manager.toggleTheme()
-      expect(result).toBe('dark')
-      expect(element.getAttribute('data-theme')).toBe('dark')
-      expect(storage.setItem).toHaveBeenCalledWith('theme', 'dark')
     })
 
-    it('Then it should switch from dark to light', () => {
-      element.setAttribute('data-theme', 'dark')
-      const result = manager.toggleTheme()
-      expect(result).toBe('light')
-      expect(element.getAttribute('data-theme')).toBe('light')
-      expect(storage.setItem).toHaveBeenCalledWith('theme', 'light')
+    describe('When toggleTheme is called', () => {
+      let result: string
+
+      beforeEach(() => {
+        result = manager.toggleTheme()
+      })
+
+      it('Then it should return "dark"', () => {
+        expect(result).toBe('dark')
+      })
+
+      it('And it should set the data-theme attribute to "dark"', () => {
+        expect(element.getAttribute('data-theme')).toBe('dark')
+      })
+
+      it('And it should save "dark" to storage', () => {
+        expect(storage.setItem).toHaveBeenCalledWith('theme', 'dark')
+      })
     })
   })
 
-  describe('When initialize is called', () => {
-    it('Then it should load the saved theme from storage', () => {
-      storage.getItem.mockReturnValue('dark')
-      manager.initialize()
-      expect(element.getAttribute('data-theme')).toBe('dark')
+  describe('Given the theme is currently dark', () => {
+    beforeEach(() => {
+      element.setAttribute('data-theme', 'dark')
     })
 
-    it('Then it should do nothing if no theme is saved', () => {
+    describe('When toggleTheme is called', () => {
+      let result: string
+
+      beforeEach(() => {
+        result = manager.toggleTheme()
+      })
+
+      it('Then it should return "light"', () => {
+        expect(result).toBe('light')
+      })
+
+      it('And it should set the data-theme attribute to "light"', () => {
+        expect(element.getAttribute('data-theme')).toBe('light')
+      })
+
+      it('And it should save "light" to storage', () => {
+        expect(storage.setItem).toHaveBeenCalledWith('theme', 'light')
+      })
+    })
+  })
+
+  describe('Given a saved theme "dark" in storage', () => {
+    beforeEach(() => {
+      storage.getItem.mockReturnValue('dark')
+    })
+
+    describe('When initialize is called', () => {
+      beforeEach(() => {
+        manager.initialize()
+      })
+
+      it('Then it should set the data-theme attribute to "dark"', () => {
+        expect(element.getAttribute('data-theme')).toBe('dark')
+      })
+    })
+  })
+
+  describe('Given NO saved theme in storage', () => {
+    beforeEach(() => {
       storage.getItem.mockReturnValue(null)
-      manager.initialize()
-      expect(element.hasAttribute('data-theme')).toBe(false)
+    })
+
+    describe('When initialize is called', () => {
+      beforeEach(() => {
+        manager.initialize()
+      })
+
+      it('Then it should NOT set any data-theme attribute', () => {
+        expect(element.hasAttribute('data-theme')).toBe(false)
+      })
     })
   })
 })

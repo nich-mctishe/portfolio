@@ -42,9 +42,18 @@ Items to be completed for v1.0.0:
 
 ## General
 - [x] Add favicon
-- [ ] Complete Implementation plan steps
+- [x] Complete Implementation plan steps (BDD Testing & Linting)
 - [x] Pull and store all data from the current nicholasheadlong.co.uk site
 - [x] Unit tests!
 - [x] Create an active flag for each experience, skill, client, project, education etc. This will allow us to easily hide/show items without having to delete them
 - [ ] For myself: Check site against the actual CV for consistency and accuracy
-- [ ] Future: Capture projects/side-projects copy from current site and place in content folder
+- [x] Future: Capture projects/side-projects copy from current site and place in content folder
+- [ ] Update namecheap records to point towards nich-mctishe.github.io/portfolio
+- [ ] Hide dark/light mode button in production
+
+
+## Future (Not in v1)
+
+- [ ] Blog section (new content collection, routing, index page)
+- [ ] CI agent suite (changelog, test coverage, VRT, a11y, perf, SEO)
+- [ ] Analytics integration

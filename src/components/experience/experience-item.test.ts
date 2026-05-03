@@ -81,7 +81,7 @@ describe('Testing <ExperienceItem job:object index:number />', () => {
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should have the correct ID on the container (index 0)', () => {
+      it('Then it should have the correct ID on the container', () => {
         expect(rendered).toContain('id="job-experience-0"')
       })
 

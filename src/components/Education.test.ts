@@ -7,7 +7,7 @@ vi.mock('astro:content', () => ({
   getEntry: vi.fn()
 }))
 
-describe('Testing <Education /> — uses astro:content getEntry("education", "data")', () => {
+describe('Testing <Education /> — uses education entry', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -56,7 +56,11 @@ describe('Testing <Education /> — uses astro:content getEntry("education", "da
       data: {
         qualifications: [
           { degree: 'Active Degree', institution: 'Active Uni', active: true },
-          { degree: 'Inactive Degree', institution: 'Inactive Uni', active: false }
+          { 
+            degree: 'Inactive Degree', 
+            institution: 'Inactive Uni', 
+            active: false 
+          }
         ]
       }
     }
@@ -130,8 +134,69 @@ describe('Testing <Education /> — uses astro:content getEntry("education", "da
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should yield a valid HTML string without throwing', () => {
+      it('Then it should yield a valid HTML string', () => {
         expect(typeof rendered).toBe('string')
+      })
+    })
+  })
+
+  describe('Given getEntry returns an empty qualifications array', () => {
+    const mockData = {
+      data: {
+        qualifications: []
+      }
+    }
+    let rendered: string | null = null
+
+    beforeEach(async () => {
+      vi.mocked(getEntry).mockResolvedValue(mockData as any)
+      rendered = (await render(Component)).html
+    })
+
+    afterEach(() => {
+      rendered = null
+    })
+
+    describe('When the component is rendered', () => {
+      it('Then it should produce a valid HTML string', () => {
+        expect(typeof rendered).toBe('string')
+      })
+    })
+  })
+
+  describe('Given logoAdaptive: true and absolute logoUrl', () => {
+    const mockData = {
+      data: {
+        qualifications: [
+          { 
+            degree: 'Degree', 
+            institution: 'Uni', 
+            logoUrl: '/logos/edu.svg', 
+            logoAdaptive: true,
+            active: true 
+          }
+        ]
+      }
+    }
+    let rendered: string | null = null
+
+    beforeEach(async () => {
+      vi.mocked(getEntry).mockResolvedValue(mockData as any)
+      rendered = (await render(Component)).html
+    })
+
+    afterEach(() => {
+      rendered = null
+    })
+
+    describe('When the component is rendered', () => {
+      it('Then it should use an adaptive-logo container', () => {
+        expect(rendered).toContain('adaptive-logo')
+        expect(rendered).not.toContain('<img')
+      })
+
+      it('And it should have the correct style property', () => {
+        expect(rendered).toContain('--logo-url: url(')
       })
     })
   })

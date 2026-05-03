@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '../../tests/utils.ts'
 import Component from './JobHeader.astro'
 
-describe('Testing <JobHeader role:string company:string logoUrl?:string logoAdaptive?:boolean description?:string />', () => {
+describe('Testing <JobHeader /> with various props', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })

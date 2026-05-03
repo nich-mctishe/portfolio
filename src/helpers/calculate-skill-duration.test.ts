@@ -32,7 +32,7 @@ describe('Testing calculateSkillDuration(since: number, end?: number)', () => {
     })
   })
 
-  describe('Given since=2020 and no end year (system date mocked to 2026)', () => {
+  describe('Given since=2020 and no end year', () => {
     const since = 2020
     let result: number | null = null
 

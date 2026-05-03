@@ -65,7 +65,11 @@ const qualifications = (educationEntry?.data?.qualifications || [])
               <div class="synopsis-wrapper">
                 <p class="synopsis">{edu.synopsis}</p>
               </div>
-              <ExpandableButton text="View synopsis" ariaLabel="Toggle synopsis" class="edu-expand-btn" />
+              <ExpandableButton 
+                text="View synopsis" 
+                ariaLabel="Toggle synopsis" 
+                class="edu-expand-btn" 
+              />
             </div>
           )}
         </div>
@@ -75,10 +79,14 @@ const qualifications = (educationEntry?.data?.qualifications || [])
 </Section>
 
 <script>
-import { initiateEducationAccordions } from '../helpers/initiate-education-accordions'
+import { 
+  initiateEducationAccordions 
+} from '../helpers/initiate-education-accordions'
 
 initiateEducationAccordions()
-document.addEventListener('astro:after-swap', () => initiateEducationAccordions())
+document.addEventListener('astro:after-swap', () => {
+  initiateEducationAccordions()
+})
 </script>
 
 <style lang="scss">

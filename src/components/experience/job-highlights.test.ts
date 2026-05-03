@@ -2,12 +2,12 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '../../tests/utils.ts'
 import Component from './JobHighlights.astro'
 
-describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', () => {
+describe('Testing <JobHighlights /> with various props', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  describe('Given highlights=["Led platform migration","Reduced costs by 30%"] and scrollTarget="#job-1"', () => {
+  describe('Given multiple highlights and a scrollTarget', () => {
     const props = {
       highlights: ['Led platform migration', 'Reduced costs by 30%'],
       scrollTarget: '#job-1'
@@ -36,16 +36,16 @@ describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', (
         expect(rendered).toContain('data-scroll-target="#job-1"')
       })
 
-      it('And it should render an ExpandableButton with text "View all highlights"', () => {
+      it('And it should render an ExpandableButton with correct text', () => {
         expect(rendered).toContain('expand-btn')
         expect(rendered).toContain('View all highlights')
       })
 
-      it('And the ExpandableButton should have aria-label "Expand highlights"', () => {
+      it('And the ExpandableButton should have correct aria-label', () => {
         expect(rendered).toContain('aria-label="Expand highlights"')
       })
 
-      it('And the ExpandableButton should have the job-highlight-btn class', () => {
+      it('And the ExpandableButton should have the correct class', () => {
         expect(rendered).toContain('job-highlight-btn')
       })
 
@@ -127,7 +127,7 @@ describe('Testing <JobHighlights highlights?:string[] scrollTarget:string />', (
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should not render the highlights-container without throwing', () => {
+      it('Then it should not render the highlights-container', () => {
         expect(rendered).not.toContain('highlights-container')
       })
 

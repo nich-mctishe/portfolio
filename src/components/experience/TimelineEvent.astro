@@ -84,6 +84,7 @@ const { startDate, endDate, location } = Astro.props
       right: auto;
       left: 0;
       top: 0;
+
       /* Constrain width so truncation can happen safely */
       width: calc(100vw - 4rem); 
       max-width: 100%;
@@ -130,6 +131,7 @@ const { startDate, endDate, location } = Astro.props
     @include mobile-only {
       padding: 0.25rem 0;
       font-size: 0.65rem;
+
       /* Guarantee single line truncation on location if extremely tight */
       flex-shrink: 1;
       min-width: 0;

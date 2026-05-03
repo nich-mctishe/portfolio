@@ -2,7 +2,9 @@
  * Helper to initialize education accordions.
  * Exported for unit testing.
  */
-export function initiateEducationAccordions(documentInstance: Document = document) {
+export function initiateEducationAccordions(
+  documentInstance: Document = document
+) {
   const selector = '.education-card[data-expandable="true"]'
   const cards = documentInstance.querySelectorAll(selector)
 

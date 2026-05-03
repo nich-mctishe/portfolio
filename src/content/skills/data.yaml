@@ -167,7 +167,11 @@ categories:
         since: 2019
       - name: Agile
         since: 2019
-      - name: Github/MS Copilot
+      - name: Copilot
+        since: 2025
+      - name: Claude
+        since: 2025
+      - name: Gemini
         since: 2025
       - name: PagerDuty
         since: 2024
@@ -180,5 +184,6 @@ categories:
         since: 2016
       - name: Arduino (Java)
         since: 2010
+        end: 2013
       - name: Raspberry Pi (Python)
         since: 2018

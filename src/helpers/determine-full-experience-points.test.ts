@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { determineFullExperiencePoints } from './determine-full-experience-points'
+import { 
+  determineFullExperiencePoints 
+} from './determine-full-experience-points'
 import type { SkillItem } from '../content/config'
 
 vi.mock('./calculate-skill-duration', () => {
@@ -50,7 +52,7 @@ describe('Testing determineFullExperiencePoints(skills: SkillItem[])', () => {
     })
   })
 
-  describe('Given nested skills with deeper children having higher durations', () => {
+  describe('Given nested skills with deeper children', () => {
     const skills: SkillItem[] = [
       {
         name: 'Parent',
@@ -68,7 +70,7 @@ describe('Testing determineFullExperiencePoints(skills: SkillItem[])', () => {
     })
 
     describe('When called', () => {
-      it('Then it should return the maximum duration from the entire tree (16)', () => {
+      it('Then it should return the maximum duration', () => {
         expect(result).toBe(16)
       })
     })

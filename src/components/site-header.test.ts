@@ -7,7 +7,7 @@ vi.mock('astro:content', () => ({
   getEntry: vi.fn()
 }))
 
-describe('Testing <SiteHeader /> — uses astro:content getEntry("personal", "data")', () => {
+describe('Testing <SiteHeader /> — uses personal entry', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })

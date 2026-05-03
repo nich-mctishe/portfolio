@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '../../tests/utils.ts'
 import Component from './TimelineEvent.astro'
 
-describe('Testing <TimelineEvent startDate:string endDate?:string location?:string />', () => {
+describe('Testing <TimelineEvent /> with various props', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })

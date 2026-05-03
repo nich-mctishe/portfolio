@@ -6,7 +6,10 @@ export class ThemeManager {
   private element: HTMLElement
   private storage: Storage
 
-  constructor(element: HTMLElement = document.documentElement, storage: Storage = localStorage) {
+  constructor(
+    element: HTMLElement = document.documentElement, 
+    storage: Storage = localStorage
+  ) {
     this.element = element
     this.storage = storage
   }

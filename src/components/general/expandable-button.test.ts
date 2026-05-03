@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '../../tests/utils.ts'
 import ExpandableButton from './ExpandableButton.astro'
 
-describe('Testing <ExpandableButton text:string ariaLabel?:string class?:string />', () => {
+describe('Testing <ExpandableButton /> with various props', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -45,7 +45,7 @@ describe('Testing <ExpandableButton text:string ariaLabel?:string class?:string 
     })
   })
 
-  describe('Given text="Read more" and ariaLabel="Expand job highlights"', () => {
+  describe('Given text="Read more" and custom ariaLabel', () => {
     const props = { text: 'Read more', ariaLabel: 'Expand job highlights' }
     let rendered: string | null = null
 

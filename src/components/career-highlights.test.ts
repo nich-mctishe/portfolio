@@ -7,12 +7,12 @@ vi.mock('astro:content', () => ({
   getEntry: vi.fn()
 }))
 
-describe('Testing <CareerHighlights /> — uses astro:content getEntry("career-highlights", "data")', () => {
+describe('Testing <CareerHighlights /> — uses career-highlights entry', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  describe('Given getEntry returns 3 highlights ["Led X", "Built Y", "Grew Z"]', () => {
+  describe('Given getEntry returns 3 active highlights', () => {
     const mockData = {
       data: {
         'career-highlights': [
@@ -42,7 +42,7 @@ describe('Testing <CareerHighlights /> — uses astro:content getEntry("career-h
     })
   })
 
-  describe('Given getEntry returns highlights where one has active: false', () => {
+  describe('Given getEntry returns one inactive highlight', () => {
     const mockData = {
       data: {
         'career-highlights': [
@@ -110,7 +110,7 @@ describe('Testing <CareerHighlights /> — uses astro:content getEntry("career-h
     })
 
     describe('When the component is rendered', () => {
-      it('Then it should yield a valid HTML string without throwing', () => {
+      it('Then it should yield a valid HTML string', () => {
         expect(typeof rendered).toBe('string')
       })
     })
