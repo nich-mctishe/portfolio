@@ -108,7 +108,7 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 ## Phase 10 — Polish & QA
 
 - [x] **10.1** Cross-browser testing (Chrome, Firefox, Safari)
-- [ ] **10.2** Accessibility audit (colour contrast, keyboard nav, screen reader)
+- [x] **10.2** Accessibility audit (colour contrast, keyboard nav, screen reader)
 - [ ] **10.3** Performance audit (Lighthouse 100/100 target)
 - [ ] **10.4** Final content review — all YAML/MD content is accurate
 - [ ] **10.5** README.md — project overview, local dev setup, deployment guide, content editing guide

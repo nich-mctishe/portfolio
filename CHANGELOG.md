@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configured initial CI automated testing workflow (`.github/workflows/ci.yml`).
 - BDD unit tests for `JobCard.astro` and `ExperienceItem.astro`.
 - Project-wide "No Abbreviations" directive to all `.agent/skills` and documentation.
+- Added `axe-playwright` accessibility audit script (`tests/a11y/homepage.a11y.ts`) for WCAG 2 AA compliance checks.
+- Added `CNAME` file to `public/` to configure custom domain `nicholasheadlong.com` on GitHub Pages.
 
 
 ### Changed
@@ -57,6 +59,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project-wide rename of variables and functions to remove abbreviations (e.g., `sel` -> `selector`, `doc` -> `documentInstance`, `btn` -> `expandButton`, `text` -> `buttonText`, `init` -> `initialize`).
 - Renamed `getSkillDuration` to `calculateSkillDuration` and `experience-points` to `determine-full-experience-points`.
 - Standardised unit test suite to use a strict Given/When/Then BDD structure, achieving ~83% coverage.
+- `ThemeToggle` component now conditionally renders only in development or when `PUBLIC_TEST_MODE=true` is set, hiding it from production builds.
+- Renamed environment variable `PUBLIC_IS_TESTING` to `PUBLIC_TEST_MODE` for clarity. Updated `ci.yml`, `Dockerfile`, and all skill documentation.
+- Simplified `astro.config.mjs` and `playwright.config.ts` base path logic now that the site uses a custom root domain (no `/portfolio/` subpath needed).
+- Darkened `secondary` (`#009900` → `#007700`) and `tertiary` (`#339933` → `#2d7a2d`) colour tokens to meet WCAG AA 4.5:1 contrast ratio for nav bubble text.
+- Removed `opacity: 0.8` from `.footer-credits` to prevent the effective text colour falling below the WCAG AA contrast threshold.
 
 ### Fixed
 
@@ -66,3 +73,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Finalized **Falmouth University logo** to be theme-aware in both light and dark modes.
 - Fixed **Education synopsis chevron** animation to point in the correct direction when expanded.
 - Redesigned **Career Highlights** to use a cleaner, list-based aesthetic with custom iconography instead of cards.
+- Fixed `image-redundant-alt` WCAG violation in `SiteFooter.astro` — social icon `alt` attribute now correctly set to `""` since the adjacent text label already describes the link.
+- Fixed `color-contrast` WCAG violations in `SiteHeader.astro` (nav bubble text) and `SiteFooter.astro` (copyright text).

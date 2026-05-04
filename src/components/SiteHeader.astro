@@ -222,12 +222,19 @@ const navItems = [
     li {
       &:nth-child(2) .nav-bubble {
         background-color: var(--color-tertiary);
+
+        &:hover {
+          background-color: var(--color-primary);
+        }
       }
 
       &:nth-child(3) .nav-bubble {
         background-color: var(--color-quaternary);
-      }
 
+        &:hover {
+          background-color: var(--color-primary);
+        }
+      }
 
       @for $i from 1 through 5 {
         &:nth-child(#{$i}) .nav-bubble {
