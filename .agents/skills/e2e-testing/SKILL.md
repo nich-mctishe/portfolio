@@ -27,6 +27,11 @@ Run via:
 # Requires dev server running: pnpm dev
 pnpm test:e2e
 
+# Against a local production build (e.g. pnpm preview)
+# IMPORTANT: The build must be compiled with testing mode enabled so testable elements (like theme toggles) are not stripped out!
+PUBLIC_TEST_MODE=true pnpm build
+pnpm test:e2e:ci
+
 # Against a deployed build:
 BASE_URL=https://nich-mctishe.github.io/portfolio pnpm test:e2e
 ```

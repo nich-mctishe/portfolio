@@ -1,8 +1,12 @@
 ---
 // ThemeToggle Component
 // Interactive island to toggle between light and dark mode.
+const isProd = import.meta.env.PROD;
+const isTestMode = import.meta.env.PUBLIC_TEST_MODE === 'true';
+const shouldShow = !isProd || isTestMode;
 ---
 
+{shouldShow && (
 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
   <!-- Sun Icon -->
   <svg
@@ -43,6 +47,7 @@
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
   </svg>
 </button>
+)}
 
 <style lang="scss">
   .theme-toggle {

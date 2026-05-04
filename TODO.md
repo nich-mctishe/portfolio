@@ -49,7 +49,8 @@ Items to be completed for v1.0.0:
 - [ ] For myself: Check site against the actual CV for consistency and accuracy
 - [x] Future: Capture projects/side-projects copy from current site and place in content folder
 - [ ] Update namecheap records to point towards nich-mctishe.github.io/portfolio
-- [ ] Hide dark/light mode button in production
+- [x] Hide dark/light mode button in production
+- [ ] Complete task-breakdown phases 8 and 10
 
 
 ## Future (Not in v1)

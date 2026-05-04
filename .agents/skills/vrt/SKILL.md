@@ -29,6 +29,8 @@ pnpm docker:vrt:update          # regenerate baselines after an intentional visu
 
 **CI Execution (GitHub Actions Linux runner)** - Runs natively for speed, as the environment already matches the baseline:
 ```bash
+# Note: CI runs the production build, but testing flags are required.
+PUBLIC_TEST_MODE=true pnpm build
 pnpm test:vrt                   # native run for CI pipelines
 ```
 

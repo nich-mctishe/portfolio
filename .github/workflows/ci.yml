@@ -28,7 +28,7 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Build Astro project
-        run: pnpm run build
+        run: PUBLIC_TEST_MODE=true pnpm run build
       - name: Run Cucumber BDD
         run: pnpm test:e2e:ci
       - name: Run Playwright VRT

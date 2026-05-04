@@ -9,7 +9,7 @@ RUN pnpm install --frozen-lockfile
 
 COPY . ./
 
-RUN pnpm build
+RUN PUBLIC_TEST_MODE=true pnpm build
 
 ENV CI=true
 

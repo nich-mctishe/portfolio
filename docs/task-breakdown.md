@@ -86,9 +86,9 @@ Delegatable task list for building the portfolio site. Each task is self-contain
 ## Phase 8 — Deployment
 
 - [x] **8.1** Create GitHub Actions workflow (`.github/workflows/deploy.yml`) using `withastro/action`
-- [ ] **8.2** Configure GitHub Pages in repo settings (source: GitHub Actions)
-- [ ] **8.3** Test deployment pipeline end-to-end
-- [ ] **8.4** (Optional) Set up custom domain with CNAME
+- [x] **8.2** Configure GitHub Pages in repo settings (source: GitHub Actions)
+- [x] **8.3** Test deployment pipeline end-to-end
+- [ ] **8.4** Set up custom domain with CNAME
 
 ---
 
