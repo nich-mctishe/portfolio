@@ -43,7 +43,7 @@ Items to be completed for v1.0.0:
 ## General
 - [x] Add favicon
 - [x] Complete Implementation plan steps (BDD Testing & Linting)
-- [x] Pull and store all data from the current nicholasheadlong.co.uk site
+- [x] Pull and store all data from the current nicholasheadlong.com site
 - [x] Unit tests!
 - [x] Create an active flag for each experience, skill, client, project, education etc. This will allow us to easily hide/show items without having to delete them
 - [ ] For myself: Check site against the actual CV for consistency and accuracy
@@ -58,3 +58,4 @@ Items to be completed for v1.0.0:
 - [ ] Blog section (new content collection, routing, index page)
 - [ ] CI agent suite (changelog, test coverage, VRT, a11y, perf, SEO)
 - [ ] Analytics integration
+- [ ] Tear down old site on digital ocean

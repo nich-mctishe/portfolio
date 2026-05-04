@@ -33,7 +33,7 @@ PUBLIC_TEST_MODE=true pnpm build
 pnpm test:e2e:ci
 
 # Against a deployed build:
-BASE_URL=https://nicholasheadlong.co.uk pnpm test:e2e
+BASE_URL=https://nicholasheadlong.com pnpm test:e2e
 ```
 
 ---
