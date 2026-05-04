@@ -5,9 +5,10 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Uncomment `base` if deploying to a subpath like https://user.github.io/portfolio
-  site: 'https://nich-mctishe.github.io',
-  base: process.env.GITHUB_ACTIONS ? '/portfolio/' : '/',
+  // The custom domain for the portfolio
+  site: 'https://nicholasheadlong.co.uk',
+  // No base needed since we use a custom domain mapped to the root
+  base: '/',
 
   integrations: [sitemap()],
 })

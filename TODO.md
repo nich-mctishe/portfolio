@@ -48,7 +48,7 @@ Items to be completed for v1.0.0:
 - [x] Create an active flag for each experience, skill, client, project, education etc. This will allow us to easily hide/show items without having to delete them
 - [ ] For myself: Check site against the actual CV for consistency and accuracy
 - [x] Future: Capture projects/side-projects copy from current site and place in content folder
-- [ ] Update namecheap records to point towards nich-mctishe.github.io/portfolio
+- [x] Update namecheap records to point towards nich-mctishe.github.io/portfolio
 - [x] Hide dark/light mode button in production
 - [ ] Complete task-breakdown phases 8 and 10
 

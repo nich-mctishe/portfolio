@@ -6,9 +6,7 @@ export default defineConfig({
   fullyParallel: true,
   reporter: 'html',
   use: {
-    baseURL: process.env.GITHUB_ACTIONS 
-      ? 'http://localhost:4321/portfolio/' 
-      : 'http://localhost:4321/',
+    baseURL: 'http://localhost:4321/',
     trace: 'on-first-retry',
     headless: true,
   },
@@ -37,9 +35,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'pnpm preview',
-    url: process.env.GITHUB_ACTIONS 
-      ? 'http://localhost:4321/portfolio/' 
-      : 'http://localhost:4321/',
+    url: 'http://localhost:4321/',
     reuseExistingServer: true,
   },
 })
