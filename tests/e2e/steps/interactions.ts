@@ -10,10 +10,7 @@ Given('I open the portfolio on a mobile device',
     this.context = await this.browser!.newContext({ viewport })
     this.page = await this.context.newPage()
   
-    const isGH = !!process.env.GITHUB_ACTIONS
-    const fallback = isGH 
-      ? 'http://localhost:4321/portfolio/' 
-      : 'http://localhost:4321/'
+    const fallback = 'http://localhost:4321/'
     const baseURL = process.env.BASE_URL || fallback
     await this.page!.goto(baseURL)
     await this.page!.waitForLoadState('networkidle')
