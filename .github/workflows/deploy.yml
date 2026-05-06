@@ -16,6 +16,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    environment: production
+    env:
+      PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.PUBLIC_GOOGLE_ANALYTICS_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

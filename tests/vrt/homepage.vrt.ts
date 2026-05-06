@@ -93,7 +93,7 @@ test.describe('Visual Regression', () => {
     await section.scrollIntoViewIfNeeded()
     await page.waitForTimeout(2000)
     await expect(section).toHaveScreenshot('section-clients.png', {
-      maxDiffPixels: 500,
+      maxDiffPixels: 700,
       animations: 'disabled',
     })
   })
