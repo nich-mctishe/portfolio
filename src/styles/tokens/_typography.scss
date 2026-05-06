@@ -1,6 +1,5 @@
-// Web-safe Google Fonts fallbacks (Inter and Outfit are often used interchangeably)
-$font-heading: 'Open Sans', 'system-ui', -apple-system, sans-serif;
-$font-body: 'Open Sans', 'system-ui', -apple-system, sans-serif;
+$font-heading: 'Open Sans Variable', 'Open Sans', 'system-ui', -apple-system, sans-serif;
+$font-body: 'Open Sans Variable', 'Open Sans', 'system-ui', -apple-system, sans-serif;
 $font-monospace: 'ui-monospace', 'SFMono-Regular', menlo, monaco, consolas, monospace;
 
 // Responsive type scale (clamp-based)
