@@ -4,14 +4,14 @@ import { launch } from 'chrome-launcher'
 const BASE_URL = 'http://localhost:4321/'
 
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'] as const
-const PASS_SCORE = 100
+const GATED_CATEGORIES = new Set(['accessibility', 'best-practices', 'seo'])
 
 type Category = typeof CATEGORIES[number]
 
 interface CategoryResult {
   category: Category
   score: number
-  passed: boolean
+  gated: boolean
 }
 
 const runAudit = async (): Promise<CategoryResult[]> => {
@@ -23,13 +23,13 @@ const runAudit = async (): Promise<CategoryResult[]> => {
     logLevel: 'silent',
   })
 
-  await chrome.kill()
+  chrome.kill()
 
   if (!result?.lhr) throw new Error('Lighthouse returned no results')
 
   return CATEGORIES.map((category) => {
     const score = Math.round((result.lhr.categories[category]?.score ?? 0) * 100)
-    return { category, score, passed: score >= PASS_SCORE }
+    return { category, score, gated: GATED_CATEGORIES.has(category) }
   })
 }
 
@@ -39,18 +39,23 @@ const run = async () => {
   const results = await runAudit()
   let failed = false
 
-  results.forEach(({ category, score, passed }) => {
-    const icon = passed ? '✅' : '❌'
+  results.forEach(({ category, score, gated }) => {
+    const passed = score >= 100
     const label = category.replace(/-/g, ' ')
-    console.log(`${icon} ${label}: ${score}/100`)
-    if (!passed) failed = true
+    if (gated) {
+      const icon = passed ? '✅' : '❌'
+      console.log(`${icon} ${label}: ${score}/100`)
+      if (!passed) failed = true
+    } else {
+      console.log(`ℹ️  ${label}: ${score}/100 (advisory)`)
+    }
   })
 
   if (failed) {
-    console.log('\n❌ Audit failed — one or more categories scored below 100.')
+    console.log('\n❌ Audit failed — one or more gated categories scored below 100.')
     process.exit(1)
   } else {
-    console.log('\n✅ All categories scored 100/100.')
+    console.log('\n✅ All gated categories passed.')
     process.exit(0)
   }
 }

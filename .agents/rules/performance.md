@@ -1,12 +1,9 @@
 ---
 name: performance
-description: Rules for maintaining Lighthouse 100/100 scores across all categories.
+description: Rules for Lighthouse audits — gated categories (Accessibility, Best Practices, SEO) must score 100; Performance is advisory.
 ---
 
 # Performance Rules
-
-All pages must score **100/100** across Lighthouse Performance,
-Accessibility, Best Practices, and SEO before any PR is merged.
 
 Run the audit with:
 ```bash
@@ -15,8 +12,22 @@ pnpm build && pnpm test:perf
 
 See `.agents/skills/perf-audit/SKILL.md` for full audit documentation.
 
+## Category Tiers
+
+| Tier | Categories | Rule |
+|---|---|---|
+| **Gated** | Accessibility, Best Practices, SEO | Must score 100 — blocks merge if not |
+| **Advisory** | Performance | Always reported, never blocks |
+
+Performance is advisory because a metric-based deficit can land on
+`main` undetected. A hard gate would then block all subsequent PRs —
+including fix PRs — until the score is restored to 100 in a single
+change. Advisory reporting keeps the signal visible without creating
+that deadlock.
+
 ## Mandatory Rules
 
+- **Gated categories must score 100** before any PR is merged.
 - **Self-host all fonts** — never use external font CDNs (Google
   Fonts, Adobe Fonts, etc.). Use `@fontsource-variable/<name>` and
   import in the layout. External font stylesheets are render-blocking.

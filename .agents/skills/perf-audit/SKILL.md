@@ -1,6 +1,6 @@
 ---
 name: perf-audit
-description: Run a Lighthouse performance audit against a local production build, targeting 100/100 across all categories.
+description: Run a Lighthouse audit against a local production build. Accessibility, Best Practices, and SEO are hard gates (100/100). Performance is advisory — always reported but never blocks.
 ---
 
 # Performance Audit Skill
@@ -13,8 +13,17 @@ description: Run a Lighthouse performance audit against a local production build
 > Use full descriptive names like `score` instead of `s`.
 
 Performance audits use **Lighthouse** (Node API) to assess the site
-across Performance, Accessibility, Best Practices, and SEO. All
-categories must score 100/100 before merging to `main`.
+across four categories. Categories are split into two tiers:
+
+| Tier | Categories | Behaviour |
+|---|---|---|
+| **Gated** | Accessibility, Best Practices, SEO | Must score 100 — exits non-zero if not |
+| **Advisory** | Performance | Always reported, never blocks |
+
+Performance is advisory because its score is metric-based and can
+regress on `main` without being caught. A hard gate would block
+subsequent fix PRs from merging until a perfect score is restored in
+a single change — making incremental improvements impossible.
 
 ```
 tests/perf/
@@ -30,7 +39,7 @@ pnpm test:perf
 
 The script starts a preview server automatically via
 `start-server-and-test`, runs the Lighthouse audit, then exits with
-code `1` if any category scores below 100.
+code `1` only if a gated category scores below 100.
 
 ---
 
@@ -52,8 +61,9 @@ Four Lighthouse categories are checked:
 Audit scripts live in `tests/perf/*.perf.ts`. Each script:
 1. Launches a headless Chrome instance via `chrome-launcher`
 2. Runs Lighthouse against the target URL using the Node API
-3. Extracts category scores and prints a pass/fail summary
-4. Exits with code `1` if any category is below 100, `0` if all pass
+3. Extracts category scores and prints a summary
+4. Exits with code `1` if a **gated** category scores below 100, `0` otherwise
+   — advisory categories are printed but do not affect the exit code
 
 ```ts
 import lighthouse from 'lighthouse'
@@ -65,27 +75,30 @@ const result = await lighthouse('http://localhost:4321/', {
   onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
   logLevel: 'silent',
 })
-await chrome.kill()
+chrome.kill()
 ```
 
 ---
 
 ## Rules
 
-1. **100/100 target**: all four categories must score 100 before any
-   PR is merged. No exceptions.
-2. **Run against a production build**: always run `pnpm build` before
+1. **Gated categories must score 100**: Accessibility, Best Practices,
+   and SEO must score 100 before any PR is merged. No exceptions.
+2. **Performance is advisory**: the Performance score is always
+   reported but never blocks a merge. A hard gate would prevent
+   incremental fix PRs from landing once a deficit exists on `main`.
+3. **Run against a production build**: always run `pnpm build` before
    `pnpm test:perf`. The dev server is unoptimised and will produce
    inaccurate scores.
-3. **Self-host fonts**: never load fonts from external CDNs (Google
+4. **Self-host fonts**: never load fonts from external CDNs (Google
    Fonts, etc.) — external stylesheets are render-blocking. Use
    `@fontsource-variable/<font-name>` instead.
-4. **Lazy-load below-the-fold images**: any `<img>` not visible on
+5. **Lazy-load below-the-fold images**: any `<img>` not visible on
    initial viewport load must have `loading="lazy"`.
-5. **No base64-embedded images in SVGs**: SVGs that wrap rasterised
+6. **No base64-embedded images in SVGs**: SVGs that wrap rasterised
    images (PNG/JPEG encoded as base64) are large and uncompressible.
    Use the raster image format directly.
-6. **Fix the root cause**: never suppress Lighthouse audits or use
+7. **Fix the root cause**: never suppress Lighthouse audits or use
    performance budgets to hide failures. Resolve the underlying issue.
 
 ---
@@ -107,5 +120,5 @@ await chrome.kill()
 1. Create `tests/perf/<page-name>.perf.ts` following the same
    structure as `homepage.perf.ts`.
 2. Add a corresponding `test:perf:<page>` script to `package.json`.
-3. All four categories must score 100 before the audit is considered
-   passing.
+3. Gated categories (Accessibility, Best Practices, SEO) must score
+   100. Performance is always reported but advisory.
