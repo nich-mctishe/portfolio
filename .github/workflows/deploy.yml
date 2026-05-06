@@ -33,8 +33,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Debug - Check GA var
-        run: echo "PUBLIC_GOOGLE_ANALYTICS_ID is set to ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}"
       - name: Build and upload with Astro
         uses: withastro/action@v3
         env:
