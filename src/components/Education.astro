@@ -45,7 +45,11 @@ const qualifications = (educationEntry?.data?.qualifications || [])
                     : undefined}
                 >
                   {!edu.logoAdaptive && (
-                    <img src={edu.logoUrl} alt={edu.institution} loading="lazy" />
+                    <img
+                      src={edu.logoUrl}
+                      alt={edu.institution}
+                      loading="lazy"
+                    />
                   )}
                 </div>
               </div>

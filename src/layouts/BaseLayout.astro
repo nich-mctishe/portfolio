@@ -87,6 +87,19 @@ const jsonLd = {
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
+    <!-- Google Analytics (production only) -->
+    {import.meta.env.PROD && import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`} />
+        <script is:inline>
+window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', '{import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}')
+        </script>
+      </>
+    )}
+
     <!-- 
       Theme setup script: runs inline in the <head> to prevent FOUC 
       (Flash of Unstyled Content).

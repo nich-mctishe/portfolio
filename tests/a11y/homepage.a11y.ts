@@ -17,6 +17,7 @@ const auditPage = async (page: Page, theme: 'light' | 'dark') => {
 
   await injectAxe(page)
   const violations = await getViolations(page)
+
   return violations
 }
 
