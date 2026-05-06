@@ -90,12 +90,19 @@ const jsonLd = {
     <!-- Google Analytics (production only) -->
     {import.meta.env.PROD && import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID && (
       <>
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`} />
-        <script is:inline>
+        <script
+          is:inline
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`}
+        />
+        <script
+          is:inline
+          define:vars={{ gaId: import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID }}
+        >
 window.dataLayer = window.dataLayer || []
 function gtag(){dataLayer.push(arguments)}
 gtag('js', new Date())
-gtag('config', '{import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}')
+gtag('config', gaId)
         </script>
       </>
     )}
