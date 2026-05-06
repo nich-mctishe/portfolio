@@ -44,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project-wide "No Abbreviations" directive to all `.agent/skills` and documentation.
 - Added `axe-playwright` accessibility audit script (`tests/a11y/homepage.a11y.ts`) for WCAG 2 AA compliance checks.
 - Added `CNAME` file to `public/` to configure custom domain `nicholasheadlong.com` on GitHub Pages.
+- Self-hosted Open Sans via `@fontsource-variable/open-sans`, removing the render-blocking Google Fonts external stylesheet.
+- Added `loading="lazy"` to below-the-fold logo images in Clients and Education sections.
+- Optimised SVG logo assets with SVGO.
 
 
 ### Changed

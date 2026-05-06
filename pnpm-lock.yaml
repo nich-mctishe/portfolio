@@ -11,6 +11,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.7.1
         version: 3.7.1
+      '@fontsource-variable/open-sans':
+        specifier: ^5.2.7
+        version: 5.2.7
       astro:
         specifier: ^5.17.1
         version: 5.18.0(@types/node@25.3.3)(rollup@4.59.0)(sass@1.97.3)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -654,6 +657,9 @@ packages:
   '@eslint/plugin-kit@0.6.0':
     resolution: {integrity: sha512-bIZEUzOI1jkhviX2cp5vNyXQc6olzb2ohewQubuYlMXZ2Q/XjBO0x0XhGPvc9fjSIiUN0vw+0hq53BJ4eQSJKQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+
+  '@fontsource-variable/open-sans@5.2.7':
+    resolution: {integrity: sha512-wzCLm2STuekK9Fz58DiuBnk4GgJpvvVtAU85a4b06ACNG/UsVjQcCvkUd6R/ETlHfsaykCUZamLRvSXg4KtWuA==}
 
   '@hapi/address@5.1.1':
     resolution: {integrity: sha512-A+po2d/dVoY7cYajycYI43ZbYMXukuopIsqCjh5QzsBCipDtdofHntljDlpccMjIfTy6UOkg+5KPriwYch2bXA==}
@@ -4728,6 +4734,8 @@ snapshots:
     dependencies:
       '@eslint/core': 1.1.0
       levn: 0.4.1
+
+  '@fontsource-variable/open-sans@5.2.7': {}
 
   '@hapi/address@5.1.1':
     dependencies:

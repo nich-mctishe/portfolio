@@ -27,9 +27,10 @@ const clients = (clientsEntry?.data?.clients || [])
         <div class="client-card reveal reveal-stagger">
           <div class="client-logo-placeholder">
             {client.logoUrl && (
-              <img 
-                src={client.logoUrl} 
-                alt={client.name} 
+              <img
+                src={client.logoUrl}
+                alt={client.name}
+                loading="lazy"
                 class:list={[{ 'logo-adjust': client.logoAdjust }]}
               />
             )}
