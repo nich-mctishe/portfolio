@@ -23,3 +23,30 @@ This is a transient issue with Astro's internal cache management. It occurs when
     pnpm build
     ```
     If the build succeeds, the error is purely a dev-server transient issue.
+
+---
+
+## Self-Hosted Variable Fonts Not Applying
+
+### Issue
+After replacing a Google Fonts import with `@fontsource-variable/<name>`,
+the site renders in the system font instead of the intended typeface.
+
+### Cause
+Variable font packages from `@fontsource-variable` register the font
+under a different family name — `'<Font Name> Variable'` — rather than
+the plain `'<Font Name>'` used by Google Fonts. If the SCSS token still
+references the plain name, the browser finds no match and falls back to
+`system-ui`.
+
+### Resolution
+Update the font family token in `src/styles/tokens/_typography.scss` to
+reference the variable name first:
+
+```scss
+$font-body: 'Open Sans Variable', 'Open Sans', system-ui, sans-serif;
+```
+
+The plain name (`'Open Sans'`) can remain as a fallback for environments
+where the variable font fails to load. This pattern applies to any
+`@fontsource-variable/*` package.
